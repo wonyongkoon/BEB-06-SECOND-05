@@ -1,0 +1,47 @@
+.header2 {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68); 
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    /* margin-bottom: px; */
+}
+
+.headerWrapper {
+    padding: 10px;
+}
+
+.headerTop {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.headerOptions {
+    display: flex;
+    margin-left: 20px;
+}
+
+.headerText {
+    display: flex;
+    font-weight: bold;
+}
+
+.headerText2 {
+    display: flex;
+    font-weight: bold;
+}
+
+.headerText3 {
+    display: flex;
+    font-weight: bold;
+    /* cursor: pointer; */
+    /* margin-left: 260px; */
+}
+
+.headerText4 {
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    /* margin-left: 350px; */
+}

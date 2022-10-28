@@ -1,0 +1,13 @@
+.feed {
+    flex: 5.5;
+}
+
+/*İç boşluk*/
+.feedWrapper {
+    padding: 10px;
+}
+
+.feed_sort {
+    margin-top: 30px;
+    padding: 20px;
+}
