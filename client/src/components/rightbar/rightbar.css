@@ -1,0 +1,5 @@
+.rightbar {
+  height: calc(100vh - 50px); 
+  overflow-y: scroll;
+  width: 320px;
+  }
