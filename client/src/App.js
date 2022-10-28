@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/write' element={<WritePage />} />
@@ -24,7 +24,7 @@ function App() {
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/signup' element={<SignupPage />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </BrowserRouter>
   );
