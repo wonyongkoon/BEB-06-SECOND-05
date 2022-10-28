@@ -1,0 +1,19 @@
+.App {
+    text-align: center;
+  }
+  
+  .form-wrapper{
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .title-input {
+    width: 500px;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  .text-area {
+    width: 80%;
+    min-height: 500px;
+  }
