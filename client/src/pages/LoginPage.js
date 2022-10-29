@@ -6,6 +6,9 @@ const LoginPage = () => {
   return (
     
     <div className='LoginPage'>
+              <div className='LoginPage__header'>
+          로그인
+        </div>
         <div className='LoginPage__container'>
             <input className='LoginPage__container-input' required="required" maxLength="15" type="text" placeholder='아이디(ID)'/>
             <input className='LoginPage__container-input' required="required" maxLength="15" type="password" placeholder='비밀번호(Password)'/>         

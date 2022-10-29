@@ -1,7 +1,11 @@
+
+.LoginPage__header{
+    font-size: 50px;
+}
 .LoginPage__container{
     display: flex;
     flex-direction: column;
-    margin: 500px 30px;
+    margin: 300px 30px;
 }
 .LoginPage__container-input{
     border: none;
