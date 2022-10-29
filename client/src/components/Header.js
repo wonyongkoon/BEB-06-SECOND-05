@@ -1,6 +1,7 @@
 import React from 'react'
 import '../utils/header.css'
 import logo from '../icon/logo_icon.png'
+import logo2 from '../icon/logo.png'
 import {Link} from 'react-router-dom';
 
 const Header = () => {
@@ -9,16 +10,14 @@ const Header = () => {
             {/* 로고 */}
             <div className='logocase'>
             <Link to="/">
-                <img src={logo} className='logo'/>
+                <img src={logo2} className='logo'/>
+                {/* <img src={logo} className='logo'/> */}
                 </Link>
             </div>
             {/* 네비게이션 메뉴 */}
             {/* <Link></Link> */}
             <div className='header__navmenu'>
                 {/* 마켓 버튼 */}
-
-
-                
                 <div className='header__navmenu__button'>
                     <Link to="/market" className='link'>
                         <a className='header__navmenu__button__icon'>
@@ -36,9 +35,11 @@ const Header = () => {
                 </div>
                 {/* 로그인 버튼 */}
                 <div className='header__navmenu__button'>
-                    <a className='header__navmenu__button__icon'>
-                        LogIn
-                    </a>
+                <Link to="/login">
+                        <a className='header__navmenu__button__icon'>
+                            Login
+                        </a>
+                    </Link>
                 </div>
                 {/* 로그아웃 버튼 */}
                 <div className='header__navmenu__button'>
