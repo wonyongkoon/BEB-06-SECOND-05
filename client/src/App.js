@@ -9,7 +9,7 @@ import SignupPage from './pages/SignupPage';
 import WritePage from './pages/WritePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import Login from './pages/LoginPage'
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path='/market' element={<MarketPage />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/signup' element={<SignupPage />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
         <Footer />
       </div>

@@ -1,0 +1,36 @@
+
+.SignupPage__header{
+    font-size: 50px;
+}
+.SignupPage__container{
+    display: flex;
+    flex-direction: column;
+    margin: 100px 30px;
+    margin-bottom: 300px;
+}
+.SignupPage__container-input{
+    border: none;
+    padding: 15px 0;
+    font-size: 18px;
+    margin-bottom: 25px;
+    transition: border-color 0.3s ease-in-out;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.SignupPage__container-input::placeholder{
+    color: rgba(0,0,0,0.4);
+}
+.SignupPage__container-input:focus{
+    border-color: #00c6ff;
+    outline: none;
+}
+
+.SignupPage__container-button{
+    background-color: #00c6ff;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    
+    font-size: 18px;
+    border: #00c6ff;
+}
