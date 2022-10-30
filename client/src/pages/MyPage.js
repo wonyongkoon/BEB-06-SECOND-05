@@ -13,9 +13,9 @@ const MyPage = () => {
   //       // setIsLoding(false); // 로딩 중 (시간되면 구현)
   //     });
   // },);
-  axios.post("localhost:5001/user/userall")
+  axios.post("http://localhost:5000/user/userall")
     .then(function(response){
-      console.log("성공");
+      console.log(response.data);
     }).catch(function(error){
       console.log(error);
     });
