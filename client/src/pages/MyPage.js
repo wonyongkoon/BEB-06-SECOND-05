@@ -1,5 +1,30 @@
-import React from 'react';
+import React, { useState , useEffect} from 'react'
+import axios from 'axios';
 
-export default function MyPage() {
-  return <div>마이 페이지</div>;
+const MyPage = () => {
+  let [UserInfo, setUserInfo] = useState([]);
+  // const [isLoading, setIsLoding] = useState(true); // 로딩중인 화면 (시간되면 구현)
+  // useEffect(() => {
+  //   // setIsLoding(true); // 로딩 중 (시간되면 구현)
+  //   fetch(`http://localhost:5000/`)
+  //     .then(resp => resp.json())
+  //     .then(result => {
+  //       setUserInfo(result);
+  //       // setIsLoding(false); // 로딩 중 (시간되면 구현)
+  //     });
+  // },);
+  axios.post("localhost:5001/user/userall")
+    .then(function(response){
+      console.log("성공");
+    }).catch(function(error){
+      console.log(error);
+    });
+
+  return (
+    <div>
+      <button>불러오기</button>
+    </div>
+  )
 }
+
+export default MyPage
