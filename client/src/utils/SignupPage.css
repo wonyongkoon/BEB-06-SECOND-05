@@ -12,7 +12,7 @@
     border: none;
     padding: 15px 0;
     font-size: 18px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     transition: border-color 0.3s ease-in-out;
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
@@ -25,12 +25,32 @@
     outline: none;
 }
 
-.SignupPage__container-button{
+.SignupPage__container-button-blue{
     background-color: #00c6ff;
     cursor: pointer;
     border-radius: 5px;
     padding: 10px;
-    
     font-size: 18px;
     border: #00c6ff;
+}
+
+.SignupPage__container-button-gray{
+    background-color: #6e6e6e;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    border: #6e6e6e;
+}
+
+
+.messagesuccess{
+    color: green
+}
+.messageerror{
+    color: red
+}
+span{
+    text-align: left;
+    padding-bottom: 10px;
 }
