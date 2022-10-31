@@ -5,6 +5,7 @@ import Post from "./feed/Post"
 import Sort from "./feed/sort"
 import {Posts} from "./data"
 import Paging from "./feed/Pagination";
+import Parser from 'html-react-parser'
 
 const Feed = () => {
     return (
