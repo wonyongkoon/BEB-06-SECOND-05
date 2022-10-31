@@ -1,9 +1,11 @@
 const express=require("express");
 const app=express();
+const cookieParser=require("cookie-parser");
+const cors=require("cors");
 const port=5000;
 const {web3}=require("./connect/web3.js");
 
-
+app.use(cors(),cookieParser('hihi'));
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({limit: '100mb', extended: false}));
 app.listen(port,()=>{

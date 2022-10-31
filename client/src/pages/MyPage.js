@@ -13,12 +13,7 @@ const MyPage = () => {
   //       // setIsLoding(false); // 로딩 중 (시간되면 구현)
   //     });
   // },);
-  axios.post("localhost:5001/user/userall")
-    .then(function(response){
-      console.log("성공");
-    }).catch(function(error){
-      console.log(error);
-    });
+  
 
   return (
     <div>
