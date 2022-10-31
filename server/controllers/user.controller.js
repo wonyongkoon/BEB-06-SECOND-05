@@ -22,7 +22,7 @@ const saveUser = async (req,res) =>{
             }
         });
         if(nickname.length!=0){
-            return res.status(400).send("이미 있는 닉네임입니다.");
+            return res.status(400).send("이미 있는 ID 입니다.");
         }
         await db['user'].create({
             user_id:data.user_id,

@@ -1,13 +1,11 @@
 import React, {useState} from "react";
 import "../../utils/post.css";
-// import {MoreVert} from "@material-ui/icons";
 import {Users} from "../data";
 
 
 const Post = ({post}) => {
     const [like, setLike] = useState(post.like);
     const [isLiked, setIsLiked] = useState(false);
-
     const likeHandler = () => {
         setLike(isLiked ? like+1 : like)
         setIsLiked(!isLiked)
@@ -53,7 +51,6 @@ const Post = ({post}) => {
                         <div className="postBottomRight">
                             <span className="postCommentText">{post.comment} comments</span>
                         </div>
-
                     </div>
 
               </div>
