@@ -22,7 +22,6 @@ const saveUser = async (req,res) =>{
             nickname:data.nickname,
             email:data.email,
             password:data.password,
-            data_at:data.user_data,
         });
         res.send("데이터 저장 성공");
     }catch(err){
