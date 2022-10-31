@@ -4,6 +4,8 @@ import Header from "./feed/header2";
 import Post from "./feed/Post"
 import Sort from "./feed/sort"
 import {Posts} from "./data"
+import Paging from "./feed/Pagination";
+import Parser from 'html-react-parser'
 
 const Feed = () => {
     return (
@@ -16,7 +18,7 @@ const Feed = () => {
              {Posts.map((p)=> (
                  <Post post={p} key={p.id}/>
              ))}
-
+             <Paging />
             </div>
         </div>
     )
