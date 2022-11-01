@@ -1,5 +1,7 @@
 import React from "react";
 import "../utils/feed.css";
+import {useState, useEffect, useCallback} from 'react'
+import axios from 'axios'
 import Header from "./feed/header2";
 import Post from "./feed/Post"
 import Sort from "./feed/sort"
@@ -15,10 +17,11 @@ const Feed = () => {
           </div>
             <div className="feedWrapper">
              <Header />
-             {Posts.map((p)=> (
+             <Post />
+             {/* {Post.map((p)=> (
                  <Post post={p} key={p.id}/>
-             ))}
-             <Paging />
+             ))} */}
+             {/* <Paging /> */}
             </div>
         </div>
     )
