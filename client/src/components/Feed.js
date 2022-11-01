@@ -1,8 +1,8 @@
 import React from "react";
 import "../utils/feed.css";
 import Share from "./share/Share.js";
-import axios from 'axios'
-import Post from "./feed/Post"
+import Post from "./Post/Post"
+
 
 
 const Feed = () => {
