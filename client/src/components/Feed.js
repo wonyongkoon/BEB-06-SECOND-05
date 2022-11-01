@@ -3,7 +3,7 @@ import "../utils/feed.css";
 import {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import Header from "./feed/header2";
-import Post from "./feed/Post"
+import Post from "./Post/Post"
 import Sort from "./feed/sort"
 import {Posts} from "./data"
 import Paging from "./feed/Pagination";
