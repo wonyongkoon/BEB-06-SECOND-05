@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./post.css";
+import './Paging.css';
 import {MoreVert} from "@material-ui/icons";
 import axios from 'axios'
 import image from "./image.jpg";
@@ -8,6 +9,7 @@ import Pagination from "react-js-pagination";
 const Post = () => {
     const [page, setPage] = useState(1);
     const [post,setpost] =useState([]);
+    const [totalPostCount, settotalPostCount] = useState();
     const [like, setLike] = useState();
     const [isLiked, setIsLiked] = useState(false);
     const offset = (page - 1) * 10;
@@ -21,6 +23,7 @@ const Post = () => {
         .then((response) =>{
             console.log(response.data);
            setpost(response.data);
+           settotalPostCount(response.data.length)
         })
     }, [])
 
@@ -44,8 +47,7 @@ const Post = () => {
 
     return (
         <div>
-         
-        {   post
+            {post
             .slice(offset, offset + 10)
             .map((el,index)=>{
                 const date=el.date_at;
@@ -85,16 +87,12 @@ const Post = () => {
             <Pagination
                 activePage={page} // 현재 페이지
                 itemsCountPerPage={10} // 한 페이지랑 보여줄 아이템 갯수 (10)
-                totalItemsCount={post.length} // 총 아이템 갯수 // totalItemCount
+                totalItemsCount={totalPostCount} // 총 아이템 갯수 // totalItemCount
                 pageRangeDisplayed={10} // paginator의 페이지 범위
                 prevPageText={"‹"} // "이전"을 나타낼 텍스트
                 nextPageText={"›"} // "다음"을 나타낼 텍스트
                 onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
             /> 
-       
-              
-
-         
          </div>
     )
 

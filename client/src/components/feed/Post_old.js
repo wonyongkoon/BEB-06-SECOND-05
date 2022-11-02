@@ -9,7 +9,7 @@ import Pagination from "react-js-pagination";
 const Post = () => {
     // location.reload();
 
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(10);
     const [totalPostCount, settotalPostCount] = useState();
     const offset = (page - 1) * 10; // 10 -1 * 10
 

@@ -1,7 +1,82 @@
 .sidebar {
-    /* flex: 3; */
+    flex: 3;
     height: calc(100vh - 50px); 
     overflow-y: scroll;
-    width: 320px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-trach {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(179,179,179)
+}
+
+.sidebarWrapper {
+    padding: 20px;
+}
+
+.sidebarList {
+    padding: 40px 20px 30px 30px;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarPersonContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sidebarPerson {
+    width: 200px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebarPersonName {
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 15px;
+    text-decoration: none;
+}
+
+.sidebarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebarIcon {
+    margin-right: 15px;
+}
+
+.sidebarButton {
+    width: 175px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sidebarHr {
+    margin: 20px 0;
+}
+
+.sidebarFriendList {
+    font-size: 16.5px;
+    font-weight: bold;
+}
+
+.sidebarFriendListPersons {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
 }
 

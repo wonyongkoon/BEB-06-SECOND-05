@@ -12,16 +12,10 @@ const Feed = () => {
     return (
         <div className="feed">
             <div className="feedWrapper">
-
-             {/* <Header /> */}
-             {
+                 {
                 cookies ? <Share/> : <p></p>
              }
              <Post />
-             {/* {Post.map((p)=> (
-                 <Post post={p} key={p.id}/>
-             ))} */}
-             {/* <Paging /> */}
             </div>
         </div>
     )
