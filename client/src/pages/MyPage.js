@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import axios from 'axios';
 import '../utils/MyPage.css'
 import logo from '../icon/logo.png';
 import dummy from '../components/market/dummy' // 임시로 더미데이ㅇ터 사용
 import ItemList from '../components/market/ItemList'
 import Feed from "../components/Feed.js";
+import { UseContext } from '../User/UserContextProvider';
 
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
 const MyPage = () => {
-
-
-
-
+    const {user,setUsers} =useContext(UseContext);
+    console.log(user);
     return (
         <div className='Mypage'>
             {/* 헤더 */}
@@ -23,10 +22,10 @@ const MyPage = () => {
                 <img className='Mypage__userinfo-img' src={logo}/>
                 <div className='Mypage__userinfo-cont'>
                     <sapn className='Mypage__userinfo-cont-name'>
-                        유저 닉네임
+                        {user.nickname}
                     </sapn>
                     <sapn className='Mypage__userinfo-cont-id'>
-                        유저 아이디
+                        {user.user_id}
                     </sapn>
                 </div>
             </div>
@@ -37,11 +36,11 @@ const MyPage = () => {
                         내정보
                         <div className='Wallet__address'> 
                           <span className='span_title'> 지갑주소 </span>
-                          <span className='span_content'> asdasdasdafdfdsf </span> 
+                          <span className='span_content'> {user.address} </span> 
                         </div>
                         <div className='token__account'>
                           <span className='span_title'> 나의 토큰 개수 </span>
-                          <span className='span_content'> 1000개 </span> 
+                          <span className='span_content'> {user.token_amount}개 </span> 
                           <button className='token__account-btn' >전송하기</button>
                         </div>
                         

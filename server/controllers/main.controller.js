@@ -36,7 +36,9 @@ const login= async (req,res)=>{
 };
 
 const logout =(req,res)=>{
+    
     res.clearCookie('loginToken');
+    return res.status(200).send("");
 };
 
 const confirm =(req,res)=>{

@@ -11,6 +11,7 @@ const Header = () => {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const {cookies,setCookiesHandler} =useContext(UseContext);
     const {user,setUsers} =useContext(UseContext);
+    console.log("헤더");
     useEffect(()=>{
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{
@@ -20,18 +21,15 @@ const Header = () => {
         .catch((err)=>{
             console.log(err);
         })
-    },[]);
+    },[cookies]);
 
     function Logout(){
         console.log("로그아웃 버튼눌림")
         axios
             .post("http://localhost:5000/logout", {
-
             }, {withCredentials: true})
             .then(function (response) {
-                // 로그아웃 성공시
-                console.log("성공")
-
+                setCookiesHandler(false);
                 setPopup({
                        open:true,   
                        message: "로그아웃 되었습니다.", 
