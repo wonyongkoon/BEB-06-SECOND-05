@@ -29,13 +29,30 @@ const login= async (req,res)=>{
         }
         const jwtToken=jwt.sign(payload,process.env.SECRET_KEY,{expiresIn:'15m'});
         res.cookie('loginToken',jwtToken,{httpOnly:true,expires:new Date(Date.now()+9000000)});
-        return res.status(200).send("로그인 성공");
+        return res.status(200).send("성공");
     }catch(err){
         console.log(err);
     }
 };
 
+const logout =(req,res)=>{
+    res.clearCookie('loginToken');
+};
+
+const confirm =(req,res)=>{
+    const cookie=req.cookies.loginToken
+    
+    if(typeof cookie == "undefined"){
+        return res.json({ckeck:false});
+    }
+    const data = jwt.verify(cookie,process.env.SECRET_KEY);
+    console.log(data);
+    return res.json({ckeck:true,data:data});
+
+}
 module.exports={
     datatest,
-    login
+    login,
+    logout,
+    confirm
 }
