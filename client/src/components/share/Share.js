@@ -24,7 +24,7 @@ const Share = () => {
       user_id : 'yoo',
       nickname : 'hello',
       content : content,
-    })
+    },{withCredentials: true})
     .then(function (response) {
       console.log("성공")
       console.log(response.data);

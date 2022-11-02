@@ -48,6 +48,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "계정생성일"
+    },
+    privateKey: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
