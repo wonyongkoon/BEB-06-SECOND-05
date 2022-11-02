@@ -1,7 +1,7 @@
 require("dotenv").config();
 const db=require('../sequelize/models');
 const jwt = require('jsonwebtoken');
-import { tokenReward } from "../api/tokenReward";
+const { tokenReward } = require( "../api/tokenReward")
 
 const findAllPosts = async (req,res) => {
     try{
@@ -26,8 +26,8 @@ const postsave = async (req,res) =>{
     try{
         const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
         const address =cookdata.address;
-        tokenReward(address)
-
+        await tokenReward(address)
+        console.log('+++')
         await db['post'].create({
             user_id:data.user_id,
             nickname:data.nickname,
