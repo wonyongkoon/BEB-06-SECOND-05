@@ -55,10 +55,10 @@ const Share = () => {
 
                      <div className="shareOption">
                         <PermMedia htmlColor="tomato" className="shareIcon"/>
-                        <span className="shareOptionText">Photo or Video</span>
+                        <span className="shareOptionText">Photo</span>
                      </div>
 
-                     <div className="shareOption">
+                     {/* <div className="shareOption">
                         <Label htmlcolor="blue" className="shareIcon"/>
                         <span className="shareOptionText">Tag</span>
                      </div>
@@ -66,7 +66,7 @@ const Share = () => {
                      <div className="shareOption">
                         <Room htmlColor="green" className="shareIcon"/>
                         <span className="shareOptionText">Location</span>
-                     </div>
+                     </div> */}
 
                      <div className="shareOption">
                         <EmojiEmotions htmlColor="goldenrod" className="shareIcon"/>

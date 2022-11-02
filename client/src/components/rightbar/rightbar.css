@@ -6,23 +6,23 @@
     padding: 40px 20px 30px 30px;
   }
   
-  .birthdayContainer {
+  .rightContainer {
     display: flex;
     align-items: center;
   }
   
-  .birthdayImg {
+  .rightImg {
     width: 50px;
     height: 50px;
     margin-right: 20px;
   }
   
-  .birthdayText {
+  .rightText {
     font-weight: 300;
     font-size: 17px;
   }
 
-  .birthdayTitle {
+  .rightTitle {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 10px;
