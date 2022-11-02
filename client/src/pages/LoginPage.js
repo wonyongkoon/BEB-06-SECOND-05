@@ -9,7 +9,7 @@ import {useCookies} from 'react-cookie';
 
 const LoginPage = () => {
     // 로그인 성공시 팝업창 띄움
-    const [cookies, setCookie, removeCookie] = useCookies(['loginToken2']); // 쿠키 훅
+    const [cookies, setCookie, removeCookie] = useCookies(['loginToken']); // 쿠키 훅
     const navigator = useNavigate();
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [userId, setUserId] = useState('') //아이디
@@ -28,9 +28,6 @@ const LoginPage = () => {
     // 로그인 버튼 클릭 시 DB에서 데이터 조회 후 로그인
     function Login() {
         console.log("로그인 버튼눌림")
-        //임시테스트
-        setCookie('loginToken2', "cookietest");
-        navigator("/")
         axios
             .post("http://localhost:5000/login", {
                 user_id: userId,
@@ -41,24 +38,19 @@ const LoginPage = () => {
                 console.log(response);
                 console.log(response.data);
                 console.log(response.loginToken);
-                setCookie('loginToken2', response.data.token);
+                
                 // 로그인 성공시 메인페이지로 이동 
-            //     setPopup({
-            //            open:true,   
-            //            message: "로그인 되었습니다.", 
-            //            callback: function(){     
-            //                 navigator("/")   } });
+                setPopup({
+                       open:true,   
+                       message: "로그인 되었습니다.", 
+                       callback: function(){     
+                            navigator("/")   } });
             })
             .catch((Error) => {
                 console.log("실패")
                 console.log(Error);
             })
         }
-    function CookieTest() {
-      removeCookie("loginToken2")
-      console.log(document.cookie)
-      
-    }
 
     return (
         <div className='LoginPage'>
@@ -82,7 +74,7 @@ const LoginPage = () => {
                     onChange={onChangePassword}/>
                 <button className='LoginPage__container-button' onClick={Login}>로그인</button>
                 <a href="#">Find E2I2 Account or Password</a>
-                <button className='LoginPage__container-button' onClick={CookieTest}>쿠키 확인 버튼</button>
+                
             </div>
             <Popup
                 open={popup.open}
