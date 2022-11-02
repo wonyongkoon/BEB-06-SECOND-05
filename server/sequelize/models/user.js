@@ -36,11 +36,13 @@ module.exports = function(sequelize, DataTypes) {
     token_amount: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 0,
       comment: "nft 토큰 갯수"
     },
     eth_amount: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 0,
       comment: "이더리움 갯수"
     },
     date_at: {
