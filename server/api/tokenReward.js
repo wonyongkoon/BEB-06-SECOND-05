@@ -1,13 +1,14 @@
 const Web3 = require("web3");
-const rpcURL = "https://goerli.infura.io/v3/02a8145cfe2844f79fd84b16a2e5bafd" //API KEY 교체!!!
+const rpcURL = "https://goerli.infura.io/v3/02a8145cfe2844f79fd84b16a2e5bafd" //API KEY 교체!!
 const web3 = new Web3(rpcURL)
 
-const tokenReward = async (req, res) => {
+const tokenReward = async (address) => {
+
 	// 1.게시글 post요청이 성공하면 2. 해당 유저의 지갑 address를 조회 3. 서버계정에서 토큰 지급 
 	const contractAddress = "0x333F4693304D70A645E3F5E2678917350d54a76b" // erc20 토큰 컨트랙트
 	const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'; // 서버 계정
-	const privateKey      = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8';//서버 계정 프라이빗 키 
-	const toAddress       = '0x0360707fd66bE022f49597FA921B87F3d86da23F'; //목표 계정 
+	const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8';//서버 계정 프라이빗 키 
+	const toAddress = address ; //목표 계정 
 	const contractABI = [
 	{
 		"inputs": [
@@ -303,7 +304,7 @@ const tokenReward = async (req, res) => {
 	let data = contract.methods.transfer(toAddress, 10).encodeABI(); //Create the data for token transaction.
 	let rawTransaction = {"to": contractAddress, "gas": 100000, "data": data }; 
 
-	//밸런스 확인 ㅜㅐㅇㄷ 
+	//밸런스 확인 
 	const getTOKENBalanceOf = async (address) => {
 		return await contract.methods.balanceOf(address).call();                        
 	}   
@@ -329,4 +330,3 @@ module.exports = {
     tokenReward
 }
 
-tokenReward()
