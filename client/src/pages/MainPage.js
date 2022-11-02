@@ -8,7 +8,7 @@ import "../utils/home.css"
 export default function MainPage() {
   return (
    <div>
-          <div className="homeContainer">
+        <div className="homeContainer">
           <Sidebar />
           <Feed />
           <Rightbar />

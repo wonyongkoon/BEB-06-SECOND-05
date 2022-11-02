@@ -22,7 +22,7 @@ const Post = () => {
     const [post, setPost] = useState([]); //게시글 가져오기
 
     useEffect(()=> {
-    axios.post("http://localhost:5000/post/postall")
+    axios.post("http://localhost:5000/post/postall",{withCredentials: true})
     .then((response) =>{
         setPost(response.data)
         settotalPostCount(response.data.length)

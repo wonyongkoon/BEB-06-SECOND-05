@@ -1,5 +1,99 @@
 .rightbar {
-  height: calc(100vh - 50px); 
-  overflow-y: scroll;
-  width: 320px;
+    flex: 3.5;
   }
+  
+  .rightbarWrapper {
+    padding: 40px 20px 30px 30px;
+  }
+  
+  .birthdayContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .birthdayImg {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  .birthdayText {
+    font-weight: 300;
+    font-size: 17px;
+  }
+
+  .birthdayTitle {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .rightbarAd {
+    width: 100%;
+    border-radius: 10px;
+    margin: 30px 0;
+  }
+  
+  .rightbarTitle{
+      margin-bottom: 20px;
+  }
+  
+  .rightbarFriendList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .rightbarTitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .rightbarInfo{
+    margin-bottom: 30px;
+  }
+  
+  .rightbarInfoItem{
+    margin-bottom: 10px;
+  }
+  
+  .rightbarInfoKey{
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+  }
+  
+  .rightbarInfoValue{
+    font-weight: 300;
+  }
+  
+  .rightbarFollowings{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .rightbarFollowing{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .rightbarFollowingImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+.info_tit {
+    width: 50px;
+    display: block;
+    float: left;
+}
+
+.cafeinfoBox .txt_point, .cafeinfoBox a.txt_point:link, .cafeinfoBox a.txt_point:visited, .cafeinfoBox a.txt_point:hover, .cafeinfoBox a.txt_point:active {
+  color: #e46e20;
+}

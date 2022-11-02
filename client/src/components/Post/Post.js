@@ -19,7 +19,7 @@ const Post = () => {
       //   console.log(page);
     };
     useEffect(()=> {
-        axios.post("http://localhost:5000/post/postall")
+        axios.post("http://localhost:5000/post/postall",{withCredentials: true})
         .then((response) =>{
             console.log(response.data);
            setpost(response.data);
