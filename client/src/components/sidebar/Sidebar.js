@@ -1,6 +1,5 @@
 import React from "react";
 import "./sidebar.css";
-import {Users} from "../data.js";
 
 const Sidebar = () => {
     return (

@@ -9,14 +9,8 @@ const Feed = () => {
     return (
         <div className="feed">
             <div className="feedWrapper">
-
-             {/* <Header /> */}
              <Share />
              <Post />
-             {/* {Post.map((p)=> (
-                 <Post post={p} key={p.id}/>
-             ))} */}
-             {/* <Paging /> */}
             </div>
         </div>
     )
