@@ -1,0 +1,32 @@
+.MarketPage__hearder{
+    font-size: 50px;
+    text-align: left;
+    margin: 5px 10px;
+    font-weight: 600;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.searchBar {
+    background-color: white;
+    height: 50px;
+    flex: 1;
+    display: flex;
+    border-radius: 25px;
+    
+    align-items: center;
+    
+    border: 5px solid rgba(0,0,0,0.2) ;
+    margin: 0px 10px;
+}
+
+.searchIconContainer {
+    margin: 10px;
+}
+.searchInput {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    outline: none;
+    color: #1f1f1f;
+    font-size: 16px;
+    font-weight: 600;
+}
