@@ -1,0 +1,43 @@
+/* 전체 구성 */
+.item-component{
+    color: white;
+    padding: 5px 0px;
+    font-weight: 600;
+    font-size: 22px;
+    display: grid; 
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 가로 칸나누기*/
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+.item-component:hover{
+    background-color: rgba(255,255,255,0.1);
+}
+/* NFT 이미지 */
+.item-component__image{
+    width: 150px;
+    height: 150px;
+    border-radius: 30px;
+}
+/* NFT 이름, ID */
+.item-component__name{
+    text-align: center;
+}
+/* NFT 작가 */
+.item-component__writer{
+    text-align: center;
+}
+
+/* 가격 컨테이너 */
+.item-component__price-container{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    object-fit: contain;
+}
+/* 이더 이미지 */
+.wethImage{
+    margin-right: 10px;
+    height: 30px;
+    width: 17px;
+}

@@ -1,0 +1,138 @@
+/* 전체 관리 */
+.Mypage{
+    margin: 0px 10px;
+}
+/* 헤더부분 */
+.Mypage-Header{
+    background-color: bisque;
+    height: 150px;
+}
+/* 유저정보 */
+.Mypage__userinfo{
+    display: flex;
+    justify-content: left;
+    font-size: 10px;
+}
+/* 유저정보 - 이미지 */
+.Mypage__userinfo-img{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    margin : 10px ;
+    border-radius: 75px;
+}
+/* 유저정보 - 컨테이너 */
+.Mypage__userinfo-cont{
+    flex-direction: column; 
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    margin: 0px 10px;
+}
+/* 유저정보 - 이름 */
+.Mypage__userinfo-cont-name{
+    font-size: 40px;
+    font-weight: 800;
+}
+/* 유저정보 - 아이디 */
+.Mypage__userinfo-cont-id{
+    font-size: 20px;
+}
+/* 정보 + 게시물 컨테이너 */
+.Mypage__content{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    /* grid-template-columns: 1fr 1fr; */
+}
+/* 왼쪽 - 내정보/NFT  */
+.Mypage__content-grup{
+    flex-grow: 1;
+    width: 50%;
+}
+/* 왼쪽 - 내정보  */
+.Mypage__content-grup-info{
+    margin: 10px 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(0,0,0,0.2);
+    padding: 10px;
+    text-align: left;
+    align-items: left;
+    font-size: 30px;
+    font-weight: 800;
+    
+    /* background-color: #1f1f1f; */
+}
+.span_title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.span_content{
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 5px;
+    display: block;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+}
+.Wallet__address{
+    margin-top: 10px;
+}
+
+.token__account-btn{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+    background-color: #CCCCCC;
+    border: none;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.token__account-btn:hover{
+    background-color: #828282;
+}
+
+
+
+.Mypage__MyPost-content{
+
+}
+/* 왼쪽 - NFT 그룹 */
+.Mypage__content-grup-nft{
+    margin: 0px 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(0,0,0,0.2);
+    padding: 10px;
+    text-align: left;
+    align-items: left;
+    font-size: 30px;
+    font-weight: 800;
+    
+    /* background-color: #1f1f1f; */
+}
+/* 왼쪽 - NFT 리스트 */
+.nft-list{
+
+}
+
+/* 오른쪽 게시글 전체 */
+.Mypage__MyPost{
+    margin: 10px 10px;
+    flex-grow: 1;
+    width: 50%;
+    /* background-color: black; */
+}
+/* 오른쪽 게시글 헤더 */
+.Mypage__MyPost-hearger{
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0,0,0,0.2);
+    text-align: left;
+    font-size: 30px;
+    font-weight: 800;
+}
