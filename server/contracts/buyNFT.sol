@@ -14,12 +14,12 @@ contract NFTLootBox is ERC721URIStorage, Ownable {
     uint256 nftPrice;
 
     constructor() ERC721("E2I2VIPS", "EIV") {
-        nftPrice = 100e18;
+        nftPrice = 50;
     }
 
-    function mintNFT(address recipient, string memory tokenURI) public onlyOwner returns (uint256) {
+    function mintNFT(address recipient, string memory tokenURI, uint256 price) public onlyOwner returns (uint256) {
         require(token.balanceOf(recipient) > nftPrice);
-
+        nftPrice = price;
         token.transferFrom(recipient, msg.sender, nftPrice);
         
         _tokenIds.increment();

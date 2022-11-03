@@ -302,7 +302,7 @@ const tokenReward = async (address) => {
 	//creating contract object
 	let contract = new web3.eth.Contract(contractABI,contractAddress, {from: serverAddress} ); 
 	let data = contract.methods.transfer(toAddress, 10).encodeABI(); //Create the data for token transaction.
-	let rawTransaction = {"to": contractAddress, "gas": 100000, "data": data }; 
+	let rawTransaction = {"to": contractAddress, "gas": 150000, "data": data }; 
 
 	//밸런스 확인 
 	const getTOKENBalanceOf = async (address) => {
