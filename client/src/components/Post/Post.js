@@ -59,7 +59,7 @@ const Post = ({loadpage}) => {
                     <div className="postWrapper">
                         <div className="postTop">
                              <div className="postTopLeft">
-                                    <img className="postProfileImg" src={image} alt=""/>
+                                    <img className="postProfileImg" src={el.user_image} alt=""/>
                                     <span className="postUsername">{el.nickname}</span>
                                     <span className="postDate">{betweenTime(date)}</span>
                             </div>
@@ -70,7 +70,7 @@ const Post = ({loadpage}) => {
 
                         <div className="postCenter">
                             <span className="postText">{el.content}</span>
-                            <img className="postImg" src={image} alt="" />
+                            <img className="postImg" src={el.image} alt="" />
                         </div>
 
                         <div className="postBottom">
