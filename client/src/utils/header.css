@@ -2,10 +2,13 @@
 a { 
     text-decoration:none ;
     color: inherit;
+    
 }
 
 /* 해더 전체 조정 */
 .header {
+    width: 100vw;
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     /* list-style: none; */
@@ -21,8 +24,8 @@ a {
 /* 로고 */
 .logo{
     margin-left: 10px;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
 
 }
@@ -35,8 +38,8 @@ a {
 }
 /* 해더 네비게이션의 버튼들 */
 .header__navmenu__button{
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     background: #fff;
     box-shadow: 0 5px 15px -5px #aaa;
     margin: 10px;
@@ -44,6 +47,9 @@ a {
     overflow: hidden;
     position: relative;
     color: #42d2ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 /* 헤더 네비게이션의 버튼 아이콘들 */

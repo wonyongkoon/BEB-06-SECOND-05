@@ -2,18 +2,11 @@
 import React from 'react'
 import weth from '../../icon/weth.png'
 import './Item.css'
-// import './mypageItem.css'
-// import '../asset/Item2.css'  테스트 중
 
 const Item = ({id, name, price, image, itemcount}) => {
-    console.log(itemcount)
+    
     return (
-        // <div className='item-component'>     <img className='item-component__image'
-        // src={image}/>     <div className='item-component__name'>         {name}#{id}
-        // </div>     <div className='item-component__writer'>         {writer} </div>
-        // <div className='item-component__price-container'>         <img src={weth}
-        // className='wethImage'/>         <div className='peice'>{price}</div> </div>
-        // </div>
+        // 마이페이지와 마켓 페이지의 배열을 다르게 하기 위해서 10개일경우 마켓, 아닐경우 마이페이지로 구현
         itemcount == 10 ? 
         <div className='item-component'>
             <div className='item-hover'>

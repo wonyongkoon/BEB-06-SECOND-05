@@ -5,13 +5,16 @@ import logo from '../icon/logo_icon.png'
 import logo2 from '../icon/logo.png'
 import axios from 'axios'
 import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 import { UseContext } from '../User/UserContextProvider';
 
 const Header = () => {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const {cookies,setCookiesHandler} =useContext(UseContext);
     const {user,setUsers} =useContext(UseContext);
+    const navigator = useNavigate();
     console.log("헤더");
+    
     useEffect(()=>{
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{
@@ -34,7 +37,8 @@ const Header = () => {
                        open:true,   
                        message: "로그아웃 되었습니다.", 
                        callback: function(){     
-                            navigator("/login")   } });
+                            navigator("/login")   } 
+                        });
             })
             .catch((Error) => {
                 console.log("실패")
@@ -62,7 +66,7 @@ const Header = () => {
                     </Link>
                 </div>
                 {/* 마이페이지 버튼 */}
-                <div className='header__navmenu__button'>
+                <div className={`header__navmenu__button ${cookies ? '':'btn-none'}`}>
                     <Link to="/mypage">
                         <a className='header__navmenu__button__icon'>
                             MyPage
@@ -70,21 +74,23 @@ const Header = () => {
                     </Link>
                 </div>
                 {/* 로그인 버튼 */}
-                <div className='header__navmenu__button'>
+                <div className={`header__navmenu__button ${cookies ? 'btn-none' : ''}`}>
                 <Link to="/login">
-                        <a className='header__navmenu__button__icon'>
+                        <a Link="/login" className='header__navmenu__button__icon'>
                             Login
                         </a>
                     </Link>
                 </div>
                 {/* 로그아웃 버튼 */}
-                <div className='header__navmenu__button'>
+                <div className={`header__navmenu__button ${cookies ? '':'btn-none'}`}>
+                    <Link>
                     <a className='header__navmenu__button__icon' onClick={Logout}>
                         LogOut
                     </a>
+                    </Link>
                 </div>
                 {/* 회원가입 버튼 */}
-                <div className='header__navmenu__button'>
+                <div className={`header__navmenu__button ${cookies ? 'btn-none' : ''}`}>
                     <Link to="/signup">
                         <a className='header__navmenu__button__icon'>
                             Signup
