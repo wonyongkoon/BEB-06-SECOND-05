@@ -11,12 +11,20 @@ module.exports = function(sequelize, DataTypes) {
     user_id: {
       type: DataTypes.STRING(50),
       allowNull: true,
-      comment: "작성자(아이디)"
+      comment: "작성자(아이디)",
+      references: {
+        model: 'user',
+        key: 'user_id'
+      }
     },
     nickname: {
       type: DataTypes.STRING(50),
       allowNull: true,
-      comment: "작성자(닉네임)"
+      comment: "작성자(닉네임)",
+      references: {
+        model: 'user',
+        key: 'nickname'
+      }
     },
     title: {
       type: DataTypes.STRING(255),
@@ -58,14 +66,14 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "user_post_id",
+        name: "FK_post_user",
         using: "BTREE",
         fields: [
           { name: "user_id" },
         ]
       },
       {
-        name: "FK_post_user",
+        name: "FK_post_user_2",
         using: "BTREE",
         fields: [
           { name: "nickname" },

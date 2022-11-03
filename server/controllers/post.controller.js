@@ -29,8 +29,8 @@ const postsave = async (req,res) =>{
         const success =await tokenReward(address);
         if(typeof success !="undefined"){
             await db['post'].create({
-                user_id:data.user_id,
-                nickname:data.nickname,
+                user_id:cookdata.user_id,
+                nickname:cookdata.nickname,
                 content:data.content,
                 title:data.title,
             }); 
