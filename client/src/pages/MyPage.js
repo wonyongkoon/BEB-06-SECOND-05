@@ -13,6 +13,7 @@ import Feed from "../components/Feed.js";
 import Popup from '../components/Popup'
 import {UseContext} from '../User/UserContextProvider';
 import {CopyToClipboard} from "react-copy-to-clipboard";
+
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
 const MyPage = () => {
     const loadpage = "MyPage"
@@ -29,6 +30,8 @@ const MyPage = () => {
     // });
     //서버열리면 사용하기 
     const {user, setUserImage,image} = useContext(UseContext);
+    console.log(user)
+    const {cookies,setCookiesHandler} =useContext(UseContext);
     // console.log(user);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
@@ -73,6 +76,33 @@ const MyPage = () => {
     const transmission =() =>{
         // 토큰 전송 버튼 
         console.log(`주소 : ${address}, 갯수 : ${count}`)
+        // 나의 주소 , 상대주소, 갯수 
+	    // fromAddress 나의주소
+	    //toAddress 받는주소
+	    //amount 갯수
+        axios
+        .post("http://localhost:5000/userTokenTransfer/userTokenTransfer", {
+            fromAddress : user.address,
+            toAddress : address,
+            amount : count
+        }, {withCredentials: true})
+        // navigator('/mypage')    // 임시로 테스트 중 마지막에 삭제
+        .then(function (response) {
+            // 로그인 성공시 메인페이지로 이동 
+            console.log("성공")
+            console.log(response)
+            setCookiesHandler(true);
+            setPopup({
+                   open:true,   
+                   message: "전송 되었습니다.", 
+                   callback: function(){     
+                         } });
+        })
+        .catch((Error) => {
+            console.log("실패")
+            console.log(Error);
+        })
+
     }
 
     return (
@@ -122,8 +152,8 @@ const MyPage = () => {
                                     지갑주소
                                 </span>
                                 <div className="tooltip2">
-                                    <span className='tooltip-content'>{user.address}</span>
-                                    <CopyToClipboard text={user.address} onCopy={() => alert("키값이 복사되었습니다")}>
+                                    <span className='tooltip-content'>{user.privateKey}</span>
+                                    <CopyToClipboard text={user.privateKey} onCopy={() => alert("키값이 복사되었습니다")}>
                                     <img src={key} className="arrow_key"/>
                                     </CopyToClipboard>
                                     
