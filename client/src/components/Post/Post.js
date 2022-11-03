@@ -67,7 +67,7 @@ const Post = () => {
 
                         <div className="postCenter">
                             <span className="postText">{el.content}</span>
-                            <img className="postImg" src={image} alt="" />
+                            <img className="postImg" src={el.image} alt="" />
                         </div>
 
                         <div className="postBottom">
