@@ -30,7 +30,7 @@ const login= async (req,res)=>{
         }
         const jwtToken=jwt.sign(payload,process.env.SECRET_KEY,{expiresIn:'15m'});
         res.cookie('loginToken',jwtToken,{httpOnly:true,expires:new Date(Date.now()+9000000)});
-        return res.status(200).send("성공");
+        return res.status(200).json({image:userdata[0].image});
     }catch(err){
         console.log(err);
     }
