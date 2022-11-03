@@ -12,17 +12,12 @@ import "./dummy";
 import { Link } from "react-router-dom";
 
 const ItemList = ({getItem, itemCount}) => {
-  console.log(getItem.dummy)
   const getThemeItem = getItem.dummy; // 전체 아이템
-  // const TaemeItemFilter = getThemeItem.filter((el) => el.theme == selectTheme); // select한 테마를 가지고 필터 적용
   let totalItemCount =getThemeItem.length // 전체 아이템 갯수
   const [page, setPage] = useState(1); // 현제 페이지
-  // const [itemCount, setItemCount] = useState(10); // 디폴트 한페이지당 10개로 정해짐
   const offset = (page - 1) * itemCount; // 10 -1 * 10
-  // console.log(`itemlist ${itemCount}`)
   const handlePageChange = (page) => {
     setPage(page);
-    //console.log(punkListData)
   };
   
   return (

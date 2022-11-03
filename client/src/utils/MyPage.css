@@ -1,11 +1,15 @@
 /* 전체 관리 */
 .Mypage{
-    margin: 0px 10px;
+    margin: 0px 0px;
 }
 /* 헤더부분 */
 .Mypage-Header{
-    background-color: bisque;
-    height: 150px;
+    /* background-color: bisque; */
+    height: auto;
+    background-image: url("../icon/mypage_hearder.png");
+}
+.Mypage-Header-img{
+    width: 100%;
 }
 /* 유저정보 */
 .Mypage__userinfo{
@@ -17,9 +21,12 @@
 .Mypage__userinfo-img{
     width: 150px;
     height: 150px;
-    background-color: black;
     margin : 10px ;
     border-radius: 75px;
+}
+.Mypage__userinfo-img:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 /* 유저정보 - 컨테이너 */
 .Mypage__userinfo-cont{
@@ -66,6 +73,7 @@
 .span_title{
     font-size: 20px;
     font-weight: 500;
+    /* margin: auto; */
 }
 .span_content{
     font-size: 20px;
@@ -91,6 +99,8 @@
     border: none;
     padding: 5px;
     border-radius: 20px;
+
+    
 }
 
 .token__account-btn:hover{
@@ -135,4 +145,94 @@
     text-align: left;
     font-size: 30px;
     font-weight: 800;
+}
+
+.displayflex{
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.tooltip2 {
+    display: flex;
+    color: deeppink;
+    font-weight: bold;
+    /* cursor: pointer; */
+    
+}
+.arrow_key{
+    float: right;
+    height: 40px;
+    width: 40px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    
+}
+.tooltip-content {
+    display: none;
+    /* position: absolute; */
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 15px;
+    width: auto;
+    height: auto;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+.tooltip2:hover .tooltip-content {
+    display: block;
+    
+}
+
+.arrow_key:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.arrow_key:hover .tooltip-content {
+    display:inline-block;
+    background-color: rgba(0,0,0,0.2);
+
+}
+
+
+.faucet-btn{
+    height: 40px;
+    width: 40px;
+    border: 1px solid rgba(0,0,0,0.2);
+    
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.faucet-btn:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.transmission-container{
+    display: none;
+
+}
+
+.displayblock{
+    display: block;
+}
+
+.open-transmission-container{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.left{
+    float: left;
 }
