@@ -6,13 +6,12 @@ const web3 = new Web3(rpcURL)
 const db=require('../sequelize/models');
 
 const userTokenTransfer = async (req, res) => {
-    //req로 fromaddress, toaddres, privatkey, amount 받아야 함. 
 	const data =req.body;
-
-	const amount = data.amount 
+	const amount = parseInt(data.amount) 
 	const contractAddress = "0x333F4693304D70A645E3F5E2678917350d54a76b" // erc20 토큰 컨트랙트 고정.
 	const fromAddress = data.fromAddress; // 주는 계정
-	const privateKey = await db['user'].findOne({where:{address:data.address}}).privateKey;
+	const callPrivateKey = await db['user'].findOne({where:{address:data.fromAddress}})
+	const privateKey = callPrivateKey.dataValues.privateKey; 
 	const toAddress = data.toAddress; //목표 계정 
 	const contractABI = [
 	{
@@ -307,7 +306,7 @@ const userTokenTransfer = async (req, res) => {
 	//creating contract object
 	let contract = new web3.eth.Contract(contractABI,contractAddress, {from: fromAddress} ); 
 	let data = contract.methods.transfer(toAddress, amount).encodeABI(); //Create the data for token transaction.
-	let rawTransaction = {"to": contractAddress, "gas": 100000, "data": data }; 
+	let rawTransaction = {"to": contractAddress, "gas": 200000, "data": data }; 
 
 	//밸런스 확인 
 	const getTOKENBalanceOf = async (address) => {
@@ -321,6 +320,8 @@ const userTokenTransfer = async (req, res) => {
 				return res.send("토큰 전송 성공");
 				// return true;  
 		})    
+	await db['user'].decrement({token_amount:amount},{where:{address:fromAddress}});
+	await db['user'].increment({token_amount:amount},{where:{address:toAddress}});
 
 	} catch(err){
         console.log("에러");
