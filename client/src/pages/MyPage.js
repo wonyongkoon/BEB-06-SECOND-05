@@ -15,6 +15,8 @@ import {UseContext} from '../User/UserContextProvider';
 import {CopyToClipboard} from "react-copy-to-clipboard";
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
 const MyPage = () => {
+    const loadpage = "MyPage"
+    // console.log(loadpage)
     // 서버 닫혔을때 테스트용
     // const [user, setUser] = useState({
     //     user_id: "test123",
@@ -179,7 +181,7 @@ const MyPage = () => {
                     </div>
                     <div className='Mypage__MyPost-content'>
                         {/* 내가쓴것만 필터 */}
-                        <Feed/>
+                        <Feed loadpage={loadpage}/>
                     </div>
                 </div>
             </div>
