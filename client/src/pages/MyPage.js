@@ -10,6 +10,7 @@ import arrowup from '../icon/navigate-up-arrow.png'
 import dummy from '../components/market/dummy' // 임시로 더미데이ㅇ터 사용
 import ItemList from '../components/market/ItemList'
 import Feed from "../components/Feed.js";
+import Popup from '../components/Popup'
 import {UseContext} from '../User/UserContextProvider';
 import {CopyToClipboard} from "react-copy-to-clipboard";
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
@@ -27,12 +28,14 @@ const MyPage = () => {
     //서버열리면 사용하기 
     const {user, setUsers} = useContext(UseContext);
     // console.log(user);
+    const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
     const [count, setCount] = useState(0);
     const [address, setAddress] = useState(null);
     // div클릭시 input 클릭한 효과를 내기 위해서 작성
     const selectFile = useRef("")
-    // 이미지 선택
+    
+    // 이미지 선택 후 서버로 전송
     const onLoadFile = (e) => {
         let input = e.target;
         let reader = new FileReader();
@@ -41,6 +44,20 @@ const MyPage = () => {
             console.log(dataURL)
             let userIMG = document.getElementById('user-img')
             userIMG.src = dataURL;
+            // 서버로 보내기
+            axios.post("http://localhost:5000/login", {
+                image: dataURL,
+            }, {withCredentials: true})
+            .then(function (response) {
+                setPopup({
+                       open:true,   
+                       message: "저장되었습니다.", 
+                        });
+            })
+            .catch((Error) => {
+                console.log("실패")
+                console.log(Error);
+            })
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -54,7 +71,7 @@ const MyPage = () => {
         // 토큰 전송 버튼 
         console.log(`주소 : ${address}, 갯수 : ${count}`)
     }
-    
+
     return (
         <div className='Mypage'>
             {/* 헤더 */}
@@ -166,7 +183,12 @@ const MyPage = () => {
                     </div>
                 </div>
             </div>
-
+            <Popup
+                open={popup.open}
+                setPopup={setPopup}
+                message={popup.message}
+                title={popup.title}
+                callback={popup.callback}/>
         </div>
     )
 }
