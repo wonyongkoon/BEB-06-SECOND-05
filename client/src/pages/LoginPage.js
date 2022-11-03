@@ -5,7 +5,7 @@ import Popup from '../components/Popup'
 import { UseContext } from '../User/UserContextProvider'
 import axios from 'axios'
 import '../utils/LoginPage.css'
-
+// qdqqq qweqweqwe1!
 const LoginPage = () => {
     // 로그인 성공시 팝업창 띄움
     const navigator = useNavigate();
@@ -30,6 +30,7 @@ const LoginPage = () => {
                 user_id: userId,
                 password: password
             }, {withCredentials: true})
+            // navigator('/mypage')    // 임시로 테스트 중 마지막에 삭제
             .then(function (response) {
                 // 로그인 성공시 메인페이지로 이동 
                 setCookiesHandler(true);
@@ -66,7 +67,7 @@ const LoginPage = () => {
                     placeholder='비밀번호(Password)'
                     onChange={onChangePassword}/>
                 <button className='LoginPage__container-button' onClick={Login}>로그인</button>
-                <a href="#">Find E2I2 Account or Password</a>
+                <a href="#">비밀번호를 잊으셨나요?</a>
                 
             </div>
             <Popup
@@ -76,7 +77,6 @@ const LoginPage = () => {
                 title={popup.title}
                 callback={popup.callback}/>
         </div>
-
     )
 }
 
