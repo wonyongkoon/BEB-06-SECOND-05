@@ -10,20 +10,19 @@ import Picker from 'emoji-picker-react'; // 이모지
 const Share = () => {
   let dataURL ='';
   
-  const {user, setUsers} = useContext(UseContext);
+  const {image} = useContext(UseContext);
   const navigator = useNavigate();
  //게시글 값 상태 저장
   const [userId, setUserId] = useState('')  //아이디
   const [nickName, setNickName] = useState('')  //닉네임
   const [content, setContent] = useState('')  //내용
   const [imgBoxTog, setImgBoxTog] = useState(false) // 이미지 있는지 확인
-  
+  const [postimage,setpostimage] =useState('') //게시글 이미지
   // 이모지 선택 --------------------------------------------------
   const [showPicker, setShowPicker] = useState(false);
 
   const onEmojiClick = (event, emojiObject) => {
     setContent(content + emojiObject.emoji) // 선택한 이모지값을 컨텐츠 값에 추가해준다.
-    console.log(content)
   };
   //------------------------------------------------------------
 
@@ -45,10 +44,10 @@ const Share = () => {
     let reader = new FileReader();
     reader.onload = function(){
         dataURL = reader.result;
-        console.log(dataURL)
         let upLoadIMG = document.getElementById('upload-img')
         upLoadIMG.src = dataURL;
-        setImgBoxTog(true)
+        setImgBoxTog(true);
+        setpostimage(dataURL);
     };
     reader.readAsDataURL(input.files[0]);
   }
@@ -56,15 +55,14 @@ const Share = () => {
 
  const getContent =(e) =>{
    const content = e.target.value
-   setContent(content)
-   console.log(content)
+   setContent(content);
  }
 
  function Share() {
    axios.post("http://localhost:5000/post/postsave",{
       content : content,
-      image : dataURL
-      
+      image : postimage,
+      userimage : image,
     },{withCredentials: true})
     .then(function (response) {
       console.log("성공")
@@ -83,7 +81,7 @@ const Share = () => {
         <div className="share">
           <div className="shareWrapper">
               <div className="shareTop">
-                <img className="shareProfileImg" src="logo512.png" alt=""/>  
+                <img className="shareProfileImg" src={image} alt=""/>  
                 {/* <input className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} /> */}
                 <textarea id="text-area" className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} value={content} />
               </div>
