@@ -26,16 +26,17 @@ const postsave = async (req,res) =>{
     try{
         const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
         const address =cookdata.address;
-        await tokenReward(address)
-        console.log('+++')
-        await db['post'].create({
-            user_id:data.user_id,
-            nickname:data.nickname,
-            content:data.content,
-            title:data.title,
-        });
-    
-        return res.send("게시판 저장 성공");
+        const success =await tokenReward(address);
+        if(typeof success !="undefined"){
+            await db['post'].create({
+                user_id:data.user_id,
+                nickname:data.nickname,
+                content:data.content,
+                title:data.title,
+            }); 
+            await db['user'].increment({token_amount:10},{where:{address:address}});
+            return res.send("게시판 저장 성공");
+        }
     }catch(err){
         console.log("에러");
         console.log(err);

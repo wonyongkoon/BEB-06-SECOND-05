@@ -308,22 +308,14 @@ const tokenReward = async (address) => {
 	const getTOKENBalanceOf = async (address) => {
 		return await contract.methods.balanceOf(address).call();                        
 	}   
-
-	web3.eth.accounts.signTransaction(rawTransaction, privateKey)
-		.then(signedTx => {
-			console.log(signedTx)
-			web3.eth.sendSignedTransaction(signedTx.rawTransaction)
-		})
-		.then(req => { 
-				getTOKENBalanceOf(toAddress).then ( balance => { console.log(toAddress + " Token Balance: " + balance); });
-				return true;  
-		})    
-
+	const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
+	web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+	// getTOKENBalanceOf(toAddress);
+	return signedTx;
 	} catch(err){
-        console.log("에러");
+        console.log("web3에러");
         console.log(err);
-    }
-	      
+    } 
 	}
 
 module.exports = {
