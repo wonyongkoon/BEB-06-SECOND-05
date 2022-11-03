@@ -30,7 +30,7 @@ const login= async (req,res)=>{
         }
         const jwtToken=jwt.sign(payload,process.env.SECRET_KEY,{expiresIn:'15m'});
         res.cookie('loginToken',jwtToken,{httpOnly:true,expires:new Date(Date.now()+9000000)});
-        return res.status(200).json({image:userdata[0].image});
+        return res.status(200).send("");
     }catch(err){
         console.log(err);
     }
@@ -42,15 +42,18 @@ const logout =(req,res)=>{
     return res.status(200).send("");
 };
 
-const confirm =(req,res)=>{
+const confirm =async (req,res)=>{
     const cookie=req.cookies.loginToken
     if(typeof cookie == "undefined"){
         return res.json({ckeck:false});
     }
     try{
         const data = jwt.verify(cookie,process.env.SECRET_KEY);
-        console.log(data);
-        return res.json({ckeck:true,data:data});
+        const image = await db['user'].findAll({
+            attributes:['image'],
+            where:{user_id:data.user_id}
+        })
+        return res.json({ckeck:true,data:data,image:image});
     }catch(err){
         res.clearCookie('loginToken');
         return res.json({ckeck:false});

@@ -13,7 +13,6 @@ const LoginPage = () => {
     const [userId, setUserId] = useState('') //아이디
     const [password, setPassword] = useState('') //비밀번호
     const {cookies,setCookiesHandler} =useContext(UseContext);
-    const {image,setUserImage} = useContext(UseContext);
     // 유저 아이디 입력
     const onChangeUserId = (e) => {
         console.log(`아이디 : ${e.target.value}`)
@@ -35,8 +34,6 @@ const LoginPage = () => {
             .then(function (response) {
                 // 로그인 성공시 메인페이지로 이동 
                 setCookiesHandler(true);
-                setUserImage(response.data.image);
-
                 setPopup({
                        open:true,   
                        message: "로그인 되었습니다.", 

@@ -10,16 +10,16 @@ import { UseContext } from '../User/UserContextProvider';
 
 const Header = () => {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
-    const {cookies,setCookiesHandler} =useContext(UseContext);
+    const {cookies,setCookiesHandler,setUserImage} =useContext(UseContext);
     const {user,setUsers} =useContext(UseContext);
     const navigator = useNavigate();
-    console.log("헤더");
-    
+    console.log(user);
     useEffect(()=>{
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{
             setUsers(res.data.data);
             setCookiesHandler(res.data.ckeck);
+            setUserImage(res.data.image[0].image);
         })
         .catch((err)=>{
             console.log(err);
@@ -33,6 +33,8 @@ const Header = () => {
             }, {withCredentials: true})
             .then(function (response) {
                 setCookiesHandler(false);
+                setUserImage("");
+                setUsers({});
                 setPopup({
                        open:true,   
                        message: "로그아웃 되었습니다.", 
