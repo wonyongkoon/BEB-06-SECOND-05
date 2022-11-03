@@ -51,6 +51,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0
+    },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    user_image: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,
