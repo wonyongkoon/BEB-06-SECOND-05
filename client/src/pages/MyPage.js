@@ -123,7 +123,19 @@ const MyPage = () => {
                     }}
                     ref={selectFile}
                     onChange={onLoadFile}></input>
-                <img
+                {
+                    image == null ?
+                    <img
+                    id='user-img'
+                    className='Mypage__userinfo-img'
+                    src={logo}
+                    onClick={() => {
+                        selectFile
+                            .current
+                            .click()
+                    }}></img>
+                    :
+                    <img
                     id='user-img'
                     className='Mypage__userinfo-img'
                     src={image}
@@ -132,6 +144,7 @@ const MyPage = () => {
                             .current
                             .click()
                     }}></img>
+                }
                 <div className='Mypage__userinfo-cont'>
                     <sapn className='Mypage__userinfo-cont-name'>
                         {user.nickname}

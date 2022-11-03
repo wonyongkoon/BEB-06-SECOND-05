@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {UseContext} from '../../User/UserContextProvider'
 import Picker from 'emoji-picker-react'; // 이모지
+import defaultImage from '../../icon/logo.png';
 
 const Share = () => {
   let dataURL ='';
@@ -26,6 +27,7 @@ const Share = () => {
   };
   //------------------------------------------------------------
 
+  console.log(image);
   // textarea 크기 자동 조절
   const autoResizeTextarea = () => {
     let textarea = document.querySelector('.shareInput');
@@ -81,7 +83,10 @@ const Share = () => {
         <div className="share">
           <div className="shareWrapper">
               <div className="shareTop">
-                <img className="shareProfileImg" src={image} alt=""/>  
+                {
+                  image == null?<img className="shareProfileImg" src={defaultImage} alt=""/> :
+                  <img className="shareProfileImg" src={image} alt=""/> 
+                }  
                 {/* <input className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} /> */}
                 <textarea id="text-area" className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} value={content} />
               </div>
