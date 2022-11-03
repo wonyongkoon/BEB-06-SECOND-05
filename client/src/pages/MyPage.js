@@ -26,7 +26,7 @@ const MyPage = () => {
     //     key: "0x0811A41dC0f183Ae3eCF8113a90Cf4964AC6e901"
     // });
     //서버열리면 사용하기 
-    const {user, setUsers} = useContext(UseContext);
+    const {user, setUserImage,image} = useContext(UseContext);
     // console.log(user);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
@@ -34,7 +34,6 @@ const MyPage = () => {
     const [address, setAddress] = useState(null);
     // div클릭시 input 클릭한 효과를 내기 위해서 작성
     const selectFile = useRef("")
-    
     // 이미지 선택 후 서버로 전송
     const onLoadFile = (e) => {
         let input = e.target;
@@ -45,14 +44,16 @@ const MyPage = () => {
             let userIMG = document.getElementById('user-img')
             userIMG.src = dataURL;
             // 서버로 보내기
-            axios.post("http://localhost:5000/login", {
+            axios.post("http://localhost:5000/user/imagesave", {
                 image: dataURL,
             }, {withCredentials: true})
             .then(function (response) {
+                
                 setPopup({
                        open:true,   
                        message: "저장되었습니다.", 
                         });
+                setUserImage(dataURL);
             })
             .catch((Error) => {
                 console.log("실패")
@@ -93,7 +94,7 @@ const MyPage = () => {
                 <img
                     id='user-img'
                     className='Mypage__userinfo-img'
-                    src={logo}
+                    src={image}
                     onClick={() => {
                         selectFile
                             .current

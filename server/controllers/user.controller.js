@@ -1,5 +1,6 @@
 const db=require('../sequelize/models');
 const {web3}=require('../connect/web3');
+const jwt = require('jsonwebtoken');
 
 const findAllUsers = async (req,res) => {
     try{
@@ -41,9 +42,29 @@ const saveUser = async (req,res) =>{
         return res.send("에러");
     }
 }
+const saveImage = async(req,res)=>{
+    const data=req.body;
+    const cookie=req.cookies.loginToken;
+    if(typeof cookie == "undefined"){
+        return res.status(200).send("로그인 해주세요");
+    };
+    try{
+        const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
+        await db['user'].update({image:data.image},{where:{
+            user_id:cookdata.user_id
+        }})
+        return res.send("성공");
+    }
+    catch(err){
+        console.log("saveImge 에러");
+        console.log(err);
+    }
+   
+}
 
 
 module.exports={
     findAllUsers,
-    saveUser
+    saveUser,
+    saveImage
 }
