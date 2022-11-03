@@ -8,7 +8,6 @@ const datatest=(req,res)=>{
 };
 
 const login= async (req,res)=>{
-    console.log(req.cookies);
     const data=req.body;
     try{
         const userdata = await db['user'].findAll({
@@ -19,7 +18,9 @@ const login= async (req,res)=>{
         if(userdata[0].password != data.password) {
             return res.send("비밀번호 일치하지않음");
         }
+        console.log(userdata[0]);
         const payload={
+            user_id:userdata[0].user_id,
             nickname:userdata[0].nickname,
             email:userdata[0].email,
             address:userdata[0].address,
@@ -43,7 +44,6 @@ const logout =(req,res)=>{
 
 const confirm =(req,res)=>{
     const cookie=req.cookies.loginToken
-    console.log(cookie);
     if(typeof cookie == "undefined"){
         return res.json({ckeck:false});
     }
