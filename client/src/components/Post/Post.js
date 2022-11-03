@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./post.css";
-import './Paging.css';
 import {MoreVert} from "@material-ui/icons";
 import axios from 'axios'
 import image from "./image.jpg";
 import Pagination from "react-js-pagination";
+import {UseContext} from '../../User/UserContextProvider';
 
-const Post = () => {
+const Post = ({loadpage}) => {
+    const {user, setUsers} = useContext(UseContext);    // 마이페이지에 유저 판별하기위해서
     const [page, setPage] = useState(1);
     const [post,setpost] =useState([]);
-    const [totalPostCount, settotalPostCount] = useState();
     const [like, setLike] = useState();
     const [isLiked, setIsLiked] = useState(false);
     const offset = (page - 1) * 10;
-
+    
     const handlePageChange = (page) => {
         setPage(page);
       //   console.log(page);
@@ -22,8 +22,11 @@ const Post = () => {
         axios.post("http://localhost:5000/post/postall",{withCredentials: true})
         .then((response) =>{
             console.log(response.data);
-           setpost(response.data);
-           settotalPostCount(response.data.length)
+            console.log(loadpage)
+            loadpage !== "MyPage" ? 
+           setpost(response.data) :
+           setpost(response.data.filter((el) => el.user_id == user.user_id)); 
+           console.log(post)
         })
     }, [])
 
@@ -47,7 +50,7 @@ const Post = () => {
 
     return (
         <div>
-            {post
+        {   post
             .slice(offset, offset + 10)
             .map((el,index)=>{
                 const date=el.date_at;
@@ -67,7 +70,7 @@ const Post = () => {
 
                         <div className="postCenter">
                             <span className="postText">{el.content}</span>
-                            <img className="postImg" src={el.image} alt="" />
+                            <img className="postImg" src={image} alt="" />
                         </div>
 
                         <div className="postBottom">
@@ -84,15 +87,21 @@ const Post = () => {
                     </div> 
                 </div>
                 )})}
+                :
+
             <Pagination
                 activePage={page} // 현재 페이지
                 itemsCountPerPage={10} // 한 페이지랑 보여줄 아이템 갯수 (10)
-                totalItemsCount={totalPostCount} // 총 아이템 갯수 // totalItemCount
+                totalItemsCount={post.length} // 총 아이템 갯수 // totalItemCount
                 pageRangeDisplayed={10} // paginator의 페이지 범위
                 prevPageText={"‹"} // "이전"을 나타낼 텍스트
                 nextPageText={"›"} // "다음"을 나타낼 텍스트
                 onChange={handlePageChange} // 페이지 변경을 핸들링하는 함수
             /> 
+       
+              
+
+         
          </div>
     )
 

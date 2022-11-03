@@ -6,11 +6,12 @@ import Rightbar from "../components/rightbar/Rightbar";
 import "../utils/home.css"
 
 export default function MainPage() {
+  const loadpage = "MainPage"
   return (
    <div>
         <div className="homeContainer">
           <Sidebar />
-          <Feed />
+          <Feed loadpage={loadpage}/>
           <Rightbar />
         </div>
     </div>
