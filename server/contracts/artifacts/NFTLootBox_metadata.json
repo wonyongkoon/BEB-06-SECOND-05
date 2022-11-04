@@ -214,6 +214,11 @@
 						"internalType": "string",
 						"name": "tokenURI",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
 					}
 				],
 				"name": "mintNFT",
@@ -655,11 +660,11 @@
 			]
 		},
 		"contracts/buyNFT.sol": {
-			"keccak256": "0xc0fe09206a0a01c836bbc9bc1fa5f03b535e4f4c94776539dab597f2a3a93ef4",
+			"keccak256": "0x95d0392fef8ded6f96da1672bbb7d95bf8ca7113796b20061f998e53c735fe22",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e11ba3d53142bdf0a98e02d8a84eedfc0386ae37c24354f6587797da99c6b748",
-				"dweb:/ipfs/QmRdANKM6y4EH3Vh9Jox6X5gPuEDQfNZWZgZ82t3DFBLYn"
+				"bzz-raw://ecd9887c632bac939658ba37b727a830402f128896c772ebf3c4068ede07aede",
+				"dweb:/ipfs/QmPFFRV87NqAHNyyob4hJzByGJV6eTNJMWPHTLSq9EJ8KC"
 			]
 		}
 	},
