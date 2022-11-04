@@ -83,10 +83,7 @@ const Share = () => {
         <div className="share">
           <div className="shareWrapper">
               <div className="shareTop">
-                {
-                  image == null?<img className="shareProfileImg" src={defaultImage} alt=""/> :
-                  <img className="shareProfileImg" src={image} alt=""/> 
-                }  
+                <img className="shareProfileImg" src={image} alt=""/> 
                 {/* <input className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} /> */}
                 <textarea id="text-area" className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} value={content} />
               </div>

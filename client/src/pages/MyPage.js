@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState, useRef} from 'react'
 import axios from 'axios';
 import '../utils/MyPage.css'
-import logo from '../icon/logo.png';
 import key from '../icon/digital-key.png'
 import faucet from '../icon/faucet.png'
 import header_img from '../icon/mypage_hearder.png'
@@ -123,18 +122,6 @@ const MyPage = () => {
                     }}
                     ref={selectFile}
                     onChange={onLoadFile}></input>
-                {
-                    image == null ?
-                    <img
-                    id='user-img'
-                    className='Mypage__userinfo-img'
-                    src={logo}
-                    onClick={() => {
-                        selectFile
-                            .current
-                            .click()
-                    }}></img>
-                    :
                     <img
                     id='user-img'
                     className='Mypage__userinfo-img'
@@ -144,7 +131,7 @@ const MyPage = () => {
                             .current
                             .click()
                     }}></img>
-                }
+                
                 <div className='Mypage__userinfo-cont'>
                     <sapn className='Mypage__userinfo-cont-name'>
                         {user.nickname}
