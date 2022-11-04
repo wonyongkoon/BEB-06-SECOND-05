@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../utils/marketpage.css'
 import ItemList from '../components/market/ItemList'
 import dummy from '../components/market/dummy'
 import searchIcon from '../icon/search.png'
+import axios from 'axios'
 const MarketPage = () => {
     // 임시로 더미데이터 사용 DB 연결시 방안 생각하기
     //
+    const[nftdata,setnftdata] = useState(null);
+    useEffect(()=>{
+        axios.post("http://localhost:5000/nft/nftall",{withCredentials: true})
+        .then((res)=>{
+            setnftdata(res.data)
+        })
+    },[])
+   
     return (
         <div className='MarketPage'>
             <div className='MarketPage__hearder'>
@@ -19,8 +28,10 @@ const MarketPage = () => {
                     className='searchInput'
                     placeholder='Search items, collections, and accounts'></input>
             </div>
-
-            <ItemList getItem={{dummy}} itemCount={10} />
+            {
+                nftdata ==null?<p></p>:<ItemList getItem={{dummy}} itemCount={10} nftdata={nftdata} />
+            }
+            
         </div>
 
     )

@@ -8,7 +8,8 @@ export const UseContext = createContext({
         email:"",
         address:"",
         token_amount:"",
-        eth_amount:""
+        eth_amount:"",
+        mynft:"",
     },
     image:logo,
     setUsers:() =>{},
@@ -25,6 +26,7 @@ const UserContextProvider=({children})=>{
         address:"",
         token_amount:"",
         eth_amount:"",
+        mynft:"",
     });
     const [image,setImage] =useState("");
 
@@ -37,6 +39,7 @@ const UserContextProvider=({children})=>{
         address:data.address,
         token_amount:data.token_amount,
         eth_amount:data.eth_amount,   
+        mynft:data.nft,
     });
     const setUserImgeHandler = (data)=> setImage(data);
     const usercontext={

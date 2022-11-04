@@ -21,12 +21,9 @@ const Post = ({loadpage}) => {
     useEffect(()=> {
         axios.post("http://localhost:5000/post/postall",{withCredentials: true})
         .then((response) =>{
-            console.log(response.data);
-            console.log(loadpage)
             loadpage !== "MyPage" ? 
            setpost(response.data) :
            setpost(response.data.filter((el) => el.user_id == user.user_id)); 
-           console.log(post)
         })
     }, [])
 
