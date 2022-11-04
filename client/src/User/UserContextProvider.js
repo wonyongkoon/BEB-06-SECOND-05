@@ -1,5 +1,5 @@
 import React, { createContext,useState } from "react";
-import userimg from '../'
+import logo from '../icon/logo.txt'
 export const UseContext = createContext({
     cookies:false,
     user:{
@@ -10,7 +10,7 @@ export const UseContext = createContext({
         token_amount:"",
         eth_amount:""
     },
-    image:"",
+    image:logo,
     setUsers:() =>{},
     setCookiesHandler:() => {},
     setUserImage:()=>{},
