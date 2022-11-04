@@ -11,11 +11,9 @@ import defaultImage from '../../icon/logo.png';
 const Share = () => {
   let dataURL ='';
   
-  const {image} = useContext(UseContext);
+  const {image,setUsers,user} = useContext(UseContext);
   const navigator = useNavigate();
  //게시글 값 상태 저장
-  const [userId, setUserId] = useState('')  //아이디
-  const [nickName, setNickName] = useState('')  //닉네임
   const [content, setContent] = useState('')  //내용
   const [imgBoxTog, setImgBoxTog] = useState(false) // 이미지 있는지 확인
   const [postimage,setpostimage] =useState('') //게시글 이미지
@@ -65,11 +63,18 @@ const Share = () => {
       image : postimage,
       userimage : image,
     },{withCredentials: true})
-    .then(function (response) {
-      console.log("성공")
-      console.log(response.data);
-      window.location.replace("/")
-          })
+    .then((res)=> {
+      console.log(res);
+      if(res.status==200){
+        setUsers({...user,token_amount:user.token_amount+10});
+        setContent('');
+        setpostimage('');
+      }
+      else{
+        alert("실패");
+      }
+      // window.location.replace("/")
+    })
     .catch((Error)=>{
       console.log("실패")
       console.log(Error);

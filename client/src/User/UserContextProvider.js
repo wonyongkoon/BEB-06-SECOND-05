@@ -31,16 +31,7 @@ const UserContextProvider=({children})=>{
     const [image,setImage] =useState("");
 
     const setConfirmHandler = (bool)=> setCookies(bool);
-    const setUserHandler= (data)=> setUser({
-        ...user,
-        user_id:data.user_id,
-        nickname:data.nickname,
-        email:data.email,
-        address:data.address,
-        token_amount:data.token_amount,
-        eth_amount:data.eth_amount,   
-        mynft:data.nft,
-    });
+    const setUserHandler= (data)=> setUser(data);
     const setUserImgeHandler = (data)=> setImage(data);
     const usercontext={
         cookies:cookies,

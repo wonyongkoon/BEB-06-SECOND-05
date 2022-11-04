@@ -38,8 +38,9 @@ const postsave = async (req,res) =>{
 
             }); 
             await db['user'].increment({token_amount:10},{where:{address:address}});
-            return res.send("게시판 저장 성공");
+            return res.status(200).send("게시판 저장 성공");
         }
+        return res.status(400).send('');
     }catch(err){
         console.log("에러");
         console.log(err);
