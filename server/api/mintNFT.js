@@ -5,7 +5,7 @@ const web3 = new Web3(rpcURL);
 const db=require('../sequelize/models');
 const contractABI =require("../abi/erc721abi.json");
 
-const contractAddress = "0xC80D2940017A108F588401865b2D72352F2de097"
+const contractAddress = ""
 const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755';
 const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8' //privatekey 교체 
 
@@ -26,6 +26,7 @@ const mintNFT = async (req, res) => {
 
 		await db['user'].decrement({token_amount:price},{where:{address:fromAddress}});
 		// db nft 목록에 해당 nft user컬럼이 비어있다가 구매가되면 구매자 이름으로 업데이트
+		// await db['nft'].update({소유한사람:구매자이름}, {where:{토큰아이디칼럼:구매한토큰아이디}})
 		return signedTx;
 		} catch(err){
 			console.log("web3에러");
