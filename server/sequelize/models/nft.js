@@ -8,18 +8,26 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(255),
       allowNull: true,
       references: {
         model: 'user',
-        key: 'id'
+        key: 'user_id'
       }
     },
-    token_id: {
-      type: DataTypes.INTEGER,
+    tx_hash: {
+      type: DataTypes.TEXT,
       allowNull: true
     },
-    tx_hash: {
+    img_url: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    metadata_url: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    description: {
       type: DataTypes.TEXT,
       allowNull: true
     }
@@ -37,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "user_nft_id",
+        name: "FK_nft_user",
         using: "BTREE",
         fields: [
           { name: "user_id" },

@@ -27,7 +27,6 @@ const Share = () => {
   };
   //------------------------------------------------------------
 
-  console.log(image);
   // textarea 크기 자동 조절
   const autoResizeTextarea = () => {
     let textarea = document.querySelector('.shareInput');

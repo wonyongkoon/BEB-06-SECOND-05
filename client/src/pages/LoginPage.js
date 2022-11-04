@@ -15,12 +15,12 @@ const LoginPage = () => {
     const {cookies,setCookiesHandler} =useContext(UseContext);
     // 유저 아이디 입력
     const onChangeUserId = (e) => {
-        console.log(`아이디 : ${e.target.value}`)
+        // console.log(`아이디 : ${e.target.value}`)
         setUserId(e.target.value)
     }
     // 유저 비밀번호 입력
     const onChangePassword = (e) => {
-        console.log(`비밀번호 : ${e.target.value}`)
+        // console.log(`비밀번호 : ${e.target.value}`)
         setPassword(e.target.value)
     }
     // 로그인 버튼 클릭 시 DB에서 데이터 조회 후 로그인
