@@ -13,13 +13,23 @@ const Header = () => {
     const {cookies,setCookiesHandler,setUserImage} =useContext(UseContext);
     const {user,setUsers} =useContext(UseContext);
     const navigator = useNavigate();
+    console.log(user);
     useEffect(()=>{
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{
             if(res.data.ckeck==true){
                 res.data.data.nft=res.data.nft;
                 const userdata =res.data.data;
-                setUsers(userdata);
+                setUsers({
+                ...user,
+                user_id:userdata.user_id,
+                nickname:userdata.nickname,
+                email:userdata.email,
+                address:userdata.address,
+                token_amount:userdata.token_amount,
+                eth_amount:userdata.eth_amount,
+                mynft:userdata.nft,
+                });
                 setCookiesHandler(res.data.ckeck);
                 setUserImage(res.data.image[0].image);
             }

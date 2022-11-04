@@ -25,7 +25,7 @@ const Post = ({loadpage}) => {
            setpost(response.data) :
            setpost(response.data.filter((el) => el.user_id == user.user_id)); 
         })
-    }, [])
+    }, [user])
 
     const likeHandler = (index) => {
         console.log(index);
