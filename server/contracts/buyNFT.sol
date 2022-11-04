@@ -18,7 +18,7 @@ contract NFTLootBox is ERC721URIStorage, Ownable {
     
     function mintNFT(address recipient, string memory tokenURI, uint256 price) public returns (uint256) {
         nftPrice = price;
-        require(token.balanceOf(recipient) > nftPrice);
+        require(token.balanceOf(recipient) > nftPrice, "insufficient token");
 
         token.transferFrom(recipient, msg.sender, nftPrice);
         
