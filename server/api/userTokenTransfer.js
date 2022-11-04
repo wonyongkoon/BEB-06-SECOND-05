@@ -1,10 +1,12 @@
 //유저간에 token 전송 API 
 require("dotenv").config();
 const Web3 = require("web3");
-const rpcURL = process.env.INFURA_KEY //API KEY 교체!!!
+const rpcURL = "https://goerli.infura.io/v3/b03f802e554f441786b51c437837bfe4"  
 const web3 = new Web3(rpcURL);
 const db=require('../sequelize/models');
 const contractABI =require("../abi/erc20abi.json");
+
+console.log(rpcURL)
 
 const userTokenTransfer = async (req, res) => {
 	const data =req.body;

@@ -660,11 +660,11 @@
 			]
 		},
 		"contracts/buyNFT.sol": {
-			"keccak256": "0x95d0392fef8ded6f96da1672bbb7d95bf8ca7113796b20061f998e53c735fe22",
+			"keccak256": "0xcc0222b139ab173e7a466ea1e70a36e09b83113a7e69428dd3271c6029253189",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ecd9887c632bac939658ba37b727a830402f128896c772ebf3c4068ede07aede",
-				"dweb:/ipfs/QmPFFRV87NqAHNyyob4hJzByGJV6eTNJMWPHTLSq9EJ8KC"
+				"bzz-raw://2b28d71ada4d140466fae240256352d285c4f9d54e7dc74e3e73d6c9fdc08310",
+				"dweb:/ipfs/QmYUCSiuTvKMdu2pYSieEBQEty7LE4GbMJH6SusnZ6hF4p"
 			]
 		}
 	},
