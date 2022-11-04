@@ -3,7 +3,7 @@ const Web3 = require("web3");
 const rpcURL = process.env.INFURA_KEY  //API KEY 교체!!
 const web3 = new Web3(rpcURL);
 const contractABI =require("../abi/erc20abi.json");
-const privateKey = process.env.SERVE_SECRET_KEY; 
+const privateKey = process.env.SERVER_SECRET_KEY; 
 
 const tokenReward = async (address) => {
 
@@ -28,6 +28,7 @@ const tokenReward = async (address) => {
 	return signedTx;
 	} catch(err){
         console.log("web3에러");
+		console.log(privateKey)
         console.log(err);
     } 
 	}

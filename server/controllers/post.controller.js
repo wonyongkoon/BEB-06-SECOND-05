@@ -19,7 +19,6 @@ const findAllPosts = async (req,res) => {
 }
 const postsave = async (req,res) =>{
     const data =req.body;
-    console.log(data);
     const cookie=req.cookies.loginToken
     if(typeof cookie == "undefined"){
         return res.status(200).send("로그인 해주세요");

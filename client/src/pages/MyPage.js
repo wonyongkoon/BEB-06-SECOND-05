@@ -29,7 +29,7 @@ const MyPage = () => {
     // });
     //서버열리면 사용하기 
     const {user, setUserImage,image} = useContext(UseContext);
-    console.log(user)
+    console.log(user.mynft);
     const {cookies,setCookiesHandler} =useContext(UseContext);
     // console.log(user);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
@@ -198,11 +198,18 @@ const MyPage = () => {
                     <div className='Mypage__content-grup-nft'>
                         NFT
                         <div className='nft-list'>
-                            <ItemList
+                            {
+                                user.mynft
+                                ?<ItemList
                                 getItem={{
                                     dummy
                                 }}
-                                itemCount={6}/>
+                                itemCount={6}
+                                nftdata={user.mynft}
+                                />
+                                :
+                                <p></p>
+                            }
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ import "./ItemList.css"; // 테스트 css
 import "./dummy";
 import { Link } from "react-router-dom";
 
-const ItemList = ({getItem, itemCount}) => {
+const ItemList = ({getItem, itemCount ,nftdata}) => {
   const getThemeItem = getItem.dummy; // 전체 아이템
   let totalItemCount =getThemeItem.length // 전체 아이템 갯수
   const [page, setPage] = useState(1); // 현제 페이지
@@ -19,20 +19,16 @@ const ItemList = ({getItem, itemCount}) => {
   const handlePageChange = (page) => {
     setPage(page);
   };
-  
   return (
     <div className="itemList">
       <div className={`${itemCount === 10 ? 'itemListItem' : 'itemListItem_6'}`}>
         {
           // 선택한 테마가 all일 경우 전체아이템 출력 아닐시 선택한 아이템으로 필터 적용 후 출력
-          getThemeItem.slice(offset, offset + itemCount).map((punk) => (
+          nftdata.slice(offset, offset + itemCount).map((punk) => (
                   <div>
                     <Item
-                      key={punk.token_id}
-                      id={punk.token_id}
-                      name={punk.name}
-                      price={punk.price}
-                      image={punk.image}
+                      id={punk.id}
+                      image={punk.img_url}
                       itemcount={itemCount}
                     />
                   </div>
