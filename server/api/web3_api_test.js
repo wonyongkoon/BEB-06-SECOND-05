@@ -56,13 +56,22 @@ const result2 = async () => {
 
 // result2()
 
+console.log(contract721.methods)
 
-// 1. 서버 계정으로 erc721 계정에 / erc20 - approve     -   vs에서 한번만 해주면 됨 result()
-// 2. 서버 계정으로 erc721 계정이 erc20 / erc721 - settoken   - 리믹스에서 한번만 해주면 됨 
-// 3. 구매자 계정으로 erc721 컨트랙트 계정 / erc20 - approve   - 매번 해줘야함 -> mintNFT함수로  
+
+// 1. 서버 계정으로 erc721 계정에 / erc20 - approve  - vs에서 한번만 해주면 됨 위에 result() 
+// => caller : server, on : erc20, what : approve(erc721contractaddress)
+
+// 2. 서버 계정으로 erc721 계정이 erc20 / erc721 - settoken - 리믹스에서 한번만 해주면 됨 
+// => caller : server, on : erc721, what : settoken(erc20contractaddress) 
+
+// 3. 구매자 계정으로 erc721 컨트랙트 계정 / erc20 - approve - 매번 해줘야함 -> mintNFT함수로  
+// => caller : buyer, on : erc20, what : approve(approve721contractaddress) 
+
 // 4. 서버 계정이 구매자 계정으로 민트 / erc721 - mintNFT - 매번 해줘야 함 -> mintNFT함수로 
-// 5. 만들어진 nft의 첫번째 tokenid는 1 
-// result()
+// => caller : server, on : erc721, what : minNFT(buyer, tokenuri, price)
+
+// 5. DB 업데이트 *만들어진 첫번째 nft의 tokenId는 1 
 
 // console.log(contract20.methods)
 
@@ -74,3 +83,12 @@ const getTOKENBalanceOf = async () => {
 }
 
 // getTOKENBalanceOf()
+
+const ownerOfNFT = async () => {
+	return await contract721.methods.ownerOf(2).call()
+	.then(result => {
+		console.log(result)
+	});                        
+}
+
+ownerOfNFT()
