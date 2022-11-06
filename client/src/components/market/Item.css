@@ -33,6 +33,8 @@
     height: 23px;
     width: 15px;
 }
+
+
 .item-component__price-container {
     display: flex;
     justify-content: center;
@@ -72,10 +74,13 @@
     opacity: 0;
     transition: 0.5s ease;
 }
-.sell-container__btn{
-    border-radius: 50px;
+.sell-container__btn-size {
     width: 150px;
     height: 80px;
+}
+
+.sell-container__btn{
+    border-radius: 50px;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
@@ -164,3 +169,79 @@
     
 }
 .sell-container__btn_6{display: none;}
+
+
+
+
+
+/* 모달부분 */
+.Modal{
+    display: flex;
+    /* justify-content: space-between; */
+    height: auto;
+    width: auto;
+    /* background-color: rgba(0,0, 0, 0.8); */
+    
+}
+.NFT_img{
+    margin-right: 10px;
+    width: 50%;
+    height: 700px;
+    display: flex;
+    border-radius: 40px;
+    background-color: #1a1c1e;
+    
+}
+.NFT_img-img{
+    border-radius: 20px;
+    margin: auto;
+    width: 550px;
+    height: 650px;
+}
+
+.border{
+    border: 1px solid #000000;
+    
+}
+.NFT_metadata{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    width: 50%;
+    height: auto;    
+}
+
+.NFT_metadata-name{
+    text-align: center;
+    font-size: 80px;
+    font-weight: 700;
+    width: 100%;    
+}
+.NFT_metadata-description{
+    margin: 20px 10px;
+    font-size: 20px;
+}
+.wethImage2 {
+    height: 50px;
+    width: 28px;
+}
+.price2{
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.sell-btn{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+}
+
+.btn-size{
+    width: 80%;
+    height: 60px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 800;
+}
