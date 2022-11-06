@@ -12,6 +12,7 @@ const MarketPage = () => {
         axios.post("http://localhost:5000/nft/nftall",{withCredentials: true})
         .then((res)=>{
             setnftdata(res.data)
+            console.log(res.data)
         })
     },[])
    
@@ -29,7 +30,7 @@ const MarketPage = () => {
                     placeholder='Search items, collections, and accounts'></input>
             </div>
             {
-                nftdata ==null?<p></p>:<ItemList getItem={{dummy}} itemCount={10} nftdata={nftdata} />
+                nftdata ==null?<p></p>:<ItemList itemCount={10} nftdata={nftdata} />
             }
             
         </div>
