@@ -6,7 +6,6 @@ const web3 = new Web3(rpcURL);
 const db=require('../sequelize/models');
 const contractABI =require("../abi/erc20abi.json");
 
-console.log(rpcURL)
 
 const userTokenTransfer = async (req, res) => {
 	const data =req.body;
