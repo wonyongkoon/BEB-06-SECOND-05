@@ -27,24 +27,26 @@ const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e
 // 5. DB 업데이트 *만들어진 첫번째 nft의 tokenId는 1 
 
 const mintNFT = async (req, res) => {
-	// const data =req.body;
-	// const price = parseInt(data.price)
-	// const fromAddress = data.fromAddress; 
-	// const tokenURI = data.tokenURI; //메타데이터 json ipfs주소 
+	const data =req.body;
+	const price = 10
+	const fromAddress = data.fromAddress; 
+	const tokenURI = data.tokenURI; //메타데이터 json ipfs주소 
+	const callPrivateKey = await db['user'].findOne({where:{address:data.fromAddress}})
+	const privateKey = callPrivateKey.dataValues.privateKey; 
+	console.log(`data : ${data} privatekey : ${privateKey}`)
 	
-
 	try{
 		//erc20 -> erc721 approve(contract721Address)
-		let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: '0x9AaeFB2A0D5DFa9aA536cCD27186d68507c9138f'} ); 
+		let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: fromAddress} ); 
 		let data20 = contract20.methods.approve(contract721Address, 100000).encodeABI(); //Create the data for token transaction.
 		let rawTransaction = {"to": contract20Address, "gas": 5000000, "data": data20 }; 
 
-		const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, '0xe6892560c962d3eb03f4f0e2faf69bf5ac74f97a1da82e6aa54854a803940ad0');
+		const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
 		web3.eth.sendSignedTransaction(signedTx20.rawTransaction);
 
 		//mintNFT(recipient, tokenURI, price)
 		let contract721 = new web3.eth.Contract(contract721ABI, contract721Address, {from: serverAddress} ); 
-		let data721 = contract721.methods.mintNFT("0x9AaeFB2A0D5DFa9aA536cCD27186d68507c9138f", 'https://ipfs.io/ipfs/QmP198SSBAJ3p8Y4RF6HZpAb1krKH1AP5jVJX78UTqsHwS?filename=%E1%84%8F%E1%85%A1%E1%84%8C%E1%85%B3%E1%84%92%E1%85%A1.png', 10).encodeABI(); //(recipient, tokenuri, 가격)
+		let data721 = contract721.methods.mintNFT(fromAddress, tokenURI, price).encodeABI(); //(recipient, tokenuri, 가격)
 		let rawTransaction721 = {"to": contract721Address, "gas": 3000000, "data": data721 }; 
 		
 		const signedTx = await web3.eth.accounts.signTransaction(rawTransaction721, '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8');

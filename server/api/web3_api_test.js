@@ -82,7 +82,7 @@ const getTOKENBalanceOf = async () => {
 	});                        
 }
 
-// getTOKENBalanceOf()
+getTOKENBalanceOf()
 
 const ownerOfNFT = async () => {
 	return await contract721.methods.ownerOf(2).call()
