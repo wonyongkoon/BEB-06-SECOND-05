@@ -61,6 +61,11 @@ const mintNFT = async (req, res) => {
 		
 } 
 
+
+module.exports = {
+    mintNFT
+}
+
 // mintNFT()
 
 // NFT 디비 테이블 칼럼: 사진 url, 메타데이터 url, NFT 가격정보 

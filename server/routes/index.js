@@ -4,7 +4,7 @@ const nft=require("./nft.route");
 const user=require("./user.route");
 const post=require("./post.route");
 const userTokenTransfer=require("./userTokenTransfer.route")
-const mintNFT=require("./minNFT.route")
+const mintNFT=require("./mintNFT.route")
 
 module.exports= app=>{
     app.use("/",main);
@@ -12,5 +12,5 @@ module.exports= app=>{
     app.use("/nft",nft);
     app.use("/post",post);
     app.use("/userTokenTransfer",userTokenTransfer)
-    app.use("/mintNFT",userTokenTransfer)
+    app.use("/mintNFT",mintNFT)
 }
