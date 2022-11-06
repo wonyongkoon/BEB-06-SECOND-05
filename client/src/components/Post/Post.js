@@ -5,6 +5,7 @@ import axios from 'axios'
 import image from "./image.jpg";
 import Pagination from "react-js-pagination";
 import {UseContext} from '../../User/UserContextProvider';
+import Comment from "./Comment";
 
 const Post = ({loadpage}) => {
     const {user, setUsers} = useContext(UseContext);    // 마이페이지에 유저 판별하기위해서
@@ -13,6 +14,13 @@ const Post = ({loadpage}) => {
     const [like, setLike] = useState();
     const [isLiked, setIsLiked] = useState(false);
     const offset = (page - 1) * 10;
+
+    const [showComment, setShowComment] = useState(false);
+
+    const handleClickButton = e => {
+        // const { name } = e.target;
+        setShowComment(e);
+    };
     
     const handlePageChange = (page) => {
         setPage(page);
@@ -76,15 +84,16 @@ const Post = ({loadpage}) => {
                                 <img className="likeIcon" src="img/heart.png" onClick={()=>likeHandler(index)} alt=""/>
                                 <span className="postLikeCounter">{el.like_count} people liked this</span>
                             </div>
-
-                            <div className="postBottomRight">
-                                <span className="postCommentText">조회수 {el.view_count} </span>
+                            <div className="postBottomRight" onClick={handleClickButton} >
+                                <span className="postCommentText">댓글 </span>
                             </div>
                         </div>
                     </div> 
+                    {showComment && (
+                     <Comment />
+                     )}
                 </div>
                 )})}
-                :
 
             <Pagination
                 activePage={page} // 현재 페이지

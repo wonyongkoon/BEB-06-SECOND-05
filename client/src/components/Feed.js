@@ -2,6 +2,7 @@ import React, { useContext} from 'react'
 import "../utils/feed.css";
 import Share from "./share/Share.js";
 import Post from "./Post/Post"
+// import Comment from './Post/Comment.js';
 import { UseContext } from "../User/UserContextProvider";
 
 
@@ -14,6 +15,7 @@ const Feed = ({loadpage}) => {
             <div className="feedWrapper">
 
              {/* <Header /> */}
+             {/* <Comment/> */}
              {
                 cookies ? <Share/> : <p></p>
              }
