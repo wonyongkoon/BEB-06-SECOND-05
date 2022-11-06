@@ -11,9 +11,8 @@ import "./ItemList.css"; // 테스트 css
 import "./dummy";
 import { Link } from "react-router-dom";
 
-const ItemList = ({getItem, itemCount ,nftdata}) => {
-  const getThemeItem = getItem.dummy; // 전체 아이템
-  let totalItemCount =getThemeItem.length // 전체 아이템 갯수
+const ItemList = ({nftdata, itemCount}) => {
+  let totalItemCount =nftdata.length // 전체 아이템 갯수
   const [page, setPage] = useState(1); // 현제 페이지
   const offset = (page - 1) * itemCount; // 10 -1 * 10
   const handlePageChange = (page) => {
@@ -29,6 +28,8 @@ const ItemList = ({getItem, itemCount ,nftdata}) => {
                     <Item
                       id={punk.id}
                       image={punk.img_url}
+                      description={punk.description}
+                      metadataurl={punk.metadata_url}
                       itemcount={itemCount}
                     />
                   </div>
