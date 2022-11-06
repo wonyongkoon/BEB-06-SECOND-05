@@ -86,12 +86,12 @@ const Post = ({loadpage}) => {
                             </div>
                             <div className="postBottomRight" onClick={handleClickButton} >
                                 <span className="postCommentText">댓글 </span>
-                                {showComment && (
-                                  <Comment />
-                              )}
                             </div>
                         </div>
                     </div> 
+                    {showComment && (
+                     <Comment />
+                     )}
                 </div>
                 )})}
 

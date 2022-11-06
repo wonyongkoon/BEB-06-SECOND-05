@@ -1,55 +1,76 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import CommentList from "./CommentList"
+import { React , useState, useContext} from 'react';
+import "./post.css";
+import CommentHeart from './CommentHeart';
+import {UseContext} from '../../User/UserContextProvider';
+import dummyComment from './dummyComment';
 
 const Comment = () => {
 
-    const [userName] = useState('yoo');
-    const [comment, setComment] = useState('');
-    const [feedComments, setFeedComments] = useState([]);
+    const {user, setUsers} = useContext(UseContext);
+    const [commentValue, setCommentValue] = useState('');
+    const [commentBox, setCommentBox] = useState([]);
 
-    const post = e => {
-        const copyFeedComments = [...feedComments];
-        copyFeedComments.push(comment);
-        setFeedComments(copyFeedComments);
-        setComment('');
+    const onChange = e => {
+      setCommentValue(e.target.value);
+    };
+  
+
+   const onSubmit = e => {
+      e.preventDefault();
+      if (commentValue === '') {
+        return;
+      }
+      setCommentBox(() => {
+          return (
+          [...commentBox, { name: 'yoo', comment: commentValue }]
+        )})
+      ;
+      setCommentValue('');
     };
 
+    console.log(commentValue);
+    console.log(commentBox);
 
-    return (
-        <div>
-         {feedComments
-         .map((commentArr, i) => {
-             return (
-         <div>
-            <CommentList
-                userName={userName}
-                userComment={commentArr}
-                key={i}
-            />
-            <input
-            type="text"
-            className="inputComment"
-            placeholder="댓글 달기..."
-            onChange={e => {
-                setComment(e.target.value);
-            }}
-            value={comment}
-        />
-        <button
-            type="button"
-            className={
-                comment.length > 0
-                ? 'submitCommentActive'
-                : 'submitCommentInactive'
-            }
-            onClick={post}
-        >게시</button>
+  return (
+<div className="post">    
+      <div className="postWrapper">
+            <div className="postTop">
+       {/* {dummyComment
+       .map(el => {
+          return (
+            <div className="postUsername" key={el.id}>
+            <span className="postUsername">{el.name}</span>
+            <span className="postDate">{el.comment}</span>
+            </div>
+          )})
+          }; */}
+      {commentBox.map(el => {
+        return (
+          <div className="postUsername" key={el.id} >
+            <div>
+            <span className="postUsername">{el.name}</span>
+            <span className="postDate">{el.comment}</span>
+            </div>
+          </div>
+        )})
+         }
         </div>
-         )
-    })}
-
+    <div className="postBottom"  onSubmit={onSubmit}>
+     <form className="postBottomLeft">
+      <input
+        type="text"
+        placeholder="댓글 달기..."
+        className="comment"
+        value={commentValue}
+        onChange={onChange}
+      />
+      <button className="postButton" >게시</button>
+    </form>
     </div>
-)
-}
+    </div>
+    </div>
+
+  );
+};
+
 export default Comment;
