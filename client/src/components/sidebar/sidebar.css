@@ -3,7 +3,7 @@
 }
   
   .sidebarWrapper {
-    padding: 40px 20px 30px 30px;
+    padding: 40px 20px 30px 40px;
   }
  
  .sideContainer {
@@ -99,4 +99,9 @@
     padding: 0;
     list-style: none;
 }
+
+.image-none{
+    display: none;
+}
+
 

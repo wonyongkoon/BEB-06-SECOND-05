@@ -1,15 +1,21 @@
 import React, {useContext} from "react";
 import "./sidebar.css";
-import image from "../rightbar/iu2.jpeg"
 import {UseContext} from '../../User/UserContextProvider'
 
 
 const Sidebar = () => {
-  const {user, setUsers, image} = useContext(UseContext);
+  const {user, image, cookies} = useContext(UseContext);
 
   return (
     <div className="sidebar">
-    <div className="sidebarWrapper ">
+      <div className="sidebarWrapper">
+        <span>
+            <p className="sideTitle">IU 팬카페 커뮤니티</p>
+            <p className="sideText">IU 팬카페에서 팬분들과 자유롭게 소통하고, NFT를 구매하여 소중한 추억을 평생 소장하세요!</p>
+            <p className="sideText">구매하신 NFT는 Mypage에서 언제든 확인가능합니다.</p>
+        </span>
+        </div>
+    <div className={`sidebarWrapper ${cookies ? '':'image-none'}`}>
       <div >
         <div >
           <img
@@ -32,56 +38,6 @@ const Sidebar = () => {
       </div>
       </div>
   )
-    {/* // return (
-    //     <div className="sidebar">
-
-    //         <div className="sidebarWrapper">
-
-    //                 <ul className="sidebarList">
-    //                       <li className="sidebarListItem">
-    //                         <Group className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Friends</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <RssFeed className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Feed</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <Chat className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Messages</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <PlayCircleFilledOutlined className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Videos</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <Bookmark className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Bookmarks</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <WorkOutline className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Jobs</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <School className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Courses</span>
-    //                       </li>
-
-    //                       <li className="sidebarListItem">
-    //                         <Event className="sidebarIcon"/>
-    //                         <span className="sidebarListItemText">Now</span>
-    //                       </li>
-    //                 </ul>
-    //         </div>
-
-    //     </div>
-    // ) */}
 }
 
 export default Sidebar
