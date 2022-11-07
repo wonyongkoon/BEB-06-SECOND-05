@@ -21,7 +21,7 @@ const postsave = async (req,res) =>{
     const data =req.body;
     const cookie=req.cookies.loginToken
     if(typeof cookie == "undefined"){
-        return res.status(200).send("로그인 해주세요");
+        return res.status(400).send("로그인 해주세요");
     }
     try{
         const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
@@ -47,7 +47,49 @@ const postsave = async (req,res) =>{
     }
 }
 
+const findcomment = async (req,res)=>{
+    const data = req.body;
+    try{
+        const comment = await db['post_detail'].findAll({
+            where:{
+                post_id:data.post_id
+            }
+        })
+        return res.status(200).json({data:comment});
+
+    }catch(err){
+        console.log("findcomment 에러");
+        console.log(err);
+    }
+
+}
+
+const commentsave = async (req,res)=>{
+    const data = req.body;
+    // const cookie=req.cookies.loginToken
+    // if(typeof cookie == "undefined"){
+    //     return res.status(400).send("로그인 해주세요");
+    // }
+    try{
+        // const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
+        await db['post_detail'].create({
+            post_id:data.post_id,
+            nickname:data.nickname,
+            comment:data.comment
+        });
+        return res.status(200).send("댓글 저장 성공");
+
+
+    }catch(err){
+        console.log("commentsave 에러");
+        console.log(err);
+    }
+
+}
+
 module.exports={
     findAllPosts,
-    postsave
+    postsave,
+    findcomment,
+    commentsave
 }
