@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Comment = ({post_id}) => {
 
-    const {user, setUsers, image, cookies} = useContext(UseContext);
+    const {image, cookies} = useContext(UseContext);
     const [commentValue, setCommentValue] = useState('');
     const [commentBox, setCommentBox] = useState([]);
     const [refresh,setrefresh] = useState(0);
@@ -16,11 +16,12 @@ const Comment = ({post_id}) => {
         post_id:post_id
       },{withCredentials: true})
       .then((res)=>{
-        if(res.status==200){
+        if(res.status===200){
           const data=res.data.data;
           setCommentBox(data);
         }
       })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     },[refresh])
 
     const onChange = e => {
@@ -39,7 +40,7 @@ const Comment = ({post_id}) => {
       },
       {withCredentials: true})
       .then((res)=>{
-        if(res.status==200){
+        if(res.status===200){
           setrefresh(refresh+1);
         }
 

@@ -21,6 +21,7 @@ const Feed = ({loadpage}) => {
            setpost(response.data) :
            setpost(response.data.filter((el) => el.user_id === user.user_id)); 
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
     
     return (
