@@ -34,7 +34,8 @@ const Comment = ({post_id}) => {
     e.preventDefault();
     axios.post("http://localhost:5000/post/commentsave",{
         post_id:post_id,
-        comment:commentValue
+        comment:commentValue,
+        image:image,
       },
       {withCredentials: true})
       .then((res)=>{
