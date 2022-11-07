@@ -33,13 +33,14 @@ const mintNFT = async (req, res) => {
 	const tokenURI = data.tokenURI; //메타데이터 json ipfs주소 
 	const callPrivateKey = await db['user'].findOne({where:{address:data.fromAddress}})
 	const privateKey = callPrivateKey.dataValues.privateKey; 
+	const id = data.id;
 	console.log(`data : ${data} privatekey : ${privateKey}`)
 	
 	try{
 		//erc20 -> erc721 approve(contract721Address)
 		let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: fromAddress} ); 
-		let data20 = contract20.methods.approve(contract721Address, 100000).encodeABI(); //Create the data for token transaction.
-		let rawTransaction = {"to": contract20Address, "gas": 5000000, "data": data20 }; 
+		let data20 = contract20.methods.approve(contract721Address, 300000).encodeABI(); //Create the data for token transaction.
+		let rawTransaction = {"to": contract20Address, "gas": 300000, "data": data20 }; 
 
 		const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
 		web3.eth.sendSignedTransaction(signedTx20.rawTransaction);
@@ -47,14 +48,17 @@ const mintNFT = async (req, res) => {
 		//mintNFT(recipient, tokenURI, price)
 		let contract721 = new web3.eth.Contract(contract721ABI, contract721Address, {from: serverAddress} ); 
 		let data721 = contract721.methods.mintNFT(fromAddress, tokenURI, price).encodeABI(); //(recipient, tokenuri, 가격)
-		let rawTransaction721 = {"to": contract721Address, "gas": 3000000, "data": data721 }; 
+		let rawTransaction721 = {"to": contract721Address, "gas": 200000, "data": data721 }; 
 		
 		const signedTx = await web3.eth.accounts.signTransaction(rawTransaction721, '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8');
 		web3.eth.sendSignedTransaction(signedTx.rawTransaction);
 
-		// await db['user'].decrement({token_amount:price},{where:{address:fromAddress}});
+		//구매자의 토큰 밸런스 지출 
+		await db['user'].decrement({token_amount:price},{where:{address:fromAddress}});
 		// db nft 목록에 해당 nft user컬럼이 비어있다가 구매가되면 구매자 이름으로 업데이트
-		// await db['nft'].update({user_id:구매자이름}, {where:{토큰아이디칼럼:구매한토큰아이디}})
+		await db['nft'].update({user_id:id}, {where:{metadata_url:tokenURI}})
+		console.log('민팅 성공')
+
 		return signedTx;
 		} catch(err){
 			console.log("web3에러");

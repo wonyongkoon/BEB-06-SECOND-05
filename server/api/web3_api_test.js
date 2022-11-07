@@ -22,8 +22,8 @@ const result = async () => {
 	try{
 		//creating contract object
 		let contract = new web3.eth.Contract(erc20ABI,erc20Address, {from: serverAddress} ); 
-		let data = contract.methods.approve(erc721Address, 100000).encodeABI(); //Create the data for token transaction.
-		let rawTransaction = {"to": erc20Address, "gas": 100000, "data": data }; 
+		let data = contract.methods.approve(erc721Address, 100000000).encodeABI(); //Create the data for token transaction.
+		let rawTransaction = {"to": erc20Address, "gas": 500000, "data": data }; 
 
 		const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
 		web3.eth.sendSignedTransaction(signedTx.rawTransaction);
@@ -54,9 +54,9 @@ const result2 = async () => {
 		
 } 
 
-// result2()
+// result()
 
-console.log(contract721.methods)
+// console.log(contract721.methods)
 
 
 // 1. 서버 계정으로 erc721 계정에 / erc20 - approve  - vs에서 한번만 해주면 됨 위에 result() 
@@ -76,7 +76,7 @@ console.log(contract721.methods)
 // console.log(contract20.methods)
 
 const getTOKENBalanceOf = async () => {
-	return await contract20.methods.balanceOf('0x9AaeFB2A0D5DFa9aA536cCD27186d68507c9138f').call()
+	return await contract20.methods.balanceOf('0xC18b91e50FbA69C2fC4706CDE4596888C091747c').call()
 	.then(result => {
 		console.log(result)
 	});                        
@@ -85,7 +85,7 @@ const getTOKENBalanceOf = async () => {
 getTOKENBalanceOf()
 
 const ownerOfNFT = async () => {
-	return await contract721.methods.ownerOf(2).call()
+	return await contract721.methods.ownerOf(4).call()
 	.then(result => {
 		console.log(result)
 	});                        
