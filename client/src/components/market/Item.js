@@ -43,6 +43,18 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
             console.log(Error);
         })
     }
+
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
+      
     return (
         // 마이페이지와 마켓 페이지의 배열을 다르게 하기 위해서 10개일경우 마켓, 아닐경우 마이페이지로 구현
         itemcount == 10 ? 
@@ -66,7 +78,7 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
                 <button className='sell-container__btn sell-container__btn-size' onClick={SellModal}>구매하기</button>
                 </div>
             </div>
-            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+            <Modal style={customStyles}  isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <div className='Modal'>
                         <div className='NFT_img '>
                             <img className='NFT_img-img' src={image}/>

@@ -7,14 +7,16 @@ a {
 
 /* 해더 전체 조정 */
 .header {
-    width: 100vw;
-    height: 10vh;
+    /* width: 100vw; */
+    height: 50vh;
     display: flex;
     justify-content: space-between;
     /* list-style: none; */
     background-color: #fff;
     padding: 5px 0px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
+    background-image: url(https://image.fmkorea.com/files/attach/new2/20220909/2063168106/594993133/5002864694/7c779d81ab5e002cb964d42587688b25.jpg);
+    background-size: 100%;
 }
 /* 로고창 */
 .logocase{

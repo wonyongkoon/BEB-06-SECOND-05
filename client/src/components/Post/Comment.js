@@ -46,8 +46,9 @@ const Comment = () => {
           }; */}
       {commentBox.map(el => {
         return (
-          <div className="postUsername" key={el.id} >
+          <div className="postComment" key={el.id} >
             <div>
+            <img className="postProfileImg" src={el.user_image} alt=""/>
             <span className="postUsername">{el.name}</span>
             <span className="postDate">{el.comment}</span>
             </div>

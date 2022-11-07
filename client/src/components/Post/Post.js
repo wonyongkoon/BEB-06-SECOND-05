@@ -4,6 +4,7 @@ import {MoreVert} from "@material-ui/icons";
 import axios from 'axios'
 import image from "./image.jpg";
 import Pagination from "react-js-pagination";
+import Paging from "./Paging.css"
 import {UseContext} from '../../User/UserContextProvider';
 import Comment from "./Comment";
 
@@ -68,9 +69,9 @@ const Post = ({loadpage}) => {
                                     <span className="postUsername">{el.nickname}</span>
                                     <span className="postDate">{betweenTime(date)}</span>
                             </div>
-                            <div className="postTopRight">
+                            {/* <div className="postTopRight">
                                 <MoreVert/>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="postCenter">
@@ -94,8 +95,8 @@ const Post = ({loadpage}) => {
                      )}
                 </div>
                 )})}
-
             <Pagination
+                className="Paging"
                 activePage={page} // 현재 페이지
                 itemsCountPerPage={10} // 한 페이지랑 보여줄 아이템 갯수 (10)
                 totalItemsCount={post.length} // 총 아이템 갯수 // totalItemCount
