@@ -1,22 +1,21 @@
 import React from "react";
 import "./share.css";
-import {useState, useEffect, useCallback, useRef, useContext } from 'react'
-import {PermMedia, Label, Room, EmojiEmotions} from "@material-ui/icons"  // 아이콘
+import {useState, useRef, useContext } from 'react'
+import {PermMedia, EmojiEmotions} from "@material-ui/icons"  // 아이콘
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import {UseContext} from '../../User/UserContextProvider'
 import Picker from 'emoji-picker-react'; // 이모지
-import defaultImage from '../../icon/logo.png';
 
 const Share = () => {
   let dataURL ='';
   
   const {image,setUsers,user} = useContext(UseContext);
-  const navigator = useNavigate();
+  // const navigator = useNavigate();
  //게시글 값 상태 저장
   const [content, setContent] = useState('')  //내용
   const [imgBoxTog, setImgBoxTog] = useState(false) // 이미지 있는지 확인
-  const [postimage,setpostimage] =useState('') //게시글 이미지
+  const [postimage, setPostimage] =useState('') //게시글 이미지
   // 이모지 선택 --------------------------------------------------
   const [showPicker, setShowPicker] = useState(false);
 
@@ -46,14 +45,14 @@ const Share = () => {
         let upLoadIMG = document.getElementById('upload-img')
         upLoadIMG.src = dataURL;
         setImgBoxTog(true);
-        setpostimage(dataURL);
+        setPostimage(dataURL);
     };
     reader.readAsDataURL(input.files[0]);
   }
 
   const deleteImg = () => {
-    setImgBoxTog(null);
-    setpostimage(null);
+    setImgBoxTog(false);
+    setPostimage('');
   }
  // ----------------------------------------
 
@@ -70,10 +69,11 @@ const Share = () => {
     },{withCredentials: true})
     .then((res)=> {
       console.log(res);
-      if(res.status==200){
+      if(res.status===200){
         setUsers({...user,token_amount:user.token_amount+10});
         setContent('');
-        setpostimage('');
+        setImgBoxTog(false);
+        setPostimage('');
       }
       else{
         alert("실패");
@@ -97,9 +97,9 @@ const Share = () => {
                 <textarea id="text-area" className="shareInput" placeholder="게시글을 입력해주세요." onChange={getContent} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} value={content} />
               </div>
               <div className={`shareImgBox ${imgBoxTog ? "": "displaynone" }`}> 
-                <img id="upload-img"></img>
+                <img id="upload-img" alt="face"></img>
                 <div>
-                <button classname="deleteButton" onClick={deleteImg}>❌</button>
+                <button className="deleteButton" onClick={deleteImg}>❌</button>
                 </div>
               </div>
               <hr className="shareHr"/>
