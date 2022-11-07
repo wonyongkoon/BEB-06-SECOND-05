@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./sidebar.css";
 import image from "../rightbar/iu2.jpeg"
+import {UseContext} from '../../User/UserContextProvider'
 
 
 const Sidebar = () => {
+  const {user, setUsers, image} = useContext(UseContext);
 
   return (
     <div className="sidebar">
@@ -22,10 +24,10 @@ const Sidebar = () => {
           />
         </div>
         <div>
-          <h4 className="sideTitle">yoo</h4>
+          <h4 className="sideTitle">{user.nickname}</h4>
         </div>
-          <div className="sideText">testyoo</div>
-          <div className="sideText">yooyoosoo8989@gmail.com</div>
+          <div className="sideText">{user.user_id}</div>
+          <div className="sideText">{user.email}</div>
         </div>
       </div>
       </div>
