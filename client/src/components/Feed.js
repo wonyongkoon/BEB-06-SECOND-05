@@ -12,13 +12,13 @@ const Feed = ({loadpage}) => {
     const {cookies} =useContext(UseContext);
     const {user} = useContext(UseContext);
     const [post,setpost] =useState([]);
+
+
     useEffect(()=> {
         axios.post("http://localhost:5000/post/postall",{withCredentials: true})
         .then((response) =>{
             loadpage !== "MyPage" ? 
            setpost(response.data) :
-           console.log(response)
-           console.log(response.data)
            setpost(response.data.filter((el) => el.user_id === user.user_id)); 
         })
     }, [user])
