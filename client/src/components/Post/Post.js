@@ -41,7 +41,7 @@ const Post = ({user_image, nickname, content, image, like_count, date}) => {
                 </div>
 
                 <div className="postCenter">
-                    <span className="postText">{content}</span>
+                    <pre className="postText">{content}</pre>
                     <img className="postImg" src={image} alt="" />
                 </div>
 

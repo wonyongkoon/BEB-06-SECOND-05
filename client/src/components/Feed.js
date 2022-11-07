@@ -10,7 +10,7 @@ import { UseContext } from "../User/UserContextProvider";
 
 const Feed = ({loadpage}) => {
     const {cookies} =useContext(UseContext);
-    const {user, setUsers} = useContext(UseContext);
+    const {user} = useContext(UseContext);
     const [post,setpost] =useState([]);
 
     useEffect(()=> {
@@ -18,7 +18,9 @@ const Feed = ({loadpage}) => {
         .then((response) =>{
             loadpage !== "MyPage" ? 
            setpost(response.data) :
-           setpost(response.data.filter((el) => el.user_id == user.user_id)); 
+           console.log(response)
+           console.log(response.data)
+           setpost(response.data.filter((el) => el.user_id === user.user_id)); 
         })
     }, [user])
     

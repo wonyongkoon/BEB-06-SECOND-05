@@ -1,9 +1,9 @@
 .rightbar {
-    flex: 3.5;
+    flex: 2.5;
   }
   
   .rightbarWrapper {
-    padding: 40px 20px 30px 30px;
+    padding: 40px 40px 30px 30px;
   }
   
   .rightContainer {

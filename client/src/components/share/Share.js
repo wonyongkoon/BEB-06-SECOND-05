@@ -50,6 +50,11 @@ const Share = () => {
     };
     reader.readAsDataURL(input.files[0]);
   }
+
+  const deleteImg = () => {
+    setImgBoxTog(null);
+    setpostimage(null);
+  }
  // ----------------------------------------
 
  const getContent =(e) =>{
@@ -93,6 +98,9 @@ const Share = () => {
               </div>
               <div className={`shareImgBox ${imgBoxTog ? "": "displaynone" }`}> 
                 <img id="upload-img"></img>
+                <div>
+                <button classname="deleteButton" onClick={deleteImg}>❌</button>
+                </div>
               </div>
               <hr className="shareHr"/>
               <div className="shareBottom">
