@@ -108,10 +108,9 @@ const MyPage = () => {
     return (
         <div className='Mypage'>
             {/* 헤더 */}
-            <div className='Mypage-Header'>
+            {/* <div className='Mypage-Header'>
                 <img className='Mypage-Header-img' src={header_img}/>
-
-            </div>
+            </div> */}
             {/* 유저정보 */}
             <div className='Mypage__userinfo'>
                 <input
@@ -209,7 +208,7 @@ const MyPage = () => {
                                 nftdata={user.mynft}
                                 />
                                 :
-                                <p></p>
+                                <p> </p>
                             }
                         </div>
                     </div>
