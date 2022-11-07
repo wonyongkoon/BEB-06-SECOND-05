@@ -64,11 +64,13 @@ const Comment = ({post_id}) => {
       {commentBox.map(el => {
         return (
           <div className="postComment" key={el.id} >
-            <div>
+            <form className="postBottomLeft">
             <img className="postProfileImg" src={el.image} alt=""/>
-            <span className="postUsername">{el.nickname}</span>
-            <span className="postDate">{el.comment}</span>
+            <div className="comment2">
+            <div className="commentUsername">{el.nickname}</div>
+            <span className="commentComment">{el.comment}</span>
             </div>
+            </form>
           </div>
         )})
          }
@@ -83,7 +85,7 @@ const Comment = ({post_id}) => {
         value={commentValue}
         onChange={onChange}
       />
-      <button className="postButton" >게시</button>
+      <button className="commentButton" >게 시</button>
     </form>
     </div>
     </div>
