@@ -13,7 +13,7 @@ const Header = () => {
     const {cookies,setCookiesHandler,setUserImage} =useContext(UseContext);
     const {user,setUsers} =useContext(UseContext);
     const navigator = useNavigate();
-    console.log(user);
+    console.log(logo2);
     useEffect(()=>{
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{

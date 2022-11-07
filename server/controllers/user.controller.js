@@ -26,6 +26,12 @@ const saveUser = async (req,res) =>{
         if(nickname.length!=0){
             return res.status(400).send("이미 있는 ID 입니다.");
         }
+        const image = await db['user'].findOne({  
+            attributes:['image'],
+            where:{
+                user_id:"defalut"
+            }  
+        });
         const web3Data = web3.eth.accounts.create();
         await db['user'].create({
             user_id:data.user_id,
@@ -33,7 +39,8 @@ const saveUser = async (req,res) =>{
             email:data.email,
             password:data.password,
             address:web3Data.address,
-            privateKey:web3Data.privateKey
+            privateKey:web3Data.privateKey,
+            image:image.dataValues.image
         });
 
         return res.send("데이터 저장 성공");

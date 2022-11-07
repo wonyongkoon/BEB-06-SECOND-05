@@ -144,7 +144,6 @@ function dbtest(){
   axios.post("http://localhost:5000/user/userall",{
   })
   .then(function (response) {
-
     console.log("성공")
     console.log(response.data);
   })
