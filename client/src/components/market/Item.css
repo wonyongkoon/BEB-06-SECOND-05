@@ -178,8 +178,8 @@
 .Modal{
     display: flex;
     /* justify-content: space-between; */
-    height: auto;
-    width: auto;
+    /* height: auto; */
+    /* width: auto; */
     /* background-color: rgba(0,0, 0, 0.8); */
     
 }
@@ -188,8 +188,8 @@
     width: 50%;
     height: 700px;
     display: flex;
-    border-radius: 40px;
-    background-color: #1a1c1e;
+    /* border-radius: 40px;
+    background-color: #1a1c1e; */
     
 }
 .NFT_img-img{
@@ -197,6 +197,7 @@
     margin: auto;
     width: 550px;
     height: 650px;
+    border: 10px solid #1a1c1e;
 }
 
 .border{
