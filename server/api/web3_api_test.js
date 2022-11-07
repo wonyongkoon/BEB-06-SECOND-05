@@ -11,7 +11,7 @@ const erc20ABI = require("../abi/erc20abi.json");
 const erc721ABI = require("../abi/erc721abi.json");
 
 const erc20Address = "0x333F4693304D70A645E3F5E2678917350d54a76b"
-const erc721Address = "0xf8bf085b2C5e1c09a86Ab8baA18d27514C4C805F"
+const erc721Address = "0x7618BA71B1688704b4363DfD09efEa071806FEa2"
 const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'
 const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8';
 
@@ -22,8 +22,8 @@ const result = async () => {
 	try{
 		//creating contract object
 		let contract = new web3.eth.Contract(erc20ABI,erc20Address, {from: serverAddress} ); 
-		let data = contract.methods.approve(erc721Address, 100000).encodeABI(); //Create the data for token transaction.
-		let rawTransaction = {"to": erc20Address, "gas": 100000, "data": data }; 
+		let data = contract.methods.approve(erc721Address, 1000000000).encodeABI(); //Create the data for token transaction.
+		let rawTransaction = {"to": erc20Address, "gas": 500000, "data": data }; 
 
 		const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
 		web3.eth.sendSignedTransaction(signedTx.rawTransaction);
@@ -40,7 +40,7 @@ const result2 = async () => {
 	try{
 		//creating contract object
 		let contract = new web3.eth.Contract(erc20ABI,erc20Address, {from: '0x9AaeFB2A0D5DFa9aA536cCD27186d68507c9138f'} ); 
-		let data = contract.methods.approve('0xf8bf085b2C5e1c09a86Ab8baA18d27514C4C805F', 100000).encodeABI(); //Create the data for token transaction.
+		let data = contract.methods.approve('0x7618BA71B1688704b4363DfD09efEa071806FEa2', 100000).encodeABI(); //Create the data for token transaction.
 		let rawTransaction = {"to": erc20Address, "gas": 100000, "data": data }; 
 
 		const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, "0xe6892560c962d3eb03f4f0e2faf69bf5ac74f97a1da82e6aa54854a803940ad0");
@@ -54,9 +54,9 @@ const result2 = async () => {
 		
 } 
 
-// result2()
+// result()
 
-console.log(contract721.methods)
+// console.log(contract721.methods)
 
 
 // 1. 서버 계정으로 erc721 계정에 / erc20 - approve  - vs에서 한번만 해주면 됨 위에 result() 
@@ -81,14 +81,23 @@ const getTOKENBalanceOf = async () => {
 		console.log(result)
 	});                        
 }
-
 getTOKENBalanceOf()
 
+
 const ownerOfNFT = async () => {
-	return await contract721.methods.ownerOf(2).call()
+	return await contract721.methods.ownerOf(9).call()
 	.then(result => {
 		console.log(result)
 	});                        
 }
 
-ownerOfNFT()
+const getethBalanceOf = async () => {
+	return await web3.eth.getBalance('0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755')
+	.then(result => {
+		console.log(parseInt(result))
+	});                        
+}
+
+// getethBalanceOf()
+// ownerOfNFT()
+// result2()
