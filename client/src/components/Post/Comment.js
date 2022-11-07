@@ -1,34 +1,51 @@
-import { React , useState, useContext} from 'react';
+import { React , useState, useContext, useEffect} from 'react';
 import "./post.css";
 import {UseContext} from '../../User/UserContextProvider';
+import axios from 'axios';
 // import dummyComment from './dummyComment';
 
-const Comment = () => {
+const Comment = ({post_id}) => {
 
     const {user, setUsers, image, cookies} = useContext(UseContext);
     const [commentValue, setCommentValue] = useState('');
     const [commentBox, setCommentBox] = useState([]);
+    const [refresh,setrefresh] = useState(0);
+
+    useEffect(()=>{
+      axios.post("http://localhost:5000/post/comment",{
+        post_id:post_id
+      },{withCredentials: true})
+      .then((res)=>{
+        if(res.status==200){
+          const data=res.data.data;
+          setCommentBox(data);
+        }
+      })
+    },[refresh])
 
     const onChange = e => {
       setCommentValue(e.target.value);
     };
-  
 
    const onSubmit = e => {
-      e.preventDefault();
-      if (commentValue === '') {
-        return;
-      }
-      setCommentBox(() => {
-          return (
-          [...commentBox, { name: 'yoo', comment: commentValue }]
-        )})
-      ;
+    if (commentValue === '') {
+      return;
+    }
+    e.preventDefault();
+    axios.post("http://localhost:5000/post/commentsave",{
+        post_id:post_id,
+        comment:commentValue
+      },
+      {withCredentials: true})
+      .then((res)=>{
+        if(res.status==200){
+          setrefresh(refresh+1);
+        }
+
+      })
       setCommentValue('');
     };
-
-    console.log(commentValue);
-    console.log(commentBox);
+    console.log(post_id);
 
   return (
 <div className="post">    
@@ -47,8 +64,8 @@ const Comment = () => {
         return (
           <div className="postComment" key={el.id} >
             <div>
-            <img className="postProfileImg" src={image} alt=""/>
-            <span className="postUsername">{el.name}</span>
+            <img className="postProfileImg" src={el.image} alt=""/>
+            <span className="postUsername">{el.nickname}</span>
             <span className="postDate">{el.comment}</span>
             </div>
           </div>

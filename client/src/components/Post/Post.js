@@ -2,11 +2,10 @@ import React, {useContext, useEffect, useState} from "react";
 import "./post.css";
 import Comment from "./Comment";
 import { UseContext } from "../../User/UserContextProvider";
-const Post = ({user_image, nickname, content, image, like_count, date}) => {
+const Post = ({post_id,user_image, nickname, content, image, like_count, date}) => {
 
     const {cookies} =useContext(UseContext);
     const [showComment, setShowComment] = useState(false);
-
     const handleClickButton = e => {
         // const { name } = e.target;
         setShowComment((e) => !e);
@@ -60,7 +59,7 @@ const Post = ({user_image, nickname, content, image, like_count, date}) => {
                 cookies ? <Comment/> : <p></p>
              } */}
             {showComment && (
-             <Comment />
+             <Comment post_id={post_id} />
              )}
         </div>
 );
