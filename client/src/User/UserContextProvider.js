@@ -11,7 +11,7 @@ export const UseContext = createContext({
         eth_amount:"",
         mynft:"",
     },
-    image:logo,
+    image:"",
     setUsers:() =>{},
     setCookiesHandler:() => {},
     setUserImage:()=>{},
