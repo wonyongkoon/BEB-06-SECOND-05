@@ -26,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
     comment: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,

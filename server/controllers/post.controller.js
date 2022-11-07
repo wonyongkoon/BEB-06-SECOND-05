@@ -66,16 +66,21 @@ const findcomment = async (req,res)=>{
 
 const commentsave = async (req,res)=>{
     const data = req.body;
-    // const cookie=req.cookies.loginToken
-    // if(typeof cookie == "undefined"){
-    //     return res.status(400).send("로그인 해주세요");
-    // }
+    const cookie=req.cookies.loginToken
+    if(typeof cookie == "undefined"){
+        return res.status(400).send("로그인 해주세요");
+    }
     try{
-        // const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
+        const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
+        const image = await db['user'].findAll({
+            attributes:['image'],
+            where:{nickname:cookdata.nickname}
+        })
         await db['post_detail'].create({
             post_id:data.post_id,
-            nickname:data.nickname,
-            comment:data.comment
+            nickname:cookdata.nickname,
+            comment:data.comment,
+            image:image[1].dataValues.image,
         });
         return res.status(200).send("댓글 저장 성공");
 

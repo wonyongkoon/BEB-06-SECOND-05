@@ -50,6 +50,7 @@ const PostList = ({post}) => {
             .map((el)=>(
                 <div>
                 <Post
+                post_id={el.id}
                 user_image={el.user_image}
                 nickname={el.nickname}
                 content={el.content} 

@@ -12,7 +12,6 @@ const Feed = ({loadpage}) => {
     const {cookies} =useContext(UseContext);
     const {user, setUsers} = useContext(UseContext);
     const [post,setpost] =useState([]);
-
     useEffect(()=> {
         axios.post("http://localhost:5000/post/postall",{withCredentials: true})
         .then((response) =>{
