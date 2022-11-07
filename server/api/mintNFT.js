@@ -3,11 +3,10 @@ const Web3 = require("web3");
 const rpcURL = "https://goerli.infura.io/v3/b03f802e554f441786b51c437837bfe4"  
 const web3 = new Web3(rpcURL);
 const db=require('../sequelize/models');
+
 const contract721ABI =require("../abi/erc721abi.json");
 const contract20ABI =require("../abi/erc20abi.json");
-
-
-const contract721Address = "0x7618BA71B1688704b4363DfD09efEa071806FEa2"
+const contract721Address = "0xB36FF334C06d57DFECbF70f22A41EBEf22456f60"
 const contract20Address = "0x333F4693304D70A645E3F5E2678917350d54a76b"
 
 const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755';
@@ -28,17 +27,27 @@ const getTOKENBalanceOf = async (address) => {
 	});                        
 }
 
+const getGasPrice = async () => {
+	return await web3.eth.getGasPrice()
+	.then(result => {
+		return parseInt(result)
+	});                        
+}
+
 const mintNFT = async (req, res) => {
 	const data =req.body;
 	const price = 10
 	const fromAddress = data.fromAddress; 
 	const tokenURI = data.tokenURI; //메타데이터 json ipfs주소 
 	const callPrivateKey = await db['user'].findOne({where:{address:data.fromAddress}})
-	const privateKey = callPrivateKey.dataValues.privateKey; 
-	const id = data.id;
+	const userPrivateKey = callPrivateKey.dataValues.privateKey; 
+	const id = callPrivateKey.user_id
 	const callUser_id = await db['nft'].findOne({where:{metadata_url:tokenURI}})
 	const ethBalance = await getethBalanceOf(fromAddress)
 	const tokenBalance = await getTOKENBalanceOf(fromAddress)
+	const callGasPrice = await getGasPrice() 
+	const gasPrice = Math.round(1.09*callGasPrice)
+	console.log('gasPrice : ' + gasPrice)
 	console.log('id::'+id)
 	console.log('ethBalance : ' + ethBalance)
 	console.log('tokenBalance : ' + tokenBalance)
@@ -65,15 +74,15 @@ const mintNFT = async (req, res) => {
 				await db['nft'].update({user_id:id}, {where:{metadata_url:tokenURI}})
 				let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: fromAddress} ); 
 				let data20 = contract20.methods.approve(contract721Address, 10000).encodeABI(); //Create the data for token transaction.
-				let rawTransaction = {"to": contract20Address, "gas": 1000000, "data": data20 }; 
+				let rawTransaction = {"to": contract20Address, "gas": 200000, "data": data20 }; 
 	
-				const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
+				const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, userPrivateKey);
 				web3.eth.sendSignedTransaction(signedTx20.rawTransaction);
 	
 				//mintNFT(recipient, tokenURI, price)
 				let contract721 = new web3.eth.Contract(contract721ABI, contract721Address, {from: serverAddress} ); 
 				let data721 = contract721.methods.mintNFT(fromAddress, tokenURI, 10).encodeABI(); //(recipient, tokenuri, 가격)
-				let rawTransaction721 = {"to": contract721Address, "gas": 1000000, "data": data721 }; 
+				let rawTransaction721 = {"to": contract721Address, "gas": 2000000, "data": data721 }; 
 			
 				const signedTx = await web3.eth.accounts.signTransaction(rawTransaction721, privateKey);
 				web3.eth.sendSignedTransaction(signedTx.rawTransaction);
