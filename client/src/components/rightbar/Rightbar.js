@@ -1,5 +1,5 @@
 import "./rightbar.css";
-import image2 from "./nike.jpg";
+import image from "./iu3.png";
 
 export default function Rightbar() {
   const HomeRightbar = () => {
@@ -15,7 +15,7 @@ export default function Rightbar() {
             <p className="rightText">E2I2 MARKET에서 구매한 NFT는 평생 소장할 수 있으며 다른 유저와 교환과 거래를 할 수 있습니다.</p>
           </span>
         </div>
-        <img className="rightbarAd" src={image2} alt="" />
+        <img className="rightbarAd" src={image} alt="" />
         <h4 className="rightbarTitle">E2I2 홈페이지에 온 걸 환영합니다!</h4>
       </>
     );
