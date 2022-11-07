@@ -72,15 +72,11 @@ const commentsave = async (req,res)=>{
     }
     try{
         const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
-        const image = await db['user'].findAll({
-            attributes:['image'],
-            where:{nickname:cookdata.nickname}
-        })
         await db['post_detail'].create({
             post_id:data.post_id,
             nickname:cookdata.nickname,
             comment:data.comment,
-            image:image[1].dataValues.image,
+            image:data.image,
         });
         return res.status(200).send("댓글 저장 성공");
 
