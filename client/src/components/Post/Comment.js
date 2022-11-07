@@ -1,12 +1,11 @@
 import { React , useState, useContext} from 'react';
 import "./post.css";
-import CommentHeart from './CommentHeart';
 import {UseContext} from '../../User/UserContextProvider';
-import dummyComment from './dummyComment';
+// import dummyComment from './dummyComment';
 
 const Comment = () => {
 
-    const {user, setUsers} = useContext(UseContext);
+    const {user, setUsers, image, cookies} = useContext(UseContext);
     const [commentValue, setCommentValue] = useState('');
     const [commentBox, setCommentBox] = useState([]);
 
@@ -48,7 +47,7 @@ const Comment = () => {
         return (
           <div className="postComment" key={el.id} >
             <div>
-            <img className="postProfileImg" src={el.user_image} alt=""/>
+            <img className="postProfileImg" src={image} alt=""/>
             <span className="postUsername">{el.name}</span>
             <span className="postDate">{el.comment}</span>
             </div>
@@ -56,8 +55,9 @@ const Comment = () => {
         )})
          }
         </div>
-    <div className="postBottom"  onSubmit={onSubmit}>
+    <div className={`postBottom ${cookies ? '':'btn-none'}`} onSubmit={onSubmit}>
      <form className="postBottomLeft">
+      <img className="postProfileImg" src={image} alt=""/>
       <input
         type="text"
         placeholder="댓글 달기..."
