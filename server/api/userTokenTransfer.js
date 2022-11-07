@@ -23,6 +23,14 @@ const getTOKENBalanceOf = async (address) => {
 	});                        
 }
 
+const getGasPrice = async () => {
+	return await web3.eth.getGasPrice()
+	.then(result => {
+		return parseInt(result)
+	});                        
+}
+
+
 const userTokenTransfer = async (req, res) => {
 	const data =req.body;
 	const amount = parseInt(data.amount) 
@@ -35,10 +43,12 @@ const userTokenTransfer = async (req, res) => {
 	const tokenBalance = await getTOKENBalanceOf(fromAddress)
 	const toTokenBalance = await getTOKENBalanceOf(toAddress)
 	const dbTokenBalance = callPrivateKey.dataValues.token_amount;
+	const gasPrice = await getGasPrice()
 	console.log(dbTokenBalance)
 	console.log(tokenBalance)
+	
 
-	if (ethBalance<1000000){
+	if (ethBalance < 1000000){
 		console.log('Insufficient gas')
 		return res.status(400).send('Insufficient gas. Use eth faucet!')
 	} else {

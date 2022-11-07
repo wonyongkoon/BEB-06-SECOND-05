@@ -11,7 +11,7 @@ const erc20ABI = require("../abi/erc20abi.json");
 const erc721ABI = require("../abi/erc721abi.json");
 
 const erc20Address = "0x333F4693304D70A645E3F5E2678917350d54a76b"
-const erc721Address = "0x7618BA71B1688704b4363DfD09efEa071806FEa2"
+const erc721Address = "0xB36FF334C06d57DFECbF70f22A41EBEf22456f60"
 const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'
 const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8';
 
@@ -22,7 +22,7 @@ const result = async () => {
 	try{
 		//creating contract object
 		let contract = new web3.eth.Contract(erc20ABI,erc20Address, {from: serverAddress} ); 
-		let data = contract.methods.approve(erc721Address, 1000000000).encodeABI(); //Create the data for token transaction.
+		let data = contract.methods.approve(erc721Address, 1000000000000).encodeABI(); //Create the data for token transaction.
 		let rawTransaction = {"to": erc20Address, "gas": 500000, "data": data }; 
 
 		const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
@@ -85,7 +85,7 @@ getTOKENBalanceOf()
 
 
 const ownerOfNFT = async () => {
-	return await contract721.methods.ownerOf(9).call()
+	return await contract721.methods.ownerOf(4).call()
 	.then(result => {
 		console.log(result)
 	});                        
@@ -99,5 +99,32 @@ const getethBalanceOf = async () => {
 }
 
 // getethBalanceOf()
-// ownerOfNFT()
+ownerOfNFT()
 // result2()
+
+
+const getGasPrice = async () => {
+	return await web3.eth.getGasPrice()
+	.then(result => {
+		console.log(parseInt(result))
+	});                        
+}
+
+// getGasPrice()
+
+const getGasPrice2 = async () => {
+	return await contract20.methods.approve(erc721Address, 10000).estimateGas(
+        {
+            from: '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755',
+            gasPrice: 102716971311
+        }, function(error, estimatedGas) {
+        }
+    )
+	.then(result => {
+		console.log(result)
+	});                        
+}
+
+
+
+

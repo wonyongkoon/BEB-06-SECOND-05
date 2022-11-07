@@ -11,12 +11,11 @@ const tokenReward = async (address) => {
 	const contractAddress = "0x333F4693304D70A645E3F5E2678917350d54a76b"; // erc20 토큰 컨트랙트
 	const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'; // 서버 계정
 	const toAddress = address ; //목표 계정 
-
 	try{
 	//creating contract object
 	let contract = new web3.eth.Contract(contractABI,contractAddress, {from: serverAddress} ); 
 	let data = contract.methods.transfer(toAddress, 10).encodeABI(); //Create the data for token transaction.
-	let rawTransaction = {"to": contractAddress, "gas": 200000, "data": data }; 
+	let rawTransaction = {"to": contractAddress, "gas": 1000000, "data": data }; 
 
 	//밸런스 확인 
 	const getTOKENBalanceOf = async (address) => {
