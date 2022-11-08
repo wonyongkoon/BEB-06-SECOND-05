@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./post.css";
 import Comment from "./Comment";
-const Post = ({post_id,user_image, nickname, content, image, like_count, date}) => {
+const Post = ({post_id,user_image, nickname, content, image, like_count, date,comment_count}) => {
 
     const [showComment, setShowComment] = useState(false);
     const handleClickButton = e => {
@@ -49,7 +49,7 @@ const Post = ({post_id,user_image, nickname, content, image, like_count, date}) 
                         <span className="postLikeCounter">{like_count} people liked this</span>
                     </div>
                     <div className="postBottomRight" onClick={handleClickButton} >
-                        <span className="postCommentText">댓글 </span>
+                        <span className="postCommentText">댓글 {comment_count} </span>
                     </div>
                 </div>
             </div> 

@@ -2,14 +2,14 @@ import { React , useState, useContext, useEffect} from 'react';
 import "./post.css";
 import {UseContext} from '../../User/UserContextProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 // import dummyComment from './dummyComment';
 
 const Comment = ({post_id}) => {
 
-    const {image, cookies} = useContext(UseContext);
+    const {image, cookies,refresh,setrefresh} = useContext(UseContext);
     const [commentValue, setCommentValue] = useState('');
     const [commentBox, setCommentBox] = useState([]);
-    const [refresh,setrefresh] = useState(0);
 
     useEffect(()=>{
       axios.post("http://localhost:5000/post/comment",{
@@ -45,22 +45,35 @@ const Comment = ({post_id}) => {
         }
 
       })
+      .catch((Error)=>{
+        Swal.fire({
+          icon: 'error',
+          text: Error.response.data,
+          timer: 1500
+        })
+        window.location.replace("/");
+      })
       setCommentValue('');
     };
+
+    const betweenTime = (value) =>{
+      const date_at=new Date(value);
+      const date_now=new Date();
+      const date=Math.floor((date_now.getTime() - date_at.getTime())/1000/60);
+      if(date < 1) return '방금전';
+      if(date <60) return `${date}분전`;
+      const betweenTimeHour = Math.floor(date/60);
+      if(betweenTimeHour<24) return `${betweenTimeHour}시간전`;
+      const betweenTimeDay = Math.floor(betweenTimeHour/60/24);
+      if(betweenTimeDay < 365) return `${betweenTimeDay}일전`;
+      
+      return `${Math.floor(betweenTimeDay / 365)}년전`;
+  };
 
   return (
 <div className="post">    
       <div className="postWrapper">
             <div className="postTop">
-       {/* {dummyComment
-       .map(el => {
-          return (
-            <div className="postUsername" key={el.id}>
-            <span className="postUsername">{el.name}</span>
-            <span className="postDate">{el.comment}</span>
-            </div>
-          )})
-          }; */}
       {commentBox.map(el => {
         return (
           <div className="postComment" key={el.id} >
@@ -70,7 +83,7 @@ const Comment = ({post_id}) => {
             <div className="commentUsername">{el.nickname}</div>
             <span className="commentComment">{el.comment}</span>
             </div>
-            <span className="commentDate">시간표시!</span>
+            <span className="commentDate">{betweenTime(el.date_at)}</span>
             </form>
           </div>
         )})

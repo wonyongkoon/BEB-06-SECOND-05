@@ -59,6 +59,11 @@ module.exports = function(sequelize, DataTypes) {
     user_image: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    comment_count: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize,

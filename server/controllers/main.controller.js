@@ -15,8 +15,11 @@ const login= async (req,res)=>{
                 user_id:data.user_id
             }
         });
+        if(userdata[0]==undefined){
+            return res.status(400).send("아이디가 없는 아이디입니다.");
+        }
         if(userdata[0].password != data.password) {
-            return res.send("비밀번호 일치하지않음");
+            return res.status(400).send("비밀번호 일치하지않음");
         }
         const payload={
             user_id:userdata[0].user_id,
@@ -37,7 +40,6 @@ const login= async (req,res)=>{
 };
 
 const logout =(req,res)=>{
-    
     res.clearCookie('loginToken');
     return res.status(200).send("");
 };
@@ -62,7 +64,7 @@ const confirm =async (req,res)=>{
         return res.json({ckeck:true,data:data,image:image,nft:nftdata});
     }catch(err){
         res.clearCookie('loginToken');
-        return res.json({ckeck:false});
+        return res.status(400).send("쿠키 만료시간 종료되었습니다.");
     }
     
     

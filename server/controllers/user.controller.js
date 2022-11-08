@@ -46,24 +46,31 @@ const saveUser = async (req,res) =>{
         return res.send("데이터 저장 성공");
     }catch(err){
         console.log(err);
-        return res.send("에러");
+        return res.status(400).send("회원 가입 실패");
     }
 }
 const saveImage = async(req,res)=>{
     const data=req.body;
     const cookie=req.cookies.loginToken;
     if(typeof cookie == "undefined"){
-        return res.status(200).send("로그인 해주세요");
+        return res.status(400).send("로그인 해주세요");
     };
     try{
         const cookdata=jwt.verify(cookie,process.env.SECRET_KEY);
         await db['user'].update({image:data.image},{where:{
             user_id:cookdata.user_id
         }})
+        await db['post'].update({user_image:data.image},{where:{
+            user_id:cookdata.user_id
+        }})
+        await db['post_detail'].update({image:data.image},{where:{
+            nickname:cookdata.nickname
+        }})
         return res.send("성공");
     }
     catch(err){
         console.log("saveImge 에러");
+        return res.status(400).send("프로필 사진 변경 실패");
         console.log(err);
     }
    

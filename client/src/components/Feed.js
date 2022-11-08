@@ -5,12 +5,13 @@ import PostList from "./Post/PostList"
 import axios from 'axios'
 // import Comment from './Post/Comment.js';
 import { UseContext } from "../User/UserContextProvider";
+import Swal from 'sweetalert2';
 
 
 
 const Feed = ({loadpage}) => {
     const {cookies} =useContext(UseContext);
-    const {user} = useContext(UseContext);
+    const {user,refresh} = useContext(UseContext);
     const [post,setpost] =useState([]);
 
 
@@ -21,8 +22,14 @@ const Feed = ({loadpage}) => {
            setpost(response.data) :
            setpost(response.data.filter((el) => el.user_id === user.user_id)); 
         })
+        .catch((Error)=>{
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+            })
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+    }, [user,refresh])
     
     return (
         <div className="feed">

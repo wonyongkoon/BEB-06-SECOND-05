@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import Popup from '../Popup'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2';
 
 
 const Item = ({id,image,description,metadataurl ,itemcount}) => {
@@ -36,8 +37,10 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
                         navigator("/mypage")} });
         })
         .catch((Error) => {
-            console.log("실패")
-            console.log(Error);
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+            })
         })
     }
 

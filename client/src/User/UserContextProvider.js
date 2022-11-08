@@ -12,6 +12,8 @@ export const UseContext = createContext({
         mynft:"",
     },
     image:"",
+    refresh:0,
+    setrefresh:()=>{},
     setUsers:() =>{},
     setCookiesHandler:() => {},
     setUserImage:()=>{},
@@ -29,14 +31,18 @@ const UserContextProvider=({children})=>{
         mynft:"",
     });
     const [image,setImage] =useState("");
+    const [refresh,setrefresh]=useState(0);
 
     const setConfirmHandler = (bool)=> setCookies(bool);
     const setUserHandler= (data)=> setUser(data);
     const setUserImgeHandler = (data)=> setImage(data);
+    const setrefreshHandler = (data)=>setrefresh(data);
     const usercontext={
         cookies:cookies,
         user:user,
         image:image,
+        refresh:refresh,
+        setrefresh:setrefreshHandler,
         setUsers:setUserHandler,
         setCookiesHandler:setConfirmHandler,
         setUserImage:setUserImgeHandler

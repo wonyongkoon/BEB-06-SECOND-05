@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import Popup from '../components/Popup'
 import { UseContext } from '../User/UserContextProvider'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import '../utils/LoginPage.css'
 // qdqqq qweqweqwe1!
 const LoginPage = () => {
@@ -34,15 +35,20 @@ const LoginPage = () => {
             .then(function (response) {
                 // 로그인 성공시 메인페이지로 이동 
                 setCookiesHandler(true);
-                setPopup({
-                       open:true,   
-                       message: "로그인 되었습니다.", 
-                       callback: function(){     
-                            navigator("/")   } });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '로그인 성공',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                navigator("/")
             })
             .catch((Error) => {
-                console.log("실패")
-                console.log(Error);
+                Swal.fire({
+                    icon: 'error',
+                    text: Error.response.data,
+                })
             })
         }
 

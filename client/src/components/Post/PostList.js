@@ -9,20 +9,8 @@ const PostList = ({post}) => {
     // const {user, setUsers} = useContext(UseContext);    // 마이페이지에 유저 판별하기위해서
     const [page, setPage] = useState(1);
     const offset = (page - 1) * 10;
-    // const [post,setpost] =useState([]);
-    // const [like, setLike] = useState();
-    // const [isLiked, setIsLiked] = useState(false);
+    const [showComment, setShowComment] = useState(false);
 
-
-    // const [showComment, setShowComment] = useState(false);
-
-    // const handleClickButton = e => {
-    //     setShowComment((e) => !e);
-    // };
-
-    // const likeHandler = (index) => {
-    // };
-    
     const handlePageChange = (page) => {
         setPage(page);
       //   console.log(page);
@@ -43,7 +31,8 @@ const PostList = ({post}) => {
                 content={el.content} 
                 image={el.image}
                 like_count={el.like_count}
-                date={el.date_at} />
+                date={el.date_at}
+                comment_count={el.comment_count} />
             </div>
             ))}  
               <Pagination

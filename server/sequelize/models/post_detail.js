@@ -30,6 +30,11 @@ module.exports = function(sequelize, DataTypes) {
     image: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    date_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
