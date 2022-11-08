@@ -47,7 +47,7 @@ const PostList = ({post}) => {
         {post
             .slice(offset, offset + 10)
             .map((el)=>(
-                <div>
+                <div key={el.id}>
                 <Post
                 post_id={el.id}
                 user_image={el.user_image}
