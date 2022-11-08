@@ -70,14 +70,19 @@
 
 .shareButton {
     border: none;
-    padding: 7px;
-    border-radius: 5px;
-    background-color: green;
+    padding: 7px 15px;
+    border-radius: 10px;
+    background-color: rgba(24,119,242,0.9);
     font-weight: 500px;
     margin-right: 20px;
     cursor: pointer;
     color: white;
 }
+
+.shareButton:hover {
+    background-color: #166FE5;
+}
+
 .displaynone{
     display: none;
 }
