@@ -45,6 +45,7 @@ const Header = () => {
             })
             window.location.replace("/");
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[cookies]);
 
     function Logout(){
