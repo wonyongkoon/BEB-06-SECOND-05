@@ -7,7 +7,7 @@ import axios from 'axios'
 import {UseContext} from '../../User/UserContextProvider'
 import Picker from 'emoji-picker-react'; // 이모지
 import Swal from 'sweetalert2';
-
+import {RateReview} from "@material-ui/icons";
 const Share = () => {
   let dataURL ='';
   
@@ -126,7 +126,9 @@ const Share = () => {
                      
                   </div>
                   
-                    <button className="shareButton" onClick={Share}>등 록</button>
+                    <button className="shareButton" onClick={Share}>
+                    <RateReview></RateReview>
+                    </button>
                     
               </div>
         

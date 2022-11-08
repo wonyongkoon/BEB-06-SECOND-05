@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 const MyPage = () => {
     const loadpage = "MyPage"
     //서버열리면 사용하기 
-    const {user, setUserImage,image} = useContext(UseContext);
+    const {user, setUsers, setUserImage,image} = useContext(UseContext);
     const {setCookiesHandler} =useContext(UseContext);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
@@ -80,20 +80,20 @@ const MyPage = () => {
         // navigator('/mypage')    // 임시로 테스트 중 마지막에 삭제
         .then(function (response) {
             // 로그인 성공시 메인페이지로 이동 
-            console.log("성공")
-            console.log(response)
-            setCookiesHandler(true);
-            setPopup({
-                   open:true,   
+            if(response.status===200){
+                setUsers({...user,token_amount:user.token_amount-count});
+                console.log("성공")
+                console.log(response)
+                setCookiesHandler(true);
+                setPopup({
+                   open:true,
                    message: "전송 되었습니다.", 
-                   callback: function(){     
+                   callback: function(){
                          } });
-        })
-        .catch((Error) => {
-            Swal.fire({
-                icon: 'error',
-                text: Error.response.data,
-            })
+            }
+            else{
+                alert("실패");
+            }
         })
 
     }

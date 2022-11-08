@@ -80,7 +80,7 @@
     font-weight: 500;
     border: 1px solid rgba(0,0,0,0.2);
     padding: 5px;
-    display: block;
+    /* display: block; */
     border-radius: 10px;
     display: inline-block;
     text-align: right;
@@ -148,7 +148,6 @@
 }
 
 .displayflex{
-    
     display: flex;
     justify-content: space-between;
 }

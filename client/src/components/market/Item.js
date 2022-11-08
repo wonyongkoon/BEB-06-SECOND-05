@@ -16,7 +16,7 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
     const {user} = useContext(UseContext);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
-    const {setCookiesHandler} =useContext(UseContext);
+    const {setUsers, setCookiesHandler} =useContext(UseContext);
     const navigator = useNavigate();
     const SellModal = () => {
         setModalIsOpen(true)
@@ -28,19 +28,23 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
 	        tokenURI : metadataurl
         }, {withCredentials: true})
         .then(function (response) {
-            // 구매 성공시 마이페이지로 이동
-            setCookiesHandler(true);
-            setPopup({
-                   open:true,   
-                   message: "구매 되었습니다.", 
-                   callback: function(){     
-                        navigator("/mypage")} });
+            if(response.status===200){
+                setUsers({...user,token_amount:user.token_amount-10});
+                setCookiesHandler(true);
+                setPopup({
+                       open:true,
+                       message: "구매 되었습니다.", 
+                       callback: function(){
+                            navigator("/mypage")} });
+                            // 구매 성공시 마이페이지로 이동
+            } else {
+                alert("실패");
+            }
+            
         })
         .catch((Error) => {
-            Swal.fire({
-                icon: 'error',
-                text: Error.response.data,
-            })
+            console.log("실패")
+            console.log(Error);
         })
     }
 
