@@ -81,7 +81,10 @@ const userTokenTransfer = async (req, res) => {
 						getTOKENBalanceOf2(toAddress).then ( balance => { console.log(toAddress + " Token Balance: " + balance); });
 						return res.status(200).send("토큰 전송 성공");
 						// return true;  
-				})    
+				})  
+				.catch(err => {
+					return res.status(400).send("실패. 1분 후에 재시도 하세요");
+				})
 		
 			} catch(err){
 				console.log("에러");
