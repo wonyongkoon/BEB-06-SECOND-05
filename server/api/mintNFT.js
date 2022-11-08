@@ -27,16 +27,8 @@ const getTOKENBalanceOf = async (address) => {
 	});                        
 }
 
-const getGasPrice = async () => {
-	return await web3.eth.getGasPrice()
-	.then(result => {
-		return parseInt(result)
-	});                        
-}
-
 const mintNFT = async (req, res) => {
 	const data =req.body;
-	const price = 10
 	const fromAddress = data.fromAddress; 
 	const tokenURI = data.tokenURI; //메타데이터 json ipfs주소 
 	const callPrivateKey = await db['user'].findOne({where:{address:data.fromAddress}})
@@ -45,8 +37,6 @@ const mintNFT = async (req, res) => {
 	const callUser_id = await db['nft'].findOne({where:{metadata_url:tokenURI}})
 	const ethBalance = await getethBalanceOf(fromAddress)
 	const tokenBalance = await getTOKENBalanceOf(fromAddress)
-	const callGasPrice = await getGasPrice() 
-	const gasPrice = Math.round(1.09*callGasPrice)
 	
 	if (callUser_id.dataValues.user_id === id){ 
 		console.log('Alreday yours')
@@ -59,18 +49,31 @@ const mintNFT = async (req, res) => {
 			if (ethBalance<1000000){
 				console.log('Insufficient gas')
 				return res.status(400).send('Insufficient gas. Use eth faucet!')
+				
 			} else {
 				if (tokenBalance<10){
 					console.log('Insufficient EIT')
 					return res.status(400).send('Insufficient EIT. Get EIT by posting on E2I2')
 				} 
 				try{
+				const getApproveGasAmount = async () => {
+					const contract = new web3.eth.Contract(contract20ABI, contract20Address);
+					gasAmount = await contract.methods.approve(contract721Address, 10000).estimateGas({ from: fromAddress })
+					return gasAmount
+				}
+				const approveGas = await getApproveGasAmount()
+			
+				const getMintGasAmount= async () => {
+					const contract = new web3.eth.Contract(contract721ABI, contract721Address);
+					gasAmount = await contract.methods.mintNFT(fromAddress, tokenURI, 10).estimateGas({ from: serverAddress })
+					return gasAmount
+				}
+				const mintGas = await getMintGasAmount()
+
 				//erc20 -> erc721 approve (사용자의 토큰을 민팅에 사용할 수 있게 설정)
-				await db['user'].update({token_amount:tokenBalance-price},{where:{address:fromAddress}}); // 구매자의 토큰 밸런스 지출 
-				await db['nft'].update({user_id:id}, {where:{metadata_url:tokenURI}})
 				let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: fromAddress} ); 
 				let data20 = contract20.methods.approve(contract721Address, 10000).encodeABI(); //Create the data for token transaction.
-				let rawTransaction = {"to": contract20Address, "gas": 200000, "data": data20 }; 
+				let rawTransaction = {"to": contract20Address, "gas": approveGas + 1000, "data": data20 }; 
 	
 				const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, userPrivateKey);
 				web3.eth.sendSignedTransaction(signedTx20.rawTransaction);
@@ -78,17 +81,23 @@ const mintNFT = async (req, res) => {
 				//mintNFT(recipient, tokenURI, price)
 				let contract721 = new web3.eth.Contract(contract721ABI, contract721Address, {from: serverAddress} ); 
 				let data721 = contract721.methods.mintNFT(fromAddress, tokenURI, 10).encodeABI(); //(recipient, tokenuri, 가격)
-				let rawTransaction721 = {"to": contract721Address, "gas": 2000000, "data": data721 }; 
+				let rawTransaction721 = {"to": contract721Address, "gas": mintGas + 1000, "data": data721 }; 
 			
 				const signedTx = await web3.eth.accounts.signTransaction(rawTransaction721, privateKey);
-				web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-	
+				web3.eth.sendSignedTransaction(signedTx.rawTransaction)
+				.then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
+				.then(req => { 
+						db['user'].decrement({token_amount:10},{where:{address:fromAddress}});
+						db['nft'].update({user_id:id}, {where:{metadata_url:tokenURI}})
+						return res.status(200).send("민트 성공");
+						// return true;  
+				})
 				
 				// db nft 목록에 해당 nft user컬럼이 비어있다가 구매가되면 구매자 이름으로 업데이트
 				console.log('wait for 40 seconds')
 				setTimeout(() => {console.log('minting success')}, 40000);
 				res.send(signedTx)
-			return signedTx;
+			
 			} catch(err){
 				console.log("web3에러");
 				console.log(err);
