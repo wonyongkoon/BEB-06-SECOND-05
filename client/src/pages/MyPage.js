@@ -11,6 +11,7 @@ import Feed from "../components/Feed.js";
 import Popup from '../components/Popup'
 import {UseContext} from '../User/UserContextProvider';
 import {CopyToClipboard} from "react-copy-to-clipboard";
+import Swal from 'sweetalert2';
 
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
 const MyPage = () => {
@@ -37,16 +38,23 @@ const MyPage = () => {
                 image: dataURL,
             }, {withCredentials: true})
             .then(function (response) {
-                
-                setPopup({
-                       open:true,   
-                       message: "저장되었습니다.", 
-                        });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '프로필 사진 변경 성공',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
                 setUserImage(dataURL);
+                window.location.replace("/mypage");
             })
             .catch((Error) => {
-                console.log("실패")
-                console.log(Error);
+                Swal.fire({
+                    icon: 'error',
+                    text: Error.response.data,
+                    timer: 1500
+                })
+                window.location.replace("/");
             })
         };
         reader.readAsDataURL(input.files[0]);
@@ -82,8 +90,10 @@ const MyPage = () => {
                          } });
         })
         .catch((Error) => {
-            console.log("실패")
-            console.log(Error);
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+            })
         })
 
     }

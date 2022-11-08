@@ -2,6 +2,7 @@ import { React , useState, useContext, useEffect} from 'react';
 import "./post.css";
 import {UseContext} from '../../User/UserContextProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 // import dummyComment from './dummyComment';
 
 const Comment = ({post_id}) => {
@@ -45,6 +46,14 @@ const Comment = ({post_id}) => {
         }
 
       })
+      .catch((Error)=>{
+        Swal.fire({
+          icon: 'error',
+          text: Error.response.data,
+          timer: 1500
+        })
+        window.location.replace("/");
+      })
       setCommentValue('');
     };
 
@@ -52,15 +61,6 @@ const Comment = ({post_id}) => {
 <div className="post">    
       <div className="postWrapper">
             <div className="postTop">
-       {/* {dummyComment
-       .map(el => {
-          return (
-            <div className="postUsername" key={el.id}>
-            <span className="postUsername">{el.name}</span>
-            <span className="postDate">{el.comment}</span>
-            </div>
-          )})
-          }; */}
       {commentBox.map(el => {
         return (
           <div className="postComment" key={el.id} >

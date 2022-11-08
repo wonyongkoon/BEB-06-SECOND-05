@@ -6,6 +6,7 @@ import axios from 'axios'
 // import { useNavigate } from 'react-router-dom'
 import {UseContext} from '../../User/UserContextProvider'
 import Picker from 'emoji-picker-react'; // 이모지
+import Swal from 'sweetalert2';
 
 const Share = () => {
   let dataURL ='';
@@ -80,8 +81,13 @@ const Share = () => {
       // window.location.replace("/")
     })
     .catch((Error)=>{
-      console.log("실패")
-      console.log(Error);
+      Swal.fire({
+        icon: 'error',
+        title:'게시글 등록 실패',
+        text: Error.response.data,
+        timer: 1500,
+      })
+      window.location.replace("/");
     })  
 }
 

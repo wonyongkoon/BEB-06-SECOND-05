@@ -4,7 +4,7 @@ import {useState,} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Popup from '../components/Popup'
-
+import Swal from 'sweetalert2';
 const SignupPage = () => {
   // 회원가입 성공시 팝업창띄움
   const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
@@ -131,8 +131,10 @@ const onChangeNickName = (e) => {
               });
         })
         .catch((Error)=>{
-          console.log("실패")
-          console.log(Error);
+          Swal.fire({
+            icon: 'error',
+            text: Error.response.data,
+        })
         })  
     }
     // -----------------------------------------------------

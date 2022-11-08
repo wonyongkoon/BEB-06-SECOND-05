@@ -6,6 +6,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom'
 import { UseContext } from '../User/UserContextProvider';
+import Swal from 'sweetalert2';
 
 const Header = () => {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
@@ -13,6 +14,7 @@ const Header = () => {
     const {user,setUsers} =useContext(UseContext);
     const navigator = useNavigate();
     useEffect(()=>{
+        console.log("엥");
         axios.get("http://localhost:5000/confirm",{withCredentials: true})
         .then((res)=>{
             if(res.data.ckeck===true){
@@ -36,8 +38,12 @@ const Header = () => {
             }
            
         })
-        .catch((err)=>{
-            console.log(err);
+        .catch((Error)=>{
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+            })
+            window.location.replace("/");
         })
     },[cookies]);
 
@@ -49,12 +55,14 @@ const Header = () => {
                 setCookiesHandler(false);
                 setUserImage("");
                 setUsers({});
-                setPopup({
-                       open:true,   
-                       message: "로그아웃 되었습니다.", 
-                       callback: function(){     
-                            navigator("/login")   } 
-                        });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                navigator("/login") 
             })
             .catch((Error) => {
                 console.log("실패")

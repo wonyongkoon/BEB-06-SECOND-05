@@ -13,6 +13,7 @@ const findAllPosts = async (req,res) => {
         res.json(user_data);
 
     }catch(err){
+        res.status(400).send("데이터베이스 에러");
         console.log("에러");
         console.log(err);
     }
@@ -40,8 +41,9 @@ const postsave = async (req,res) =>{
             await db['user'].increment({token_amount:10},{where:{address:address}});
             return res.status(200).send("게시판 저장 성공");
         }
-        return res.status(400).send('');
+        return res.status(400).send('실패했습니다.');
     }catch(err){
+        return res.status(400).send('실패했습니다.');
         console.log("에러");
         console.log(err);
     }
@@ -82,6 +84,7 @@ const commentsave = async (req,res)=>{
 
 
     }catch(err){
+        return res.status(400).send("잠시 후 다시 시도해보세요");
         console.log("commentsave 에러");
         console.log(err);
     }

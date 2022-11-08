@@ -13,7 +13,6 @@ const PostList = ({post}) => {
     const [like, setLike] = useState();
     const [isLiked, setIsLiked] = useState(false);
     const offset = (page - 1) * 10;
-
     const [showComment, setShowComment] = useState(false);
 
     const handleClickButton = e => {
@@ -55,7 +54,8 @@ const PostList = ({post}) => {
                 content={el.content} 
                 image={el.image}
                 like_count={el.like_count}
-                date={el.date_at} />
+                date={el.date_at}
+                comment_count={el.comment_count} />
             </div>
             ))}  
               <Pagination
