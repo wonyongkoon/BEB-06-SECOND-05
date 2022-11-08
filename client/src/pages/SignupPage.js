@@ -129,6 +129,7 @@ const onChangeNickName = (e) => {
                 showConfirmButton: false,
                 timer: 1500
               })
+              navigator("/login")
         })
         .catch((Error)=>{
           Swal.fire({
@@ -157,7 +158,7 @@ const onChangeNickName = (e) => {
                     />
                 {userId.length > 0 && <span className={`message${isUserId ? 'success' : 'error'}`}>{userIdMessage}</span>}
                 
-                {/*아이디 입력 테스트*/}<span>{userId}</span> 
+            
                 
                 <input
                     id='password'
@@ -169,7 +170,7 @@ const onChangeNickName = (e) => {
                     onChange={onChangePassword}
                     />
                     {password.length > 0 && <span className={`message${ispassword ? 'success' : 'error'}`}>{passwordMessage}</span>}
-                    {/*비밀번호 입력 테스트*/}<span>{password}</span> 
+                    
                 <input
                     id='password2'
                     className='SignupPage__container-input'
@@ -180,7 +181,7 @@ const onChangeNickName = (e) => {
                     onChange={onChangePasswordConfirm}
                     />
                     {passwordConfirm.length > 0 && <span className={`message${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>}
-                    {/*비밀번호 확인 입력 테스트*/}<span>{passwordConfirm}</span> 
+                
                 <input
                     id='email'
                     className='SignupPage__container-input'
@@ -191,7 +192,7 @@ const onChangeNickName = (e) => {
                     onChange={onChangeEmail}
                     />
                     {email.length > 0 && <span className={`message${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
-                    {/*이메일 입력 테스트*/}<span>{email}</span> 
+                    
                 <input
                     id='nickname'
                     className='SignupPage__container-input'
@@ -202,7 +203,7 @@ const onChangeNickName = (e) => {
                     onChange={onChangeNickName} 
                     />
                     {nickName.length > 0 && <span className={`message${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>}
-                    {/*닉네임 입력 테스트*/}<span>{nickName}</span> 
+                    
                 <button className={`SignupPage__container-button-${!(isUserId && ispassword && isPasswordConfirm && isEmail && isNickName ) ? 'gray' : 'blue' } `} disabled={!(isUserId && ispassword && isPasswordConfirm && isEmail && isNickName )} onClick={SignUp}>회원가입</button>
               
             </div>

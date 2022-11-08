@@ -100,7 +100,7 @@ const Header = () => {
                 {/* 로그인 버튼 */}
                 <div className={`header__navmenu__button ${cookies ? 'btn-none' : ''}`}>
                 <Link to="/login">
-                        <span Link="/login" className='header__navmenu__button__icon'>
+                        <span className='header__navmenu__button__icon'>
                             Login
                         </span>
                     </Link>
