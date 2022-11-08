@@ -1,6 +1,6 @@
 import React from 'react'
 import '../utils/SignupPage.css'
-import {useState, useEffect, useCallback} from 'react'
+import {useState,} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Popup from '../components/Popup'
@@ -37,7 +37,7 @@ const SignupPage = () => {
     if (checkSpc.test(e.target.value)) {
         setIsUserId(false)
         setUserIdMessage('아이디에 특수문자는 넣을 수 없습니다.')
-    } else if (e.target.value.length == 0) {
+    } else if (e.target.value.length === 0) {
         setIsUserId(false)
     } else if (!(e.target.value.length >= 5 || e.target.value.length > 15)) {
         setIsUserId(false)
@@ -99,7 +99,7 @@ const onChangeNickName = (e) => {
   if (checkSpc.test(e.target.value)) {
     setIsNickName(false)
     setNickNameMessage('닉네임에 특수문자는 넣을 수 없습니다.')
-  } else if (e.target.value.length == 0) {
+  } else if (e.target.value.length === 0) {
     setIsNickName(false)
   } else if (!(e.target.value.length >= 2 || e.target.value.length > 15)) {
     setIsNickName(false)

@@ -1,15 +1,10 @@
 // NFT 모아서 출력
-
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Item from "./Item";
 import Pagination from "react-js-pagination";
+import "./ItemList.css"; 
 
-// import '../asset/ItemList.css'
-import "./ItemList.css"; // 테스트 css
-// import "../asset/Pagination.css";
-import "./dummy";
-import { Link } from "react-router-dom";
 
 const ItemList = ({nftdata, itemCount}) => {
   let totalItemCount =nftdata.length // 전체 아이템 갯수
