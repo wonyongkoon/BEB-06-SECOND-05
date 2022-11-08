@@ -40,8 +40,8 @@ $ npm start
 
 # 📜 Page
 >### Main Page
-(게시글 입력하는 GIF 추가)
-(댓글 작성하는 GIF)
+![vllo 3](https://user-images.githubusercontent.com/45747187/200592769-945c25fe-67bf-4675-bd2f-17e6da8d4012.gif)
+
 >### My Page
 (민팅도 되어있고 게시글도 있는 GIF)
 (토큰 전송하는 GIF)
