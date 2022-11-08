@@ -127,19 +127,24 @@ MIT
 > GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
 > Twitter [@amit_merchant](https://twitter.com/amit_merchant)
 
-# 1. 프로젝트 소개
+
+
+
+
+
+# 👋 Instruction
 (E2I2소개, 기간, 인센티브 팬사이트 소개, 사용한 스택)
 
-### 사용한 스택
+>### Use Stack
 <div><img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/> <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/> <img src="https://img.shields.io/badge/Web3.js-F16822?style=flat-square&logo=web3.js&logoColor=black"/> <img src="https://img.shields.io/badge/IPFS-65C2CB?style=flat-square&logo=ipfs&logoColor=white"/> <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=black"/> <img src="https://img.shields.io/badge/RactRouter-CA4245?style=flat-square&logo=reactRouter&logoColor=black"/></div>
 
 # ⚙️ How To Use
-### git Clone
+>### git Clone
 ```bash
 # Clone this repository
 $ git clone git@github.com:codestates-beb/BEB-06-SECOND-05.git
 ````
-### server > .env setting
+>### .env setting
 ```bash
 DATABASE_PASSWORD=""
 DATABASE_IP=""
@@ -147,18 +152,18 @@ INFURA_KEY=""
 SECRET_KEY=""
 SERVER_SECRET_KEY=""
 ```
-### Client
+>### Client
 ```bash
 $ npm install --legacy-peer-deps
 $ npm start
 ```
-### Server
+>### Server
 ```bash
 $ npm install
 $ npm start
 ```
 
-# 구현페이지
+# 📜 Page
 ... 작성필요
 
 # 👨‍👩‍👦‍👦 Members
