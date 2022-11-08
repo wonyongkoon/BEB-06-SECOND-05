@@ -28,23 +28,24 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
 	        tokenURI : metadataurl
         }, {withCredentials: true})
         .then(function (response) {
-            if(response.status===200){
-                setUsers({...user,token_amount:user.token_amount-10});
-                setCookiesHandler(true);
-                setPopup({
-                       open:true,
-                       message: "구매 되었습니다.", 
-                       callback: function(){
-                            navigator("/mypage")} });
+            setUsers({...user,token_amount:user.token_amount-10});
+            setCookiesHandler(true);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: "구매 되었습니다.",
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigator("/mypage")
                             // 구매 성공시 마이페이지로 이동
-            } else {
-                alert("실패");
-            }
-            
         })
         .catch((Error) => {
-            console.log("실패")
-            console.log(Error);
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+                timer: 1500
+            })
         })
     }
 

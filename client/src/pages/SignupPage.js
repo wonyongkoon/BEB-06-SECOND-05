@@ -122,13 +122,13 @@ const onChangeNickName = (e) => {
           nickname : nickName,
         })
         .then(function (response) {
-              setPopup({
-                open:true,
-                message: "회원가입에 성공했습니다.",
-                callback: function(){
-                  navigator("/login")
-                }
-              });
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '회원가입에 성공했습니다',
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
         .catch((Error)=>{
           Swal.fire({
