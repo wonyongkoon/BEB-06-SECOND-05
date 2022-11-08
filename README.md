@@ -127,3 +127,12 @@ MIT
 > GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
 > Twitter [@amit_merchant](https://twitter.com/amit_merchant)
 
+
+||Role|Github|
+|---|:---:|:---:|
+|강석민(팀장)|Back-end, Contract|https://github.com/smkang2|
+|신승훈|Full-stack|https://github.com/sinsu1004|
+|유영신|Front-end|https://github.com/yoo-tonec|
+|김원용|Front-end|https://github.com/wonyongkoon|
+
+
