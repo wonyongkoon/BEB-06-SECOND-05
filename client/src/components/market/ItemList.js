@@ -19,7 +19,7 @@ const ItemList = ({nftdata, itemCount}) => {
         {
           // 선택한 테마가 all일 경우 전체아이템 출력 아닐시 선택한 아이템으로 필터 적용 후 출력
           nftdata.slice(offset, offset + itemCount).map((punk) => (
-                  <div>
+                  <div key={punk.id}>
                     <Item
                       id={punk.id}
                       image={punk.img_url}
