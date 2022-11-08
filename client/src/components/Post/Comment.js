@@ -57,6 +57,20 @@ const Comment = ({post_id}) => {
       setCommentValue('');
     };
 
+    const betweenTime = (value) =>{
+      const date_at=new Date(value);
+      const date_now=new Date();
+      const date=Math.floor((date_now.getTime() - date_at.getTime())/1000/60);
+      if(date < 1) return '방금전';
+      if(date <60) return `${date}분전`;
+      const betweenTimeHour = Math.floor(date/60);
+      if(betweenTimeHour<24) return `${betweenTimeHour}시간전`;
+      const betweenTimeDay = Math.floor(betweenTimeHour/60/24);
+      if(betweenTimeDay < 365) return `${betweenTimeDay}일전`;
+      
+      return `${Math.floor(betweenTimeDay / 365)}년전`;
+  };
+
   return (
 <div className="post">    
       <div className="postWrapper">
@@ -70,7 +84,7 @@ const Comment = ({post_id}) => {
             <div className="commentUsername">{el.nickname}</div>
             <span className="commentComment">{el.comment}</span>
             </div>
-            <span className="commentDate">시간표시!</span>
+            <span className="commentDate">{betweenTime(el.date_at)}</span>
             </form>
           </div>
         )})

@@ -80,6 +80,7 @@ const commentsave = async (req,res)=>{
             comment:data.comment,
             image:data.image,
         });
+        await db['post'].increment({comment_count:1},{where:{id:data.post_id}});
         return res.status(200).send("댓글 저장 성공");
 
 
