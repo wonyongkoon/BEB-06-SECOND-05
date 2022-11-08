@@ -22,7 +22,7 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.page{
+/* .page{
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -39,4 +39,4 @@
 }
 .page a:hover{
     background-color:  #414242;
-}
+} */
