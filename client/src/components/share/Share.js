@@ -112,7 +112,7 @@ const Share = () => {
                   <div className="shareOptions">
                      <div className="shareOption"  onClick={()=> {selectFile.current.click()}}>  
                         <PermMedia htmlColor="tomato" className="shareIcon"/>
-                        <span className="shareOptionText">Photo or Video</span>   
+                        <span className="shareOptionText">Photo</span>   
                         <input type='file' id='fileInput' accept='img/*' style={{display:"none"}} ref={selectFile} onChange={onLoadFile}></input>  
                      </div>
 

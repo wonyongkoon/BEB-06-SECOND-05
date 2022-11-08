@@ -163,3 +163,8 @@ letter-spacing: .8px;
     cursor: pointer;
     color: white;
 }
+
+.commentDate{
+    margin: 5px 0px 0px 10px;
+    font-size: 12px;
+}

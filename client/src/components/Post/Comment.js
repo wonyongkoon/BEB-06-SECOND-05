@@ -70,6 +70,7 @@ const Comment = ({post_id}) => {
             <div className="commentUsername">{el.nickname}</div>
             <span className="commentComment">{el.comment}</span>
             </div>
+            <span className="commentDate">시간표시!</span>
             </form>
           </div>
         )})
