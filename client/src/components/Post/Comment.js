@@ -7,10 +7,9 @@ import Swal from 'sweetalert2';
 
 const Comment = ({post_id}) => {
 
-    const {image, cookies} = useContext(UseContext);
+    const {image, cookies,refresh,setrefresh} = useContext(UseContext);
     const [commentValue, setCommentValue] = useState('');
     const [commentBox, setCommentBox] = useState([]);
-    const [refresh,setrefresh] = useState(0);
 
     useEffect(()=>{
       axios.post("http://localhost:5000/post/comment",{

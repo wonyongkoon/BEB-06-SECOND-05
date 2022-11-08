@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 const Feed = ({loadpage}) => {
     const {cookies} =useContext(UseContext);
-    const {user} = useContext(UseContext);
+    const {user,refresh} = useContext(UseContext);
     const [post,setpost] =useState([]);
 
 
@@ -29,7 +29,7 @@ const Feed = ({loadpage}) => {
             })
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+    }, [user,refresh])
     
     return (
         <div className="feed">
