@@ -48,10 +48,12 @@ $ npm start
 >### Market Page
 (NFT 구매 GIF)
 >### Login Page
-![vllo](https://user-images.githubusercontent.com/45747187/200590546-c970cae4-9831-41a1-b723-568f4427a72f.gif)
+![vllo 4](https://user-images.githubusercontent.com/45747187/200593349-275143fa-6957-4603-ae6b-cf29fe6e26cd.gif)
+
 
 >### SignUp Page
-![vllo 2](https://user-images.githubusercontent.com/45747187/200590983-091a2c07-f8af-406d-8dc3-381f464a5282.gif)
+![vllo 5](https://user-images.githubusercontent.com/45747187/200593615-8a952d15-3d69-4a0d-a869-59f2557557c6.gif)
+
 
 
 # 👨‍👩‍👦‍👦 Members
