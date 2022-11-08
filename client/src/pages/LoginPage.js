@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useContext, useCallback} from 'react'
+import {useState, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Popup from '../components/Popup'
 import { UseContext } from '../User/UserContextProvider'
@@ -12,7 +12,7 @@ const LoginPage = () => {
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [userId, setUserId] = useState('') //아이디
     const [password, setPassword] = useState('') //비밀번호
-    const {cookies,setCookiesHandler} =useContext(UseContext);
+    const {setCookiesHandler} =useContext(UseContext);
     // 유저 아이디 입력
     const onChangeUserId = (e) => {
         // console.log(`아이디 : ${e.target.value}`)
@@ -67,7 +67,7 @@ const LoginPage = () => {
                     placeholder='비밀번호(Password)'
                     onChange={onChangePassword}/>
                 <button className='LoginPage__container-button' onClick={Login}>로그인</button>
-                <a href="#">비밀번호를 잊으셨나요?</a>
+                
                 
             </div>
             <Popup

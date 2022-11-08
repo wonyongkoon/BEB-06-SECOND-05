@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import '../utils/marketpage.css'
 import ItemList from '../components/market/ItemList'
-import dummy from '../components/market/dummy'
 import searchIcon from '../icon/search.png'
 import axios from 'axios'
 const MarketPage = () => {
@@ -23,7 +22,7 @@ const MarketPage = () => {
             </div>
             <div className='searchBar'>
                 <div className='searchIconContainer'>
-                    <img src={searchIcon}/>
+                    <img src={searchIcon} alt='img'/>
                 </div>
                 <input
                     className='searchInput'

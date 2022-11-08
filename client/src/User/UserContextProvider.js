@@ -1,5 +1,5 @@
 import React, { createContext,useState } from "react";
-import logo from '../icon/logo.txt'
+// import logo from '../icon/logo.txt'
 export const UseContext = createContext({
     cookies:false,
     user:{

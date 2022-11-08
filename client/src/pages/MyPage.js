@@ -1,13 +1,11 @@
-import React, {useContext, useEffect, useState, useRef} from 'react'
+import React, {useContext, useState, useRef} from 'react'
 import axios from 'axios';
 import '../utils/MyPage.css'
 
 import key from '../icon/digital-key.png'
 import faucet from '../icon/faucet.png'
-import header_img from '../icon/mypage_hearder.png'
 import arrowdown from '../icon/arrow-down.png'
 import arrowup from '../icon/navigate-up-arrow.png'
-import dummy from '../components/market/dummy' // 임시로 더미데이ㅇ터 사용
 import ItemList from '../components/market/ItemList'
 import Feed from "../components/Feed.js";
 import Popup from '../components/Popup'
@@ -17,22 +15,10 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 // 마이페이지 버튼 클릭 시 디비에서 데이터를 가져오게 Porp 줘야함
 const MyPage = () => {
     const loadpage = "MyPage"
-    // console.log(loadpage)
-    // 서버 닫혔을때 테스트용
-    // const [user, setUser] = useState({
-    //     user_id: "test123",
-    //     nickname: "yong",
-    //     email: "asd@asd.com",
-    //     address: "0x0811A41dC0f183Ae3eCF8113a90Cf4964AC6e901",
-    //     token_amount: "0",
-    //     eth_amount: "10",
-    //     key: "0x0811A41dC0f183Ae3eCF8113a90Cf4964AC6e901"
-    // });
     //서버열리면 사용하기 
     const {user, setUserImage,image} = useContext(UseContext);
     console.log(user.mynft);
-    const {cookies,setCookiesHandler} =useContext(UseContext);
-    // console.log(user);
+    const {setCookiesHandler} =useContext(UseContext);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
     const [count, setCount] = useState(0);
@@ -106,17 +92,14 @@ const MyPage = () => {
     }
 
     return (
-        <div className='Mypage'>
-            {/* 헤더 */}
-            {/* <div className='Mypage-Header'>
-                <img className='Mypage-Header-img' src={header_img}/>
-            </div> */}
+        <div className='Mypage'>            
             {/* 유저정보 */}
             <div className='Mypage__userinfo'>
                 <input
                     type='file'
                     id='fileInput'
                     accept='img/*'
+                    alt='img'
                     style={{
                         display: "none"
                     }}
@@ -126,6 +109,7 @@ const MyPage = () => {
                     id='user-img'
                     className='Mypage__userinfo-img'
                     src={image}
+                    alt='img'
                     onClick={() => {
                         selectFile
                             .current
@@ -133,12 +117,12 @@ const MyPage = () => {
                     }}></img>
                 
                 <div className='Mypage__userinfo-cont'>
-                    <sapn className='Mypage__userinfo-cont-name'>
+                    <span className='Mypage__userinfo-cont-name'>
                         {user.nickname}
-                    </sapn>
-                    <sapn className='Mypage__userinfo-cont-id'>
+                    </span>
+                    <span className='Mypage__userinfo-cont-id'>
                         {user.user_id}
-                    </sapn>
+                    </span>
                 </div>
             </div>
             {/* 아래 게시물 + 정보 컨테이너 */}
@@ -154,13 +138,14 @@ const MyPage = () => {
                                 <div className="tooltip2">
                                     <span className='tooltip-content'>{user.privateKey}</span>
                                     <CopyToClipboard text={user.privateKey} onCopy={() => alert("키값이 복사되었습니다")}>
-                                    <img src={key} className="arrow_key"/>
+                                    <img src={key} className="arrow_key" alt='img'/>
                                     </CopyToClipboard>
                                     
                                 </div>
                             </div>
                             <div className='displayflex'>
                                 <img
+                                alt='img'
                                     src={faucet}
                                     className="faucet-btn"
                                     onClick={() => window.open('https://goerlifaucet.com/', '_blank')}/>
@@ -178,7 +163,7 @@ const MyPage = () => {
                                 {user.token_amount}개
                             </span>
                             <div className='center'>
-                            <img className='open-transmission-container' src={`${isCheck? arrowup:arrowdown}`}
+                            <img className='open-transmission-container'  alt='img' src={`${isCheck? arrowup:arrowdown}`}
                             onClick={ ()=> {
                                 if(isCheck === false){
                                     setIsCheck(true)
@@ -201,9 +186,6 @@ const MyPage = () => {
                             {
                                 user.mynft
                                 ?<ItemList
-                                getItem={{
-                                    dummy
-                                }}
                                 itemCount={6}
                                 nftdata={user.mynft}
                                 />
