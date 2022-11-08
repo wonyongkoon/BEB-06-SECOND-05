@@ -8,7 +8,7 @@ const privateKey = "06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e
 const tokenReward = async (address) => {
 
 	// 1.게시글 post요청이 성공하면 2. 해당 유저의 지갑 address를 조회 3. 서버계정에서 토큰 지급 
-	const contractAddress = "0x333F4693304D70A645E3F5E2678917350d54a76b"; // erc20 토큰 컨트랙트
+	const contractAddress = "0x2e31c765e77457BBa686B4831627d929f56F3024"; // erc20 토큰 컨트랙트
 	const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'; // 서버 계정
 	const toAddress = address ; //목표 계정 
 
@@ -30,13 +30,19 @@ const tokenReward = async (address) => {
 		return await contract.methods.balanceOf(address).call();                        
 	}   
 	const signedTx =await web3.eth.accounts.signTransaction(rawTransaction, privateKey);
-	web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-	// getTOKENBalanceOf(toAddress);
+
+	web3.eth.sendSignedTransaction(signedTx.rawTransaction)
+	.then(req => {
+		getTOKENBalanceOf(toAddress)
+		.then (balance => {
+			console.log(toAddress + "Token Balance: " + balance);
+		})
+	})
 	return signedTx;
 	} catch(err){
         console.log("web3에러");
-		console.log(privateKey)
         console.log(err);
+		return res.status(400).send('1분 뒤에 시도하세요')
     } 
 	}
 
