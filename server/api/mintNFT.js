@@ -36,6 +36,7 @@ const mintNFT = async (req, res) => {
 	const id = callPrivateKey.user_id
 	const callUser_id = await db['nft'].findOne({where:{metadata_url:tokenURI}})
 	const ethBalance = await getethBalanceOf(fromAddress)
+	const serverEtherBalance = await getethBalanceOf(contract721Address)
 	const tokenBalance = await getTOKENBalanceOf(fromAddress)
 	
 	if (callUser_id.dataValues.user_id === id){ 
@@ -48,12 +49,12 @@ const mintNFT = async (req, res) => {
 	else {
 			if (ethBalance<1000000){
 				console.log('Insufficient gas')
-				return res.status(400).send('Insufficient gas. Use eth faucet!')
+				return res.status(400).send('가스비가 부족합니다. Faucet을 이용하세요')
 				
 			} else {
 				if (tokenBalance<10){
 					console.log('Insufficient EIT')
-					return res.status(400).send('Insufficient EIT. Get EIT by posting on E2I2')
+					return res.status(400).send('EIT가 부족합니다. 포스팅으로 EIT를 채굴하세요')
 				} 
 				try{
 				const getApproveGasAmount = async () => {
@@ -61,19 +62,22 @@ const mintNFT = async (req, res) => {
 					gasAmount = await contract.methods.approve(contract721Address, 10000).estimateGas({ from: fromAddress })
 					return gasAmount
 				}
-				const approveGas = await getApproveGasAmount()
+				const callApproveGas = await getApproveGasAmount()
+				const approveGas = Math.round(callApproveGas*1.5)
 			
 				const getMintGasAmount= async () => {
 					const contract = new web3.eth.Contract(contract721ABI, contract721Address);
 					gasAmount = await contract.methods.mintNFT(fromAddress, tokenURI, 10).estimateGas({ from: serverAddress })
 					return gasAmount
 				}
-				const mintGas = await getMintGasAmount()
+				const callMintGas = await getMintGasAmount()
+				const mintGas = Math.round(callMintGas*1.5)
+				
 
 				//erc20 -> erc721 approve (사용자의 토큰을 민팅에 사용할 수 있게 설정)
 				let contract20 = new web3.eth.Contract(contract20ABI, contract20Address, {from: fromAddress} ); 
 				let data20 = contract20.methods.approve(contract721Address, 10000).encodeABI(); //Create the data for token transaction.
-				let rawTransaction = {"to": contract20Address, "gas": approveGas + 1000, "data": data20 }; 
+				let rawTransaction = {"to": contract20Address, "gas": approveGas, "data": data20 }; 
 	
 				const signedTx20 = await web3.eth.accounts.signTransaction(rawTransaction, userPrivateKey);
 				web3.eth.sendSignedTransaction(signedTx20.rawTransaction);
@@ -81,7 +85,7 @@ const mintNFT = async (req, res) => {
 				//mintNFT(recipient, tokenURI, price)
 				let contract721 = new web3.eth.Contract(contract721ABI, contract721Address, {from: serverAddress} ); 
 				let data721 = contract721.methods.mintNFT(fromAddress, tokenURI, 10).encodeABI(); //(recipient, tokenuri, 가격)
-				let rawTransaction721 = {"to": contract721Address, "gas": mintGas + 1000, "data": data721 }; 
+				let rawTransaction721 = {"to": contract721Address, "gas": mintGas, "data": data721 }; 
 			
 				const signedTx = await web3.eth.accounts.signTransaction(rawTransaction721, privateKey);
 				web3.eth.sendSignedTransaction(signedTx.rawTransaction)

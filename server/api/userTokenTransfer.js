@@ -47,12 +47,12 @@ const userTokenTransfer = async (req, res) => {
 
 	if (ethBalance < 1000000){
 		console.log('Insufficient gas')
-		return res.status(400).send('Insufficient gas. Use eth faucet!')
+		return res.status(400).send('가스비가 부족합니다. Faucet을 이용하세요')
 	} else {
 		try{
 			if (tokenBalance < 0 || tokenBalance < amount){
 				console.log('Insufficient EIT')
-				return res.status(400).send('Insufficient EIT. Get EIT by posting on E2I2')
+				return res.status(400).send('EIT가 부족합니다. 포스팅으로 EIT를 채굴하세요')
 			} 
 
 			const getGasAmount = async () => {
@@ -75,14 +75,13 @@ const userTokenTransfer = async (req, res) => {
 			web3.eth.accounts.signTransaction(rawTransaction, privateKey)
 				.then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
 				.then(req => { 
+						console.log('wait for 40 seconds')
 						db['user'].decrement({token_amount:amount},{where:{address:fromAddress}});
 						db['user'].increment({token_amount:amount},{where:{address:toAddress}});
 						getTOKENBalanceOf2(toAddress).then ( balance => { console.log(toAddress + " Token Balance: " + balance); });
 						return res.status(200).send("토큰 전송 성공");
 						// return true;  
 				})    
-			console.log('wait for 40 seconds')
-				setTimeout(() => {console.log('Transfer success')}, 40000);
 		
 			} catch(err){
 				console.log("에러");
