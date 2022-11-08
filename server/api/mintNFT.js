@@ -96,6 +96,9 @@ const mintNFT = async (req, res) => {
 						return res.status(200).send("민트 성공");
 						// return true;  
 				})
+				.catch(err => {
+					return res.status(400).send("실패. 1분 후에 재시도 하세요");
+				})
 				
 				// db nft 목록에 해당 nft user컬럼이 비어있다가 구매가되면 구매자 이름으로 업데이트
 				console.log('wait for 40 seconds')
