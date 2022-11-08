@@ -14,6 +14,7 @@ const erc20Address = "0x333F4693304D70A645E3F5E2678917350d54a76b"
 const erc721Address = "0xB36FF334C06d57DFECbF70f22A41EBEf22456f60"
 const serverAddress = '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755'
 const privateKey = '06e62f2d492e32a888379a37f6a32c3c2efa0f586e712434a1387313419e20a8';
+const fromAddress = '0x1C7291C03d2B250C7AD6559A361Ddd32Ca445700'
 
 const contract20 = new web3.eth.Contract(erc20ABI, erc20Address)
 const contract721 = new web3.eth.Contract(erc721ABI, erc721Address)
@@ -76,7 +77,7 @@ const result2 = async () => {
 // console.log(contract20.methods)
 
 const getTOKENBalanceOf = async () => {
-	return await contract20.methods.balanceOf('0x9AaeFB2A0D5DFa9aA536cCD27186d68507c9138f').call()
+	return await contract20.methods.balanceOf('0x1C7291C03d2B250C7AD6559A361Ddd32Ca445700').call()
 	.then(result => {
 		console.log(result)
 	});                        
@@ -99,7 +100,7 @@ const getethBalanceOf = async () => {
 }
 
 // getethBalanceOf()
-ownerOfNFT()
+// ownerOfNFT()
 // result2()
 
 
@@ -113,11 +114,13 @@ const getGasPrice = async () => {
 // getGasPrice()
 
 const getGasPrice2 = async () => {
-	return await contract20.methods.approve(erc721Address, 10000).estimateGas(
+	return  contract721.methods.mintNFT(fromAddress, 'https://ipfs.io/ipfs/QmcYsYn5kzUYvioqC43vc5eisSyS8xMPgcu5agaFE6koCu?filename=%E1%84%82%E1%85%A9%E1%84%8C%E1%85%B5%E1%84%89%E1%85%A5%E1%86%AB.png', 10).estimateGas(
         {
             from: '0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755',
-            gasPrice: 102716971311
+            gasPrice:1000000000000000
         }, function(error, estimatedGas) {
+		
+			console.log(estimatedGas)
         }
     )
 	.then(result => {
@@ -125,6 +128,22 @@ const getGasPrice2 = async () => {
 	});                        
 }
 
+getGasPrice2
 
 
+const getGasAmountForContractCall = async () => {
+    const contract = new web3.eth.Contract(erc721ABI, erc721Address);
+    gasAmount = await contract.methods.mintNFT(fromAddress, 'https://ipfs.io/ipfs/QmcYsYn5kzUYvioqC43vc5eisSyS8xMPgcu5agaFE6koCu?filename=%E1%84%82%E1%85%A9%E1%84%8C%E1%85%B5%E1%84%89%E1%85%A5%E1%86%AB.png', 10).estimateGas({ from: fromAddress });
+    console.log (gasAmount)
+}
+
+
+getGasAmountForContractCall()
+
+const gasPrice = async () => {
+	await web3.eth.getGasPrice()
+	.then(result => console.log(result))
+	
+} 
+// gasPrice()
 

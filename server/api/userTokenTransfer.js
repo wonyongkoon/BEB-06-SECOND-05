@@ -45,8 +45,6 @@ const userTokenTransfer = async (req, res) => {
 	const dbTokenBalance = callPrivateKey.dataValues.token_amount;
 	const gasPrice = await getGasPrice()
 
-	
-
 	if (ethBalance < 1000000){
 		console.log('Insufficient gas')
 		return res.status(400).send('Insufficient gas. Use eth faucet!')
@@ -56,10 +54,18 @@ const userTokenTransfer = async (req, res) => {
 				console.log('Insufficient EIT')
 				return res.status(400).send('Insufficient EIT. Get EIT by posting on E2I2')
 			} 
+
+			const getGasAmount = async () => {
+				let contract = new web3.eth.Contract(contractABI,contractAddress)
+				const gasAmount = await contract.methods.transfer(toAddress, amount).estimateGas({ from: fromAddress })
+				return gasAmount
+			}
+			const transferGas = await getGasAmount()
+
 			//creating contract object
 			let contract = new web3.eth.Contract(contractABI,contractAddress, {from: fromAddress} ); 
 			let data = contract.methods.transfer(toAddress, amount).encodeABI(); //Create the data for token transaction.
-			let rawTransaction = {"to": contractAddress, "gas": 1000000, "data": data }; 
+			let rawTransaction = {"to": contractAddress, "gas": transferGas + 1000, "data": data }; 
 		
 			//밸런스 확인 
 			const getTOKENBalanceOf2 = async (address) => {
@@ -69,18 +75,19 @@ const userTokenTransfer = async (req, res) => {
 			web3.eth.accounts.signTransaction(rawTransaction, privateKey)
 				.then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
 				.then(req => { 
+						db['user'].decrement({token_amount:amount},{where:{address:fromAddress}});
+						db['user'].increment({token_amount:amount},{where:{address:toAddress}});
 						getTOKENBalanceOf2(toAddress).then ( balance => { console.log(toAddress + " Token Balance: " + balance); });
-						return res.send("토큰 전송 성공");
+						return res.status(200).send("토큰 전송 성공");
 						// return true;  
 				})    
-			await db['user'].update({token_amount:tokenBalance-amount},{where:{address:fromAddress}});
-			await db['user'].update({token_amount:toTokenBalance+amount},{where:{address:toAddress}});
 			console.log('wait for 40 seconds')
 				setTimeout(() => {console.log('Transfer success')}, 40000);
 		
 			} catch(err){
 				console.log("에러");
 				console.log(err);
+				
 			}
 
 	}
