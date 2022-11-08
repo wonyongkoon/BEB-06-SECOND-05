@@ -47,7 +47,6 @@ const Comment = ({post_id}) => {
       })
       setCommentValue('');
     };
-    console.log(post_id);
 
   return (
 <div className="post">    
