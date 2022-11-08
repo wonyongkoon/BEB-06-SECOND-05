@@ -1,8 +1,10 @@
 import { React , useState, useContext, useEffect} from 'react';
-import "./post.css";
+// import "./post.css";
+import "./Comment.css";
 import {UseContext} from '../../User/UserContextProvider';
 import axios from 'axios';
 // import dummyComment from './dummyComment';
+import { AddComment } from '@material-ui/icons';
 
 const Comment = ({post_id}) => {
 
@@ -49,9 +51,9 @@ const Comment = ({post_id}) => {
     };
 
   return (
-<div className="post">    
-      <div className="postWrapper">
-            <div className="postTop">
+<div className="Comment">    
+      <div className="comment_Wrapper">
+            <div className="comment_Top">
        {/* {dummyComment
        .map(el => {
           return (
@@ -63,9 +65,9 @@ const Comment = ({post_id}) => {
           }; */}
       {commentBox.map(el => {
         return (
-          <div className="postComment" key={el.id} >
-            <form className="postBottomLeft">
-            <img className="postProfileImg" src={el.image} alt=""/>
+          <div className="comment_Comment" key={el.id} >
+            <form className="comment_BottomLeft">
+            <img className="comment_ProfileImg" src={el.image} alt=""/>
             <div className="comment2">
             <div className="commentUsername">{el.nickname}</div>
             <span className="commentComment">{el.comment}</span>
@@ -75,17 +77,19 @@ const Comment = ({post_id}) => {
         )})
          }
         </div>
-    <div className={`postBottom ${cookies ? '':'btn-none'}`} onSubmit={onSubmit}>
-     <form className="postBottomLeft">
-      <img className="postProfileImg" src={image} alt=""/>
+    <div className={`comment_Bottom ${cookies ? '':'btn-none'}`} onSubmit={onSubmit}>
+     <form className="comment_Bottom-container">
+      <img className="comment_ProfileImg" src={image} alt=""/>
       <input
         type="text"
         placeholder="댓글 달기..."
-        className="comment"
+        className="comment-input"
         value={commentValue}
         onChange={onChange}
       />
-      <button className="commentButton" >게 시</button>
+      <button className="commentButton" >
+        <AddComment></AddComment>
+        </button>
     </form>
     </div>
     </div>
