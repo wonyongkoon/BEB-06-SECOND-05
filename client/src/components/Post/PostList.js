@@ -9,7 +9,6 @@ const PostList = ({post}) => {
     // const {user, setUsers} = useContext(UseContext);    // 마이페이지에 유저 판별하기위해서
     const [page, setPage] = useState(1);
     const offset = (page - 1) * 10;
-    const [showComment, setShowComment] = useState(false);
 
     const handlePageChange = (page) => {
         setPage(page);
