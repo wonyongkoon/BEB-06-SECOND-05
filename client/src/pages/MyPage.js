@@ -85,15 +85,23 @@ const MyPage = () => {
                 console.log("성공")
                 console.log(response)
                 setCookiesHandler(true);
-                setPopup({
-                   open:true,
-                   message: "전송 되었습니다.", 
-                   callback: function(){
-                         } });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '전송 되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
             else{
                 alert("실패");
             }
+        }).catch((Error) => {
+            Swal.fire({
+                icon: 'error',
+                text: Error.response.data,
+            })
+           
         })
 
     }
