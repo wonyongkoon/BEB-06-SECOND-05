@@ -29,7 +29,9 @@
     border: none;
     width: 80%;
     height: auto;
-    overflow:hidden
+    overflow:hidden;
+    resize: none;
+
 }
 
 .shareInput:focus {
@@ -64,6 +66,7 @@
 }
 
 .shareOptionText {
+    margin-top: 10px;
     font-size: 15px;
     font-weight: 500;
 }
