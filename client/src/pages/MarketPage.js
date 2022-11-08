@@ -11,7 +11,6 @@ const MarketPage = () => {
         axios.post("http://localhost:5000/nft/nftall",{withCredentials: true})
         .then((res)=>{
             setnftdata(res.data)
-            console.log(res.data)
         })
     },[])
    

@@ -21,7 +21,6 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
         setModalIsOpen(true)
     }
     const Sell = () =>{
-        console.log(metadataurl, user.address)
         axios
         .post("http://localhost:5000/mintNFT/mintNFT", {
 	        fromAddress : user.address,

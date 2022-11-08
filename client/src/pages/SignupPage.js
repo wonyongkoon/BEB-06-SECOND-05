@@ -113,7 +113,6 @@ const onChangeNickName = (e) => {
 };
   // 버튼 클릭 시 회원가입 데이터를 DB로 전송해줌 ------------------ 
     function SignUp() {
-      console.log("버튼눌림")
         // 서버로 데이터 전송
         // axios.post("http://localhost:5000/test",{
         axios.post("http://localhost:5000/user/usersave",{
@@ -123,8 +122,6 @@ const onChangeNickName = (e) => {
           nickname : nickName,
         })
         .then(function (response) {
-          console.log("성공")
-          console.log(response.data);
               setPopup({
                 open:true,
                 message: "회원가입에 성공했습니다.",
@@ -139,19 +136,7 @@ const onChangeNickName = (e) => {
         })  
     }
     // -----------------------------------------------------
-function dbtest(){
-  console.log("테스트 버튼 눌림")
-  axios.post("http://localhost:5000/user/userall",{
-  })
-  .then(function (response) {
-    console.log("성공")
-    console.log(response.data);
-  })
-  .catch((Error)=>{
-    console.log("실패")
-    console.log(Error);
-  })
-}
+
     return (
         <div className='SignupPage'>
             <div className='SignupPage__header'>
@@ -217,7 +202,7 @@ function dbtest(){
                     {nickName.length > 0 && <span className={`message${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>}
                     {/*닉네임 입력 테스트*/}<span>{nickName}</span> 
                 <button className={`SignupPage__container-button-${!(isUserId && ispassword && isPasswordConfirm && isEmail && isNickName ) ? 'gray' : 'blue' } `} disabled={!(isUserId && ispassword && isPasswordConfirm && isEmail && isNickName )} onClick={SignUp}>회원가입</button>
-                <button className='SignupPage__container-button' onClick={dbtest}>디비확인!(임시버튼)</button>
+              
             </div>
             <Popup open = {popup.open} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
         </div>

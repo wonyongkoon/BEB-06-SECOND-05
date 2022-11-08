@@ -42,7 +42,6 @@ const Header = () => {
     },[cookies]);
 
     function Logout(){
-        console.log("로그아웃 버튼눌림")
         axios
             .post("http://localhost:5000/logout", {
             }, {withCredentials: true})

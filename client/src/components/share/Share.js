@@ -68,7 +68,6 @@ const Share = () => {
       userimage : image,
     },{withCredentials: true})
     .then((res)=> {
-      console.log(res);
       if(res.status===200){
         setUsers({...user,token_amount:user.token_amount+10});
         setContent('');

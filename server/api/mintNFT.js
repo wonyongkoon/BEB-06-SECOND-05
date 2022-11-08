@@ -47,11 +47,7 @@ const mintNFT = async (req, res) => {
 	const tokenBalance = await getTOKENBalanceOf(fromAddress)
 	const callGasPrice = await getGasPrice() 
 	const gasPrice = Math.round(1.09*callGasPrice)
-	console.log('gasPrice : ' + gasPrice)
-	console.log('id::'+id)
-	console.log('ethBalance : ' + ethBalance)
-	console.log('tokenBalance : ' + tokenBalance)
-
+	
 	if (callUser_id.dataValues.user_id === id){ 
 		console.log('Alreday yours')
 		return res.status(400).send('Already yours') 

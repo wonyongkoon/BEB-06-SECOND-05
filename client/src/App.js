@@ -14,6 +14,7 @@ function App() {
   return (
     
     <BrowserRouter>
+    <>
       <UserContextProvider>
           <div className="App">
             <Header />
@@ -27,6 +28,7 @@ function App() {
             <Footer />
           </div>
       </UserContextProvider>
+    </>
     </BrowserRouter>
     
   );
