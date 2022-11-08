@@ -44,8 +44,7 @@ const userTokenTransfer = async (req, res) => {
 	const toTokenBalance = await getTOKENBalanceOf(toAddress)
 	const dbTokenBalance = callPrivateKey.dataValues.token_amount;
 	const gasPrice = await getGasPrice()
-	console.log(dbTokenBalance)
-	console.log(tokenBalance)
+
 	
 
 	if (ethBalance < 1000000){

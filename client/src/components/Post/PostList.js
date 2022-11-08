@@ -26,7 +26,6 @@ const PostList = ({post}) => {
     };
 
     const likeHandler = (index) => {
-        console.log(index);
     };
     // const betweenTime = (value) =>{
     //     const date_at=new Date(value);

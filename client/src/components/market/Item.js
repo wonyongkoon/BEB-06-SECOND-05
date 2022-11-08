@@ -21,7 +21,6 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
         setModalIsOpen(true)
     }
     const Sell = () =>{
-        console.log(metadataurl, user.address)
         axios
         .post("http://localhost:5000/mintNFT/mintNFT", {
 	        fromAddress : user.address,
@@ -29,8 +28,6 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
         }, {withCredentials: true})
         .then(function (response) {
             // 구매 성공시 마이페이지로 이동
-            console.log("성공")
-            console.log(response.data)
             setCookiesHandler(true);
             setPopup({
                    open:true,   

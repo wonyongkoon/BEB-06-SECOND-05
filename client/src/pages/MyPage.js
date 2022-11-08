@@ -17,7 +17,6 @@ const MyPage = () => {
     const loadpage = "MyPage"
     //서버열리면 사용하기 
     const {user, setUserImage,image} = useContext(UseContext);
-    console.log(user.mynft);
     const {setCookiesHandler} =useContext(UseContext);
     const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
     const [isCheck, setIsCheck] = useState(false) // 토큰 전송창 관리
@@ -31,7 +30,6 @@ const MyPage = () => {
         let reader = new FileReader();
         reader.onload = function () {
             let dataURL = reader.result;
-            console.log(dataURL)
             let userIMG = document.getElementById('user-img')
             userIMG.src = dataURL;
             // 서버로 보내기
@@ -61,7 +59,6 @@ const MyPage = () => {
     }
     const transmission =() =>{
         // 토큰 전송 버튼 
-        console.log(`주소 : ${address}, 갯수 : ${count}`)
         // 나의 주소 , 상대주소, 갯수 
 	    // fromAddress 나의주소
 	    //toAddress 받는주소
