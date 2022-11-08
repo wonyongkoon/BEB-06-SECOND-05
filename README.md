@@ -44,10 +44,11 @@ $ npm start
 >### Market Page
 (NFT 구매 GIF)
 >### Login Page
-![화면 녹화 2022-11-08 위치 오후 11 14 08](https://user-images.githubusercontent.com/45747187/200589357-9e6f4553-3ea6-4bc3-a93a-ee4aac8b2a06.gif)
+![vllo](https://user-images.githubusercontent.com/45747187/200590546-c970cae4-9831-41a1-b723-568f4427a72f.gif)
 
 >### SignUp Page
-![화면 녹화 2022-11-08 위치 오후 11 13 36 3](https://user-images.githubusercontent.com/45747187/200588986-7b945734-a9ec-4ae5-96be-aa80d2dc4042.gif)
+![vllo 2](https://user-images.githubusercontent.com/45747187/200590983-091a2c07-f8af-406d-8dc3-381f464a5282.gif)
+
 
 # 👨‍👩‍👦‍👦 Members
 ||Role|Github|
