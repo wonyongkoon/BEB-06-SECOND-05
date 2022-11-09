@@ -21,6 +21,7 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
     const SellModal = () => {
         setModalIsOpen(true)
     }
+
     const Sell = () =>{
         axios
         .post("http://localhost:5000/mintNFT/mintNFT", {
@@ -28,8 +29,16 @@ const Item = ({id,image,description,metadataurl ,itemcount}) => {
 	        tokenURI : metadataurl
         }, {withCredentials: true})
         .then(function (response) {
-            setUsers({...user,token_amount:user.token_amount-10});
             setCookiesHandler(true);
+            const data =[{
+                id:id,
+                user_id:user.user_id,
+                img_url:image,
+                metadata_url:metadataurl,
+                description:description,
+            }]
+            const data2=user.mynft.concat(data);
+            setUsers({...user,token_amount:user.token_amount-10 ,mynft:data2});
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
